@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C4CA5DCB0B980DE62F54883 /* Pods_Mr_Ride_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EF88E2F89EEED4143779B7 /* Pods_Mr_Ride_iOS.framework */; };
 		F9A2EBB21CF2A79A00853CCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A2EBB11CF2A79A00853CCE /* AppDelegate.swift */; };
 		F9A2EBB41CF2A79A00853CCE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A2EBB31CF2A79A00853CCE /* ViewController.swift */; };
 		F9A2EBB71CF2A79A00853CCE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9A2EBB51CF2A79A00853CCE /* Main.storyboard */; };
@@ -15,6 +16,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		66EF88E2F89EEED4143779B7 /* Pods_Mr_Ride_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mr_Ride_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A45D7F7E8E6896C21D7AF9DA /* Pods-Mr-Ride-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mr-Ride-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mr-Ride-iOS/Pods-Mr-Ride-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		B839DBAFF8269066CD6F4A18 /* Pods-Mr-Ride-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mr-Ride-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mr-Ride-iOS/Pods-Mr-Ride-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		F9A2EBAE1CF2A79A00853CCE /* Mr-Ride-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mr-Ride-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A2EBB11CF2A79A00853CCE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F9A2EBB31CF2A79A00853CCE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -29,17 +33,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C4CA5DCB0B980DE62F54883 /* Pods_Mr_Ride_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0274EBFAC3A62FB85EF44144 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				66EF88E2F89EEED4143779B7 /* Pods_Mr_Ride_iOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		871BEF0F94F3CBEA64F78184 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B839DBAFF8269066CD6F4A18 /* Pods-Mr-Ride-iOS.debug.xcconfig */,
+				A45D7F7E8E6896C21D7AF9DA /* Pods-Mr-Ride-iOS.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		F9A2EBA51CF2A79A00853CCE = {
 			isa = PBXGroup;
 			children = (
 				F9A2EBB01CF2A79A00853CCE /* Mr-Ride-iOS */,
 				F9A2EBAF1CF2A79A00853CCE /* Products */,
+				871BEF0F94F3CBEA64F78184 /* Pods */,
+				0274EBFAC3A62FB85EF44144 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F9A2EBC01CF2A79A00853CCE /* Build configuration list for PBXNativeTarget "Mr-Ride-iOS" */;
 			buildPhases = (
+				78D24A95E1D30FC12DDFBD73 /* 📦 Check Pods Manifest.lock */,
 				F9A2EBAA1CF2A79A00853CCE /* Sources */,
 				F9A2EBAB1CF2A79A00853CCE /* Frameworks */,
 				F9A2EBAC1CF2A79A00853CCE /* Resources */,
+				2A55D4EAE873E9A72C00A2B8 /* 📦 Embed Pods Frameworks */,
+				42C34458564DD9CD5929D596 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -129,6 +156,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2A55D4EAE873E9A72C00A2B8 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Mr-Ride-iOS/Pods-Mr-Ride-iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		42C34458564DD9CD5929D596 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Mr-Ride-iOS/Pods-Mr-Ride-iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		78D24A95E1D30FC12DDFBD73 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F9A2EBAA1CF2A79A00853CCE /* Sources */ = {
@@ -247,6 +322,7 @@
 		};
 		F9A2EBC11CF2A79A00853CCE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B839DBAFF8269066CD6F4A18 /* Pods-Mr-Ride-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Mr-Ride-iOS/Info.plist";
@@ -258,6 +334,7 @@
 		};
 		F9A2EBC21CF2A79A00853CCE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A45D7F7E8E6896C21D7AF9DA /* Pods-Mr-Ride-iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Mr-Ride-iOS/Info.plist";
@@ -286,6 +363,7 @@
 				F9A2EBC21CF2A79A00853CCE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
