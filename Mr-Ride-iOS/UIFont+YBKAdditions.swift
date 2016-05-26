@@ -56,4 +56,7 @@ extension UIFont {
   class func mrTextStyle4Font() -> UIFont { 
     return UIFont.systemFontOfSize(10.0, weight: UIFontWeightRegular)
   }
+    class func mrTextStyle13Font() -> UIFont {
+        return UIFont.systemFontOfSize(17.0, weight: UIFontWeightBold)
+    }
 }
