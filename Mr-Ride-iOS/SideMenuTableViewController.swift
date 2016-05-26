@@ -8,12 +8,14 @@
 
 import UIKit
 
+
+
 class SideMenuTableViewController: UITableViewController {
 
     let menu = ["Home", "History"]
     
     var delegate: SideMenuDelegate?
-    
+
     func setup() {
         self.navigationController?.navigationBarHidden = true
         self.tableView.contentInset = UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0)
@@ -25,19 +27,7 @@ class SideMenuTableViewController: UITableViewController {
         super.viewDidLoad()
         setup()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return menu.count
-    }
-
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("SideMenuCell", forIndexPath: indexPath) as! SideMenuCell
         cell.delegate = delegate
@@ -46,10 +36,21 @@ class SideMenuTableViewController: UITableViewController {
         return cell
     }
 
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-            return 45
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
     }
     
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 45
+    }
+
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return menu.count
+    }
     
-    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+
+
 }

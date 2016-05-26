@@ -34,7 +34,6 @@ class SideMenuCell: UITableViewCell {
         super.layoutSubviews()
         setup()
     }
-
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -31,6 +31,7 @@
 		F9E55F461CF3E8F200402F96 /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E55F451CF3E8F200402F96 /* SideMenuTableViewController.swift */; };
 		F9E55F4B1CF3EFA900402F96 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E55F4A1CF3EFA900402F96 /* NavigationController.swift */; };
 		F9E55F4F1CF42D1100402F96 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E55F4E1CF42D1100402F96 /* RootViewController.swift */; };
+		F9E9E4A11CF6ED6C00599D85 /* TrackingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E9E4A01CF6ED6C00599D85 /* TrackingPageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		F9E55F451CF3E8F200402F96 /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
 		F9E55F4A1CF3EFA900402F96 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		F9E55F4E1CF42D1100402F96 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		F9E9E4A01CF6ED6C00599D85 /* TrackingPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingPageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,9 +159,9 @@
 				F9E55F4A1CF3EFA900402F96 /* NavigationController.swift */,
 				F9E55F4E1CF42D1100402F96 /* RootViewController.swift */,
 				F9E55F451CF3E8F200402F96 /* SideMenuTableViewController.swift */,
+				F9E9E4A01CF6ED6C00599D85 /* TrackingPageViewController.swift */,
 				F9A2EBB31CF2A79A00853CCE /* HomeViewController.swift */,
 				F93BBFF01CF5945100A9E661 /* HistoryViewController.swift */,
-				F93BBFEE1CF590B800A9E661 /* SideMenuCell.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -168,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				F9A2EBB51CF2A79A00853CCE /* Main.storyboard */,
+				F93BBFEE1CF590B800A9E661 /* SideMenuCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9E9E4A11CF6ED6C00599D85 /* TrackingPageViewController.swift in Sources */,
 				F9A2EBB41CF2A79A00853CCE /* HomeViewController.swift in Sources */,
 				F9E55F4B1CF3EFA900402F96 /* NavigationController.swift in Sources */,
 				F953E36B1CF2DC3C00FA3F4E /* UIFont+YBKAdditions.swift in Sources */,
