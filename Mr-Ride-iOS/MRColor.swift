@@ -69,7 +69,7 @@ extension UIColor {
 	}
 
 	class func MRRobinsEggBlueColor() -> UIColor {
-		return UIColor(red: 147.0 / 255.0, green: 225.0 / 255.0, blue: 246.0 / 255.0, alpha: 1.0)
+		return UIColor(red: 147.0 / 255.0, green: 225.0 / 255.0, blue: 246.0 / 255.0, alpha: 0.0)
 	}
 
 	class func MRLightblueColor() -> UIColor {
@@ -79,4 +79,9 @@ extension UIColor {
 	class func MRDarkSlateBlueColor() -> UIColor {
 		return UIColor(red: 14.0 / 255.0, green: 53.0 / 255.0, blue: 64.0 / 255.0, alpha: 1.0)
 	}
+    
+    class func MRWaterBlueColor() -> UIColor {
+        return UIColor(red: 11.0 / 255.0, green: 151.0 / 255.0, blue: 189.0 / 255.0, alpha: 1.0)
+    }
+    
 }

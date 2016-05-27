@@ -19,6 +19,14 @@ class ResultPageViewController: UIViewController {
     func setupNavigationItem() {
         closeButtonToHomePage.setTitleTextAttributes([ NSFontAttributeName: UIFont.mrTextStyle13Font(),
             NSForegroundColorAttributeName: UIColor.whiteColor() ], forState: UIControlState.Normal)
+        
+        //title
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        self.navigationItem.title = dateFormatter.stringFromDate(NSDate())
+        navigationController?.navigationBar.titleTextAttributes =
+            ([NSFontAttributeName: UIFont.mrTextStyle13Font(),
+                NSForegroundColorAttributeName: UIColor.whiteColor()])
     }
     
     override func viewDidLoad() {
