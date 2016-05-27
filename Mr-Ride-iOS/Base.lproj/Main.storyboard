@@ -41,27 +41,118 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="12.5 km" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBq-n3-2Xl">
-                                <rect key="frame" x="38" y="69" width="300" height="95"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="80"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="14 times" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g2e-7h-MoV">
                                 <rect key="frame" x="38" y="278" width="167" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="12.5 km" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBq-n3-2Xl">
+                                <rect key="frame" x="38" y="69" width="300" height="95"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="80"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OWw-lC-36r">
+                                <rect key="frame" x="76" y="495" width="224" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="224" id="Z1s-Iw-qOw"/>
+                                    <constraint firstAttribute="height" constant="60" id="oTw-nT-MFb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <size key="titleShadowOffset" width="0.0" height="1"/>
+                                <state key="normal" title="Let's Ride">
+                                    <color key="titleColor" red="0.38823530080000002" green="0.84313726430000002" blue="0.96470588450000005" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="letsRideButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="U72-3x-dht"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.38823530077934265" green="0.84313726425170898" blue="0.96470588445663452" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="OWw-lC-36r" secondAttribute="bottom" constant="112" id="BlS-Xj-kOM"/>
+                            <constraint firstItem="OWw-lC-36r" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NEN-bl-wRA"/>
+                        </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
+                    <connections>
+                        <outlet property="letsRideButton" destination="OWw-lC-36r" id="QRI-7s-Snl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-177.5" y="-414.5"/>
+        </scene>
+        <!--Tracking Page View Controller-->
+        <scene sceneID="KB2-Z2-D4c">
+            <objects>
+                <viewController id="xMn-jo-8mr" customClass="TrackingPageViewController" customModule="Mr_Ride_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zWa-FD-v8X"/>
+                        <viewControllerLayoutGuide type="bottom" id="o94-Zj-o7V"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7jV-9X-CP4">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="0.21388664135513136" blue="0.14064266097751521" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="zmi-s2-GWJ">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="zUq-7I-AO6">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="cancelButtonToHomePage:" destination="xMn-jo-8mr" id="qCe-oq-YOo"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Finish" id="eNx-gr-ibu">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="n4l-s5-KLg" kind="push" id="jDw-VU-wHs"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
+                    <connections>
+                        <outlet property="cancelButtonToHomePage" destination="zUq-7I-AO6" id="CZZ-eq-uGG"/>
+                        <outlet property="finishButtonToResultPage" destination="eNx-gr-ibu" id="9jv-oZ-Zxs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GbL-wz-9ju" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="735.5" y="-386.5"/>
+        </scene>
+        <!--Result Page View Controller-->
+        <scene sceneID="Pgm-1f-Owf">
+            <objects>
+                <viewController id="n4l-s5-KLg" customClass="ResultPageViewController" customModule="Mr_Ride_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Lug-Yy-LtL"/>
+                        <viewControllerLayoutGuide type="bottom" id="fZy-WU-kuF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GZA-Hk-WAJ">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="bky-ke-SPP">
+                        <barButtonItem key="leftBarButtonItem" title="Close" id="8N7-9B-K2Q">
+                            <connections>
+                                <action selector="closeButtonToHomePage:" destination="n4l-s5-KLg" id="q3v-Me-4k2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
+                    <connections>
+                        <outlet property="closeButtonToHomePage" destination="8N7-9B-K2Q" id="yL5-Vm-ht9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VQU-Md-3R2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1351.5" y="-386.5"/>
         </scene>
         <!--History View Controller-->
         <scene sceneID="e18-hZ-YTO">
@@ -97,18 +188,14 @@
         <!--Navigation Controller-->
         <scene sceneID="64T-7V-lpe">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jpz-vW-GIF" customClass="NavigationController" customModule="Mr_Ride_iOS" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jpz-vW-GIF" sceneMemberID="viewController">
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="674"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="JeP-Pm-0ia">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="JeP-Pm-0ia">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.38823530080000002" green="0.84313726430000002" blue="0.96470588450000005" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <color key="textShadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -182,12 +269,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fqy-Hb-PfU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1608" y="-125"/>
+            <point key="canvasLocation" x="-1608.5" y="-173.5"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="Moc-Fn-NQF">
             <objects>
-                <viewController storyboardIdentifier="RootViewController" id="rBB-5y-rq4" customClass="RootViewController" customModule="Mr_Ride_iOS" sceneMemberID="viewController">
+                <viewController id="rBB-5y-rq4" customClass="RootViewController" customModule="Mr_Ride_iOS" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ugh-l5-JcU"/>
                         <viewControllerLayoutGuide type="bottom" id="Hwf-mK-L4L"/>
@@ -210,6 +297,27 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uq4-Qp-kPd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-896.5" y="-125.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="1N6-T3-mdu">
+            <objects>
+                <navigationController storyboardIdentifier="TrackingPageNavigationBar" automaticallyAdjustsScrollViewInsets="NO" id="Lbk-eX-HwV" customClass="NavigationController" customModule="Mr_Ride_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="Gqq-1L-pxc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.38823530080000002" green="0.84313726430000002" blue="0.96470588450000005" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="xMn-jo-8mr" kind="relationship" relationship="rootViewController" id="6qw-0b-9UW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s9K-ln-rxE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1087.5" y="-1228.5"/>
         </scene>
     </scenes>
     <resources>

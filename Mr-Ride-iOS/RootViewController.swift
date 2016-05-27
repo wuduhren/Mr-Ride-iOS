@@ -15,6 +15,9 @@ class RootViewController: UIViewController, SideMenuDelegate {
     
     var sideMenuNavigationController: UISideMenuNavigationController?
     
+    
+    
+    
     private lazy var homeViewController: HomeViewController = { [unowned self] in
         let homeViewController = HomeViewController.controller()
         self.addChildViewController(homeViewController)
