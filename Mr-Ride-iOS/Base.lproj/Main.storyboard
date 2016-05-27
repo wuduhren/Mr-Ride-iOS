@@ -99,13 +99,60 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="0.21388664135513136" blue="0.14064266097751521" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="zmi-s2-GWJ"/>
+                    <navigationItem key="navigationItem" id="zmi-s2-GWJ">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="zUq-7I-AO6">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="cancelButtonToHomePage:" destination="xMn-jo-8mr" id="qCe-oq-YOo"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Finish" id="eNx-gr-ibu">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="n4l-s5-KLg" kind="push" id="jDw-VU-wHs"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
+                    <connections>
+                        <outlet property="cancelButtonToHomePage" destination="zUq-7I-AO6" id="CZZ-eq-uGG"/>
+                        <outlet property="finishButtonToResultPage" destination="eNx-gr-ibu" id="9jv-oZ-Zxs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GbL-wz-9ju" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1087.5" y="-414.5"/>
+            <point key="canvasLocation" x="735.5" y="-386.5"/>
+        </scene>
+        <!--Result Page View Controller-->
+        <scene sceneID="Pgm-1f-Owf">
+            <objects>
+                <viewController id="n4l-s5-KLg" customClass="ResultPageViewController" customModule="Mr_Ride_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Lug-Yy-LtL"/>
+                        <viewControllerLayoutGuide type="bottom" id="fZy-WU-kuF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GZA-Hk-WAJ">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="bky-ke-SPP">
+                        <barButtonItem key="leftBarButtonItem" title="Close" id="8N7-9B-K2Q">
+                            <connections>
+                                <action selector="closeButtonToHomePage:" destination="n4l-s5-KLg" id="q3v-Me-4k2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
+                    <connections>
+                        <outlet property="closeButtonToHomePage" destination="8N7-9B-K2Q" id="yL5-Vm-ht9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VQU-Md-3R2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1351.5" y="-386.5"/>
         </scene>
         <!--History View Controller-->
         <scene sceneID="e18-hZ-YTO">
@@ -141,7 +188,7 @@
         <!--Navigation Controller-->
         <scene sceneID="64T-7V-lpe">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jpz-vW-GIF" customClass="NavigationController" customModule="Mr_Ride_iOS" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jpz-vW-GIF" sceneMemberID="viewController">
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="674"/>
@@ -222,7 +269,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fqy-Hb-PfU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1608" y="-125"/>
+            <point key="canvasLocation" x="-1608.5" y="-173.5"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="Moc-Fn-NQF">
@@ -254,7 +301,7 @@
         <!--Navigation Controller-->
         <scene sceneID="1N6-T3-mdu">
             <objects>
-                <navigationController storyboardIdentifier="TrackingPageNavigationBar" automaticallyAdjustsScrollViewInsets="NO" id="Lbk-eX-HwV" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="TrackingPageNavigationBar" automaticallyAdjustsScrollViewInsets="NO" id="Lbk-eX-HwV" customClass="NavigationController" customModule="Mr_Ride_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>

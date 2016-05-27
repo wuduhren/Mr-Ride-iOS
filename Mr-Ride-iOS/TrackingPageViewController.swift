@@ -10,26 +10,40 @@ import UIKit
 
 class TrackingPageViewController: UIViewController {
 
+    
+    
+    @IBOutlet weak var finishButtonToResultPage: UIBarButtonItem!
+    
+    @IBOutlet weak var cancelButtonToHomePage: UIBarButtonItem!
+    
+    @IBAction func cancelButtonToHomePage(sender: UIBarButtonItem) {
+        self.dismissViewControllerAnimated(true, completion: {})
+    }
+    
+    func setupNavigationItem() {
+        cancelButtonToHomePage.setTitleTextAttributes([ NSFontAttributeName: UIFont.mrTextStyle13Font() ], forState: UIControlState.Normal)
+        finishButtonToResultPage.setTitleTextAttributes([ NSFontAttributeName: UIFont.mrTextStyle13Font() ], forState: UIControlState.Normal)
+        
+        //title
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        self.navigationItem.title = dateFormatter.stringFromDate(NSDate())
+        navigationController?.navigationBar.titleTextAttributes =
+            ([NSFontAttributeName: UIFont.mrTextStyle13Font(),
+                NSForegroundColorAttributeName: UIColor.whiteColor()])
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setupNavigationItem()
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

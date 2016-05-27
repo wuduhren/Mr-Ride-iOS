@@ -14,7 +14,6 @@ class HistoryViewController: UITableViewController {
         return UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("HistoryViewController") as! HistoryViewController
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.backgroundColor = .MRLightblueColor()
