@@ -14,7 +14,7 @@ class SideMenuTableViewController: UITableViewController {
 
     let menu = ["Home", "History"]
     
-    var delegate: SideMenuDelegate?
+    weak var delegate: SideMenuDelegate?
 
     func setup() {
         self.navigationController?.navigationBarHidden = true

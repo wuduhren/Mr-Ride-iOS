@@ -21,7 +21,8 @@ class SideMenuCell: UITableViewCell {
         delegate?.changeChildView(buttonTitle)
     }
     
-    var delegate: SideMenuDelegate?
+    weak var delegate: SideMenuDelegate?
+    
     var buttonTitle = ""
     
     func setup() {
