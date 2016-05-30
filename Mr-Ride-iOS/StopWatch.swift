@@ -40,7 +40,12 @@ class Stopwatch {
     }
     
     func pause() {
-        intervalBeforPause = elapsedTime
+        if intervalBeforPause != nil {
+            intervalBeforPause = elapsedTime + intervalBeforPause!
+        } else {
+            intervalBeforPause = elapsedTime
+        }
+        
         startTime = nil
         
     }

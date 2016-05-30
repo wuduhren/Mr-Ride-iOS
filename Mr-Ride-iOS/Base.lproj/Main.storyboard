@@ -146,6 +146,12 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kUX-fK-xuG">
+                                <rect key="frame" x="155" y="313" width="65" height="65"/>
+                                <connections>
+                                    <action selector="stopWatchButton:" destination="xMn-jo-8mr" eventType="touchUpInside" id="VVQ-A1-pYN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.054901961239999998" green="0.20784313979999999" blue="0.25098040700000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     </view>
@@ -168,6 +174,8 @@
                     <connections>
                         <outlet property="cancelButtonToHomePage" destination="zUq-7I-AO6" id="CZZ-eq-uGG"/>
                         <outlet property="finishButtonToResultPage" destination="eNx-gr-ibu" id="9jv-oZ-Zxs"/>
+                        <outlet property="stopWatchButton" destination="kUX-fK-xuG" id="X7G-b4-QxV"/>
+                        <outlet property="timeLabel" destination="eRv-Mj-MSx" id="jGh-My-lhc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GbL-wz-9ju" userLabel="First Responder" sceneMemberID="firstResponder"/>
