@@ -12,6 +12,7 @@
 		F93BBFF11CF5945100A9E661 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93BBFF01CF5945100A9E661 /* HistoryViewController.swift */; };
 		F953E36B1CF2DC3C00FA3F4E /* UIFont+YBKAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F953E3691CF2DC3C00FA3F4E /* UIFont+YBKAdditions.swift */; };
 		F953E36F1CF2DE8700FA3F4E /* MRColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F953E36E1CF2DE8700FA3F4E /* MRColor.swift */; };
+		F98436671CFAF53500A4268C /* StopWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98436661CFAF53500A4268C /* StopWatch.swift */; };
 		F9A2EBB21CF2A79A00853CCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A2EBB11CF2A79A00853CCE /* AppDelegate.swift */; };
 		F9A2EBB41CF2A79A00853CCE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A2EBB31CF2A79A00853CCE /* HomeViewController.swift */; };
 		F9A2EBB71CF2A79A00853CCE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9A2EBB51CF2A79A00853CCE /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 		F93BBFF01CF5945100A9E661 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		F953E3691CF2DC3C00FA3F4E /* UIFont+YBKAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+YBKAdditions.swift"; sourceTree = "<group>"; };
 		F953E36E1CF2DE8700FA3F4E /* MRColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MRColor.swift; sourceTree = "<group>"; };
+		F98436661CFAF53500A4268C /* StopWatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopWatch.swift; sourceTree = "<group>"; };
 		F9A2EBAE1CF2A79A00853CCE /* Mr-Ride-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mr-Ride-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A2EBB11CF2A79A00853CCE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F9A2EBB31CF2A79A00853CCE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				F9E55F4A1CF3EFA900402F96 /* NavigationController.swift */,
 				F9E9E4A01CF6ED6C00599D85 /* TrackingPageViewController.swift */,
 				F9E9E4A21CF829CF00599D85 /* ResultPageViewController.swift */,
+				F98436661CFAF53500A4268C /* StopWatch.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 				F9E9E4A11CF6ED6C00599D85 /* TrackingPageViewController.swift in Sources */,
 				F9E9E4A31CF829CF00599D85 /* ResultPageViewController.swift in Sources */,
 				F9A2EBB41CF2A79A00853CCE /* HomeViewController.swift in Sources */,
+				F98436671CFAF53500A4268C /* StopWatch.swift in Sources */,
 				F9E55F4B1CF3EFA900402F96 /* NavigationController.swift in Sources */,
 				F953E36B1CF2DC3C00FA3F4E /* UIFont+YBKAdditions.swift in Sources */,
 				F9E55F4F1CF42D1100402F96 /* RootViewController.swift in Sources */,
