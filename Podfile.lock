@@ -2,6 +2,7 @@ PODS:
   - Alamofire (3.3.1)
   - CryptoSwift (0.2.2)
   - FontAwesome (4.5.0)
+  - GoogleMaps (1.13.1)
   - JSONWebToken (1.4.3):
     - CryptoSwift (= 0.2.2)
   - SideMenu (1.1.6)
@@ -9,6 +10,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 3.3)
   - FontAwesome (~> 4.5)
+  - GoogleMaps
   - JSONWebToken (~> 1.4.3)
   - SideMenu
 
@@ -16,9 +18,10 @@ SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
   CryptoSwift: d382228d6301c09474132417878a741c2a2e68cd
   FontAwesome: dd8c48bf965e771309d8af17c4d8579217b3e756
+  GoogleMaps: 8935220056a6cc8e9ca298b4da4ae530620aa71b
   JSONWebToken: acdab3aeedf8d44f5cf09ad469deb42c4faf3740
   SideMenu: 187f2b1b087e69f7db5032dba8b5b32091c8e345
 
-PODFILE CHECKSUM: 8e5f63934cc6e3a25a3a05b9a34ac9b3a1a90b58
+PODFILE CHECKSUM: fa16577e1928718771c2401b9bc761334b99bcc4
 
 COCOAPODS: 1.0.0.rc.1

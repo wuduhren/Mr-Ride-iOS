@@ -8,6 +8,7 @@ target “Mr-Ride-iOS“ do
     pod 'Alamofire', '~> 3.3'
 	pod 'FontAwesome', '~> 4.5'
 	pod 'SideMenu'
+	pod 'GoogleMaps'
 
 
 end
