@@ -15,9 +15,23 @@ class TrackingPageViewController: UIViewController {
     
     @IBOutlet weak var cancelButtonToHomePage: UIBarButtonItem!
     
+    @IBOutlet weak var distanceLabel: UILabel!
+    
+    @IBOutlet weak var speedAverageLabel: UILabel!
+    
+    @IBOutlet weak var caloriesLabel: UILabel!
+    
     @IBOutlet weak var timeLabel: UILabel!
     
     @IBOutlet weak var stopWatchButton: UIButton!
+    
+    @IBOutlet weak var mapView: GMSMapView!
+    
+    let locationManager = CLLocationManager()
+    
+    var locationArray: [CLLocation] = []
+    
+    var distance: Double = 0
     
     enum buttonMode {
         case counting, notCounting
@@ -27,9 +41,15 @@ class TrackingPageViewController: UIViewController {
     
     let stopwatch = Stopwatch()
     
+    @IBAction func finishRunning(sender: UIBarButtonItem) {
+        stopwatch.stop()
+        locationManager.stopUpdatingLocation()
+    }
+    
+    
     @IBAction func stopWatchButton(sender: UIButton) {
         
-        
+        //Button Animation
         UIView.animateWithDuration(0.6, animations: { () -> Void in
             switch self.buttonStatus {
                 case .counting:
@@ -40,15 +60,16 @@ class TrackingPageViewController: UIViewController {
                 case .notCounting:
                     //self.stopWatchButton.frame.size = CGSize(width: 52, height: 52)
                     self.stopWatchButton.transform = CGAffineTransformMakeScale(0.8, 0.8)
-                    print(self.stopWatchButton.frame)
                     self.stopWatchButton.layer.cornerRadius = self.stopWatchButton.frame.width / 2
                     self.stopWatchButton.clipsToBounds = true
             }
         })
-        
+
+        //Button Counting and Mapping
         switch buttonStatus {
             case .counting:
                 stopwatch.pause()
+                locationArray = []
             case .notCounting:
                 NSTimer.scheduledTimerWithTimeInterval(
                     0.01,
@@ -58,9 +79,9 @@ class TrackingPageViewController: UIViewController {
                     repeats: true
                 )
                 stopwatch.start()
-                print("stopWatch should start")
         }
         
+        //Changing Status
         if buttonStatus == .notCounting {
             buttonStatus = .counting
             
@@ -68,9 +89,6 @@ class TrackingPageViewController: UIViewController {
             buttonStatus = .notCounting
             
         }
-
-
-    
     }
     
     
@@ -106,8 +124,6 @@ class TrackingPageViewController: UIViewController {
         stopWatchButton.backgroundColor = .redColor()
         self.stopWatchButton.layer.cornerRadius = self.stopWatchButton.frame.width/2
         self.stopWatchButton.clipsToBounds = true
-        print("view did load: \(self.stopWatchButton.frame)")
-        
     }
     
     func setupNavigationItem() {
@@ -133,13 +149,23 @@ class TrackingPageViewController: UIViewController {
         
     }
     
+    func setupMap() {
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+    }
+    
+    func setup() {
+        setupNavigationItem()
+        setupBackground()
+        setupStopWatchButton()
+        setupMap()
+    }
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigationItem()
-        setupBackground()
-        setupStopWatchButton()
+        setup()
     }
 
     override func didReceiveMemoryWarning() {
@@ -149,3 +175,42 @@ class TrackingPageViewController: UIViewController {
     
 
 }
+
+
+
+
+
+extension TrackingPageViewController: CLLocationManagerDelegate {
+    
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        if status == .AuthorizedWhenInUse {
+            mapView.myLocationEnabled = true
+            mapView.settings.myLocationButton = true
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let currentLocation = locations.first {
+            
+            mapView.camera = GMSCameraPosition(target: currentLocation.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
+            
+            if locationArray.count > 0 && buttonStatus == .counting {
+                distance += currentLocation.distanceFromLocation(locationArray.last!)
+                
+                let path = GMSMutablePath()
+                path.addCoordinate(currentLocation.coordinate)
+                path.addCoordinate(locationArray.last!.coordinate)
+                let polyline = GMSPolyline(path: path)
+                polyline.strokeWidth = 10.0
+                polyline.geodesic = true
+                polyline.spans = [GMSStyleSpan(color: UIColor.MRBubblegumColor())]
+                polyline.map = mapView
+            }
+            distanceLabel.text = "\(distance) m"
+            speedAverageLabel.text = "\(currentLocation.speed) km / h"
+            locationArray.append(currentLocation)
+        }
+    }
+}
+
