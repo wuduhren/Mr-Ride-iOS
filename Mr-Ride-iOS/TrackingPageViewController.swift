@@ -27,19 +27,19 @@ class TrackingPageViewController: UIViewController {
     
     @IBOutlet weak var mapView: GMSMapView!
     
-    let locationManager = CLLocationManager()
+    private let locationManager = CLLocationManager()
     
-    var locationArray: [CLLocation] = []
+    private var locationArray: [CLLocation] = []
     
-    var distance: Double = 0
+    private var distance: Double = 0
     
-    enum buttonMode {
+    private enum buttonMode {
         case counting, notCounting
     }
     
-    var buttonStatus = buttonMode.notCounting
+    private var buttonStatus = buttonMode.notCounting
     
-    let stopwatch = Stopwatch()
+    private let stopwatch = Stopwatch()
     
     @IBAction func finishRunning(sender: UIBarButtonItem) {
         stopwatch.stop()
@@ -207,8 +207,10 @@ extension TrackingPageViewController: CLLocationManagerDelegate {
                 polyline.spans = [GMSStyleSpan(color: UIColor.MRBubblegumColor())]
                 polyline.map = mapView
             }
-            distanceLabel.text = "\(distance) m"
-            speedAverageLabel.text = "\(currentLocation.speed) km / h"
+            distanceLabel.text = "\(round(distance)) m"
+            speedAverageLabel.text = "\(round(currentLocation.speed)) km / h"
+            caloriesLabel.text = "\(123)"
+            
             locationArray.append(currentLocation)
         }
     }
