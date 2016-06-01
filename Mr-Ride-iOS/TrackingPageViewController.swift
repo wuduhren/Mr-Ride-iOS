@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import CoreData
 
 class TrackingPageViewController: UIViewController {
     
@@ -27,23 +27,35 @@ class TrackingPageViewController: UIViewController {
     
     @IBOutlet weak var mapView: GMSMapView!
     
-    let locationManager = CLLocationManager()
+    private let locationManager = CLLocationManager()
     
-    var locationArray: [CLLocation] = []
+    private var locationArray: [CLLocation] = []
+    private var locationArrayForPolyline: [CLLocation] = []
     
-    var distance: Double = 0
+    private var distance: Double = 0
     
-    enum buttonMode {
+    private var averageSpeed: Double = 0
+    
+    var polylineCoordinates: [Dictionary<String, AnyObject>] = []
+    
+    private enum buttonMode {
         case counting, notCounting
     }
     
-    var buttonStatus = buttonMode.notCounting
+    private var buttonStatus = buttonMode.notCounting
     
-    let stopwatch = Stopwatch()
+    private let stopwatch = Stopwatch()
+    
+    let context = DataController().managedObjectContext
     
     @IBAction func finishRunning(sender: UIBarButtonItem) {
+        if buttonStatus == .counting {
+            locationArrayForPolyline += locationArray
+        }
         stopwatch.stop()
         locationManager.stopUpdatingLocation()
+        saveData()
+        performSegueWithIdentifier("ResultPageViewControllerSegue", sender: self)
     }
     
     
@@ -69,6 +81,7 @@ class TrackingPageViewController: UIViewController {
         switch buttonStatus {
             case .counting:
                 stopwatch.pause()
+                locationArrayForPolyline += locationArray
                 locationArray = []
             case .notCounting:
                 NSTimer.scheduledTimerWithTimeInterval(
@@ -161,8 +174,6 @@ class TrackingPageViewController: UIViewController {
         setupMap()
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -175,8 +186,6 @@ class TrackingPageViewController: UIViewController {
     
 
 }
-
-
 
 
 
@@ -193,7 +202,7 @@ extension TrackingPageViewController: CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let currentLocation = locations.first {
             
-            mapView.camera = GMSCameraPosition(target: currentLocation.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
+            mapView.camera = GMSCameraPosition(target: currentLocation.coordinate, zoom: 16, bearing: 0, viewingAngle: 0)
             
             if locationArray.count > 0 && buttonStatus == .counting {
                 distance += currentLocation.distanceFromLocation(locationArray.last!)
@@ -207,10 +216,55 @@ extension TrackingPageViewController: CLLocationManagerDelegate {
                 polyline.spans = [GMSStyleSpan(color: UIColor.MRBubblegumColor())]
                 polyline.map = mapView
             }
-            distanceLabel.text = "\(distance) m"
-            speedAverageLabel.text = "\(currentLocation.speed) km / h"
-            locationArray.append(currentLocation)
+            distanceLabel.text = "\(round(distance)) m"
+            speedAverageLabel.text = "\(round(currentLocation.speed)) km / h"
+            caloriesLabel.text = "\(123) kcal"
+            
+            if buttonStatus == .counting {
+                locationArray.append(currentLocation)
+                //locationArrayForPolyline.append(currentLocation)
+            }
+            
         }
+    }
+    
+}
+
+
+extension TrackingPageViewController {
+    
+    func getPolylineData() -> NSData{
+        for location in locationArrayForPolyline {
+            let longitude = NSNumber(double: Double(location.coordinate.longitude))
+            let latitude = NSNumber(double: Double(location.coordinate.latitude))
+            let coordinate = ["longitude": longitude, "latitude": latitude]
+            polylineCoordinates.append(coordinate)
+        }
+        let polylineData = NSKeyedArchiver.archivedDataWithRootObject(polylineCoordinates)
+        return polylineData
+    }
+    
+    func getAverageSpeed() -> Double {
+        for location in locationArrayForPolyline {
+            averageSpeed += Double(location.speed)
+        }
+        averageSpeed = averageSpeed / Double(locationArrayForPolyline.count)
+        return averageSpeed
+    }
+    
+    func saveData() {
+        let entity = NSEntityDescription.insertNewObjectForEntityForName("Entity", inManagedObjectContext: context)
+        entity.setValue(distance, forKey: "distance")
+        entity.setValue(getAverageSpeed(), forKey: "speed")
+        entity.setValue(123, forKey: "calories")
+        entity.setValue(timeLabel.text, forKey: "time")
+        entity.setValue(getPolylineData(), forKey: "polyline")
+        do {
+            try context.save()
+        } catch {
+            fatalError("Failure to save context.")
+        }
+        
     }
 }
 

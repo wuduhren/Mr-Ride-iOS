@@ -7,10 +7,28 @@
 //
 
 import UIKit
+import CoreData
 
 class ResultPageViewController: UIViewController {
 
     @IBOutlet weak var closeButtonToHomePage: UIBarButtonItem!
+    
+    @IBOutlet weak var distanceLabel: UILabel!
+    
+    @IBOutlet weak var speedAverageLabel: UILabel!
+    
+    @IBOutlet weak var caloriesLabel: UILabel!
+    
+    @IBOutlet weak var timeLabel: UILabel!
+    
+    @IBOutlet weak var mapView: GMSMapView!
+    
+    private let context = DataController().managedObjectContext
+    private let getRequest = NSFetchRequest(entityName: "Entity")
+    private var polylineDataNSData: NSData?
+    private var locationArray: [CLLocation] = []
+    
+    
     
     @IBAction func closeButtonToHomePage(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: {})
@@ -32,9 +50,120 @@ class ResultPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationItem()
+        getData()
+        getPolylineData()
+        drawPolyline()
+        calculateCameraCenter()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 }
+
+
+
+extension ResultPageViewController {
+    
+    func getData() {
+        do {
+            let data = try context.executeFetchRequest(getRequest)
+            distanceLabel.text = "\(round(data.last!.valueForKey("distance")! as! Double)) m"
+            speedAverageLabel.text = "\(round(data.last!.valueForKey("speed")! as! Double)) km / h"
+            caloriesLabel.text = "\(round(data.last!.valueForKey("calories")! as! Double)) kcal"
+            timeLabel.text = data.last!.valueForKey("time")! as? String
+            polylineDataNSData = data.last!.valueForKey("polyline")! as? NSData
+        } catch {
+            fatalError("error appear when fetching")
+        }
+    }
+    
+    func getPolylineData() {
+        guard
+            let polylineData = NSKeyedUnarchiver.unarchiveObjectWithData(polylineDataNSData!),
+            let polyline = polylineData as? [Dictionary<String, AnyObject>]
+        else { return }
+        for item in polyline {
+            if let latitude = item["latitude"]?.doubleValue,
+                let longitude = item["longitude"]?.doubleValue {
+                let location = CLLocation(latitude: latitude, longitude: longitude)
+                locationArray.append(location)
+            }
+        }
+    }
+    
+    func drawPolyline() {
+        let path = GMSMutablePath()
+        
+        for location in locationArray {
+            path.addCoordinate(location.coordinate)
+        }
+        let polyline = GMSPolyline(path: path)
+        polyline.strokeWidth = 10.0
+        polyline.geodesic = true
+        polyline.spans = [GMSStyleSpan(color: UIColor.MRBubblegumColor())]
+        polyline.map = mapView
+        
+    }
+    
+    func calculateCameraCenter() {
+        var maxLatitude: Double = -1000
+        var maxLongitude: Double = -1000
+        var minLatitude: Double = 1000
+        var minLongitude: Double = 1000
+
+        for location in locationArray {
+            if location.coordinate.latitude > maxLatitude {
+                maxLatitude = location.coordinate.latitude
+                
+            }
+            if location.coordinate.latitude > maxLongitude {
+                maxLongitude = location.coordinate.longitude
+            }
+            if location.coordinate.latitude < minLatitude {
+                minLatitude = location.coordinate.latitude
+            }
+            if location.coordinate.latitude < minLongitude {
+                minLongitude = location.coordinate.longitude
+            }
+
+        }
+        let centerCoordinate = CLLocationCoordinate2DMake((maxLatitude + minLatitude) / 2, (maxLongitude + minLongitude) / 2)
+        mapView.camera = GMSCameraPosition(target: centerCoordinate, zoom: 14, bearing: 0, viewingAngle: 0)
+    }
+    
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

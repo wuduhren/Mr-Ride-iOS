@@ -12,7 +12,7 @@ import UIKit
 
 class SideMenuTableViewController: UITableViewController {
 
-    let menu = ["Home", "History"]
+    private let menu = ["Home", "History"]
     
     weak var delegate: SideMenuDelegate?
 
