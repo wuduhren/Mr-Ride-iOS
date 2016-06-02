@@ -23,6 +23,8 @@ class ResultPageViewController: UIViewController {
     
     @IBOutlet weak var mapView: GMSMapView!
     
+    var date = NSDate()
+    
     private let context = DataController().managedObjectContext
     private let getRequest = NSFetchRequest(entityName: "Entity")
     private var polylineDataNSData: NSData?
@@ -41,7 +43,7 @@ class ResultPageViewController: UIViewController {
         //title
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
-        self.navigationItem.title = dateFormatter.stringFromDate(NSDate())
+        self.navigationItem.title = dateFormatter.stringFromDate(date)
         navigationController?.navigationBar.titleTextAttributes =
             ([NSFontAttributeName: UIFont.mrTextStyle13Font(),
                 NSForegroundColorAttributeName: UIColor.whiteColor()])
@@ -68,6 +70,7 @@ extension ResultPageViewController {
     func getData() {
         do {
             let data = try context.executeFetchRequest(getRequest)
+            date = data.last!.valueForKey("date")! as! NSDate
             distanceLabel.text = "\(round(data.last!.valueForKey("distance")! as! Double)) m"
             speedAverageLabel.text = "\(round(data.last!.valueForKey("speed")! as! Double)) km / h"
             caloriesLabel.text = "\(round(data.last!.valueForKey("calories")! as! Double)) kcal"

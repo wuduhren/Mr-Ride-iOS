@@ -217,7 +217,7 @@ extension TrackingPageViewController: CLLocationManagerDelegate {
                 polyline.map = mapView
             }
             distanceLabel.text = "\(round(distance)) m"
-            speedAverageLabel.text = "\(round(currentLocation.speed)) km / h"
+            speedAverageLabel.text = "\(round(currentLocation.speed * 3.6)) km / h"
             caloriesLabel.text = "\(123) kcal"
             
             if buttonStatus == .counting {
@@ -254,6 +254,7 @@ extension TrackingPageViewController {
     
     func saveData() {
         let entity = NSEntityDescription.insertNewObjectForEntityForName("Entity", inManagedObjectContext: context)
+        entity.setValue(NSDate(), forKey: "date")
         entity.setValue(distance, forKey: "distance")
         entity.setValue(getAverageSpeed(), forKey: "speed")
         entity.setValue(123, forKey: "calories")

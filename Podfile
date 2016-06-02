@@ -9,6 +9,5 @@ target “Mr-Ride-iOS“ do
 	pod 'FontAwesome', '~> 4.5'
 	pod 'SideMenu'
 	pod 'GoogleMaps'
-
-
+	pod 'Charts/Realm'
 end

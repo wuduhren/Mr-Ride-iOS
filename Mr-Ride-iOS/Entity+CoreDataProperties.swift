@@ -14,6 +14,7 @@ import CoreData
 
 extension Entity {
 
+    @NSManaged var date: NSDate?
     @NSManaged var distance: NSNumber?
     @NSManaged var speed: NSNumber?
     @NSManaged var calories: NSNumber?
