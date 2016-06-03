@@ -21,24 +21,31 @@ struct runData {
 
 // MARK: - Main
 
-class HistoryViewController: UIViewController {
+class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    
     class func controller() -> HistoryViewController {
         return UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("HistoryViewController") as! HistoryViewController
     }
     
-    @IBOutlet var lineChartView: LineChartView!
+    @IBOutlet weak var lineChartView: LineChartView!
+    
+    @IBOutlet weak var tableView: UITableView!
     
     private var runDataStructArray: [runData] = []
     
     private let context = DataController().managedObjectContext
-    private let getRequest = NSFetchRequest(entityName: "Entity")
     
+    private var headers: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.dataSource = self
+        tableView.delegate = self
+        
         getData()
         setupChart()
+        prepareTableViewData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -50,24 +57,96 @@ class HistoryViewController: UIViewController {
 
 
 
+// MARK: - TableView
+
+extension HistoryViewController {
+    
+    func prepareTableViewData() {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MMMM, YYYY"
+        
+        for runDataStruct in runDataStructArray {
+            let header = dateFormatter.stringFromDate(runDataStruct.date!)
+            if !headers.contains(header){
+                headers.append(header)
+            }
+        }
+        
+        
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("RunDataTableViewCell", forIndexPath: indexPath) as! RunDataTableViewCell
+        
+        for header in headers {
+            var tempArray: [runData]
+            
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "MMMM, YYYY"
+            
+            for runDataStruct in runDataStructArray {
+                let headerOfRunDataStruct = dateFormatter.stringFromDate(runDataStruct.date!)
+                if headerOfRunDataStruct == header {
+                    tempArray.append(runDataStruct)
+                }
+            }
+            
+            switch headers[indexPath.section] {
+            case header:
+                let cell = tableView.dequeueReusableCellWithIdentifier("RunDataTableViewCell", forIndexPath: indexPath) as! RunDataTableViewCell
+                cell.runDataStruct = tempArray[indexPath.row]
+                
+                return cell
+            }
+        }
+
+        
+        return cell
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // the number of sections
+        return headers.count
+    }
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // the number of rows
+        for header in headers {
+            var tempArray: [runData]
+
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "MMMM, YYYY"
+            
+            for runDataStruct in runDataStructArray {
+                let headerOfRunDataStruct = dateFormatter.stringFromDate(runDataStruct.date!)
+                if headerOfRunDataStruct == header {
+                    tempArray.append(runDataStruct)
+                }
+            }
+
+            switch headers[section] {
+                case header: return tempArray.count
+            }
+        }
+    }
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        // the height
+        return 59
+    }
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        //do something when touched
+    }
+
+
+    
+}
+
+
+
 // MARK: - Get Data
 
 extension HistoryViewController {
     
-    func getData() {
-        do {
-            let data = try context.executeFetchRequest(getRequest)
-            for eachEntity in data {
-                var tempStruct = runData()
-                tempStruct.date = eachEntity.valueForKey("date")! as? NSDate
-                tempStruct.distance = eachEntity.valueForKey("distance")! as? Double
-                tempStruct.time = eachEntity.valueForKey("time")! as? String
-                runDataStructArray.append(tempStruct)
-            }
-        } catch {
-            fatalError("error appear when fetching")
-        }
-    }
+    
 }
 
 

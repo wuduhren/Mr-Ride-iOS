@@ -25,11 +25,13 @@ class ResultPageViewController: UIViewController {
     
     var date = NSDate()
     
-    private let context = DataController().managedObjectContext
-    private let getRequest = NSFetchRequest(entityName: "Entity")
     private var polylineDataNSData: NSData?
     private var locationArray: [CLLocation] = []
     
+    let runDataModel = RunDataModel()
+    var runDataStructArray: [RunDataModel.runDataStruct] = []
+    var runDataStruct = RunDataModel.runDataStruct()
+
     
     
     @IBAction func closeButtonToHomePage(sender: UIBarButtonItem) {
@@ -53,7 +55,7 @@ class ResultPageViewController: UIViewController {
         super.viewDidLoad()
         setupNavigationItem()
         getData()
-        getPolylineData()
+        parsePolylineData()
         drawPolyline()
         calculateCameraCenter()
     }
@@ -68,20 +70,18 @@ class ResultPageViewController: UIViewController {
 extension ResultPageViewController {
     
     func getData() {
-        do {
-            let data = try context.executeFetchRequest(getRequest)
-            date = data.last!.valueForKey("date")! as! NSDate
-            distanceLabel.text = "\(round(data.last!.valueForKey("distance")! as! Double)) m"
-            speedAverageLabel.text = "\(round(data.last!.valueForKey("speed")! as! Double)) km / h"
-            caloriesLabel.text = "\(round(data.last!.valueForKey("calories")! as! Double)) kcal"
-            timeLabel.text = data.last!.valueForKey("time")! as? String
-            polylineDataNSData = data.last!.valueForKey("polyline")! as? NSData
-        } catch {
-            fatalError("error appear when fetching")
-        }
+        runDataStructArray = runDataModel.getData()
+        runDataStruct = runDataStructArray.last!
+        
+        date = runDataStruct.date!
+        distanceLabel.text = "\(round(runDataStruct.distance!)) m"
+        speedAverageLabel.text = "\(round(runDataStruct.speed!)) km / h"
+        caloriesLabel.text = "\(round(runDataStruct.calories!)) kcal"
+        timeLabel.text = runDataStruct.time
+        polylineDataNSData = runDataStruct.polyline
     }
     
-    func getPolylineData() {
+    func parsePolylineData() {
         guard
             let polylineData = NSKeyedUnarchiver.unarchiveObjectWithData(polylineDataNSData!),
             let polyline = polylineData as? [Dictionary<String, AnyObject>]

@@ -233,7 +233,7 @@ extension TrackingPageViewController: CLLocationManagerDelegate {
 
 extension TrackingPageViewController {
     
-    func getPolylineData() -> NSData{
+    func getPolylineData() -> NSData {
         for location in locationArrayForPolyline {
             let longitude = NSNumber(double: Double(location.coordinate.longitude))
             let latitude = NSNumber(double: Double(location.coordinate.latitude))

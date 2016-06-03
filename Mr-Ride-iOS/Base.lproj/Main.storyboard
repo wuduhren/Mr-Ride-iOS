@@ -133,7 +133,8 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
-                        <outlet property="lineChartView" destination="wOl-ye-wG5" id="vgi-tT-lAT"/>
+                        <outlet property="lineChartView" destination="wOl-ye-wG5" id="RJD-eC-WiT"/>
+                        <outlet property="tableView" destination="JeH-gz-Zg6" id="e4e-q4-8tB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4LP-3A-Cyi" userLabel="First Responder" sceneMemberID="firstResponder"/>
