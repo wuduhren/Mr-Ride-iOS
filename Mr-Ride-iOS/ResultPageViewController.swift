@@ -55,7 +55,6 @@ class ResultPageViewController: UIViewController {
         super.viewDidLoad()
         setupNavigationItem()
         getData()
-        parsePolylineData()
         drawPolyline()
         calculateCameraCenter()
     }
@@ -96,6 +95,8 @@ extension ResultPageViewController {
     }
     
     func drawPolyline() {
+        parsePolylineData()
+        
         let path = GMSMutablePath()
         
         for location in locationArray {

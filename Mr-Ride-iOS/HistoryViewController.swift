@@ -11,14 +11,6 @@ import CoreData
 import Charts
 
 
-struct runData {
-    var date: NSDate?
-    var distance: Double?
-    var time: String?
-}
-
-
-
 // MARK: - Main
 
 class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -32,21 +24,25 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var tableView: UITableView!
     
-    private var runDataStructArray: [runData] = []
+    private let runDataModel = RunDataModel()
+    private var runDataStructArray: [RunDataModel.runDataStruct] = []
     
-    private let context = DataController().managedObjectContext
-    
+    private var runDataSortedByTime: [String: [RunDataModel.runDataStruct]] = [:]
     private var headers: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        
-        getData()
-        setupChart()
         prepareTableViewData()
+        setupChart()
+        
+        
+        let cellNib = UINib(nibName: "RunDataTableViewCell", bundle: nil)
+        tableView.registerNib(cellNib, forCellReuseIdentifier: "RunDataTableViewCell")
+
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -60,46 +56,14 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
 // MARK: - TableView
 
 extension HistoryViewController {
-    
-    func prepareTableViewData() {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MMMM, YYYY"
-        
-        for runDataStruct in runDataStructArray {
-            let header = dateFormatter.stringFromDate(runDataStruct.date!)
-            if !headers.contains(header){
-                headers.append(header)
-            }
-        }
-        
-        
-    }
+
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("RunDataTableViewCell", forIndexPath: indexPath) as! RunDataTableViewCell
-        
         for header in headers {
-            var tempArray: [runData]
-            
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "MMMM, YYYY"
-            
-            for runDataStruct in runDataStructArray {
-                let headerOfRunDataStruct = dateFormatter.stringFromDate(runDataStruct.date!)
-                if headerOfRunDataStruct == header {
-                    tempArray.append(runDataStruct)
-                }
-            }
-            
-            switch headers[indexPath.section] {
-            case header:
-                let cell = tableView.dequeueReusableCellWithIdentifier("RunDataTableViewCell", forIndexPath: indexPath) as! RunDataTableViewCell
-                cell.runDataStruct = tempArray[indexPath.row]
-                
-                return cell
-            }
+            cell.runDataStruct = runDataSortedByTime[header]![indexPath.row]
+            cell.setup()
         }
-
         
         return cell
     }
@@ -110,28 +74,19 @@ extension HistoryViewController {
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // the number of rows
-        for header in headers {
-            var tempArray: [runData]
-
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "MMMM, YYYY"
-            
-            for runDataStruct in runDataStructArray {
-                let headerOfRunDataStruct = dateFormatter.stringFromDate(runDataStruct.date!)
-                if headerOfRunDataStruct == header {
-                    tempArray.append(runDataStruct)
-                }
-            }
-
-            switch headers[section] {
-                case header: return tempArray.count
-            }
-        }
+        return runDataSortedByTime[headers[section]]!.count
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         // the height
         return 59
     }
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 24
+    }
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return headers[section]
+    }
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //do something when touched
     }
@@ -146,7 +101,27 @@ extension HistoryViewController {
 
 extension HistoryViewController {
     
-    
+    func prepareTableViewData() {
+        runDataStructArray = runDataModel.getData()
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MMMM, YYYY"
+        
+        for runDataStruct in runDataStructArray {
+            let header = dateFormatter.stringFromDate(runDataStruct.date!)
+            
+            if runDataSortedByTime.keys.contains(header) {
+                runDataSortedByTime[header]?.append(runDataStruct)
+            } else {
+                runDataSortedByTime[header] = []
+                runDataSortedByTime[header]?.append(runDataStruct)
+            }
+            
+            if !headers.contains(header) {
+                headers.append(header)
+            }
+        }
+    }
 }
 
 

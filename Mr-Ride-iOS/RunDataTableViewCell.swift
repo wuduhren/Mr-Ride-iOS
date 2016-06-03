@@ -18,7 +18,7 @@ class RunDataTableViewCell: UITableViewCell {
     
     @IBOutlet weak var time: UILabel!
     
-    var runDataStruct: runData? = nil
+    var runDataStruct = RunDataModel.runDataStruct()
     
     struct runData {
         var date: NSDate?
@@ -27,9 +27,12 @@ class RunDataTableViewCell: UITableViewCell {
     }
     
     func setup() {
-        date.text = "\(runDataStruct?.date)"
-        distance.text = "\(runDataStruct?.distance)"
-        time.text = "\(runDataStruct?.time)"
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd"
+
+        date.text = "\(dateFormatter.stringFromDate(runDataStruct.date!))"
+        distance.text = "\(round(runDataStruct.distance!)) km"
+        time.text = "\(runDataStruct.time!)"
     }
     
 
