@@ -9,6 +9,13 @@
 import UIKit
 
 
+struct runData {
+    var date: NSDate?
+    var distance: Double?
+    var time: String?
+}
+
+
 
 class RunDataTableViewCell: UITableViewCell {
     
@@ -19,32 +26,36 @@ class RunDataTableViewCell: UITableViewCell {
     @IBOutlet weak var time: UILabel!
     
     var runDataStruct = RunDataModel.runDataStruct()
-    
-    struct runData {
-        var date: NSDate?
-        var distance: Double?
-        var time: String?
-    }
+}
+
+
+
+// MARK: - Setup
+
+extension RunDataTableViewCell {
     
     func setup() {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd"
-
+        
         date.text = "\(dateFormatter.stringFromDate(runDataStruct.date!))"
         distance.text = "\(round(runDataStruct.distance!)) km"
         time.text = "\(runDataStruct.time!)"
     }
-    
+}
 
+
+
+// MARK: - View LifeCycle
+
+extension RunDataTableViewCell {
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
+    override func setSelected(selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        // Configure the view for the selected state
+    }
 }

@@ -32,7 +32,7 @@ class RunDataModel {
             getRequest.sortDescriptors = [sortDesriptor]
             
             let data = try context.executeFetchRequest(getRequest)
-            
+            runDataStructArray = [] //reset
             for eachData in data {
                 let tempStruct = runDataStruct()
                 tempStruct.date = eachData.valueForKey("date")! as? NSDate

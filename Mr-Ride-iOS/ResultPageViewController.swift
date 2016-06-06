@@ -25,18 +25,21 @@ class ResultPageViewController: UIViewController {
     
     var date = NSDate()
     
+    //map data
     private var polylineDataNSData: NSData?
     private var locationArray: [CLLocation] = []
     
+    //data
     let runDataModel = RunDataModel()
     var runDataStructArray: [RunDataModel.runDataStruct] = []
     var runDataStruct = RunDataModel.runDataStruct()
+}
 
-    
-    
-    @IBAction func closeButtonToHomePage(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: {})
-    }
+
+
+// MARK: - Setup
+
+extension ResultPageViewController {
     
     func setupNavigationItem() {
         closeButtonToHomePage.setTitleTextAttributes([ NSFontAttributeName: UIFont.mrTextStyle13Font(),
@@ -50,6 +53,11 @@ class ResultPageViewController: UIViewController {
             ([NSFontAttributeName: UIFont.mrTextStyle13Font(),
                 NSForegroundColorAttributeName: UIColor.whiteColor()])
     }
+}
+
+// MARK: - View LifeCycle
+
+extension ResultPageViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,41 +66,13 @@ class ResultPageViewController: UIViewController {
         drawPolyline()
         calculateCameraCenter()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
 }
 
 
 
+// MARK: - Map
+
 extension ResultPageViewController {
-    
-    func getData() {
-        runDataStructArray = runDataModel.getData()
-        runDataStruct = runDataStructArray.last!
-        
-        date = runDataStruct.date!
-        distanceLabel.text = "\(round(runDataStruct.distance!)) m"
-        speedAverageLabel.text = "\(round(runDataStruct.speed!)) km / h"
-        caloriesLabel.text = "\(round(runDataStruct.calories!)) kcal"
-        timeLabel.text = runDataStruct.time
-        polylineDataNSData = runDataStruct.polyline
-    }
-    
-    func parsePolylineData() {
-        guard
-            let polylineData = NSKeyedUnarchiver.unarchiveObjectWithData(polylineDataNSData!),
-            let polyline = polylineData as? [Dictionary<String, AnyObject>]
-        else { return }
-        for item in polyline {
-            if let latitude = item["latitude"]?.doubleValue,
-                let longitude = item["longitude"]?.doubleValue {
-                let location = CLLocation(latitude: latitude, longitude: longitude)
-                locationArray.append(location)
-            }
-        }
-    }
     
     func drawPolyline() {
         parsePolylineData()
@@ -115,7 +95,7 @@ extension ResultPageViewController {
         var maxLongitude: Double = -1000
         var minLatitude: Double = 1000
         var minLongitude: Double = 1000
-
+        
         for location in locationArray {
             if location.coordinate.latitude > maxLatitude {
                 maxLatitude = location.coordinate.latitude
@@ -130,44 +110,55 @@ extension ResultPageViewController {
             if location.coordinate.latitude < minLongitude {
                 minLongitude = location.coordinate.longitude
             }
-
+            
         }
         let centerCoordinate = CLLocationCoordinate2DMake((maxLatitude + minLatitude) / 2, (maxLongitude + minLongitude) / 2)
         mapView.camera = GMSCameraPosition(target: centerCoordinate, zoom: 14, bearing: 0, viewingAngle: 0)
     }
-    
-    
-    
 }
 
 
 
+// MARK: - Data
+
+extension ResultPageViewController {
+    
+    func getData() {
+        runDataStructArray = runDataModel.getData()
+        runDataStruct = runDataStructArray.last!
+        
+        date = runDataStruct.date!
+        distanceLabel.text = "\(round(runDataStruct.distance!)) m"
+        speedAverageLabel.text = "\(round(runDataStruct.speed!)) km / h"
+        caloriesLabel.text = "\(round(runDataStruct.calories!)) kcal"
+        timeLabel.text = runDataStruct.time
+        polylineDataNSData = runDataStruct.polyline
+    }
+    
+    func parsePolylineData() {
+        guard
+            let polylineData = NSKeyedUnarchiver.unarchiveObjectWithData(polylineDataNSData!),
+            let polyline = polylineData as? [Dictionary<String, AnyObject>]
+            else { return }
+        for item in polyline {
+            if let latitude = item["latitude"]?.doubleValue,
+                let longitude = item["longitude"]?.doubleValue {
+                let location = CLLocation(latitude: latitude, longitude: longitude)
+                locationArray.append(location)
+            }
+        }
+    }
+}
 
 
 
+// MARK: - Action
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+extension ResultPageViewController {
+    
+    @IBAction func closeButtonToHomePage(sender: UIBarButtonItem) {
+        self.dismissViewControllerAnimated(true, completion: {})
+    }
+}
 
 

@@ -11,15 +11,8 @@ import CoreData
 import Charts
 
 
-// MARK: - Main
+class HistoryViewController: UIViewController {
 
-class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    
-    class func controller() -> HistoryViewController {
-        return UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("HistoryViewController") as! HistoryViewController
-    }
-    
     @IBOutlet weak var lineChartView: LineChartView!
     
     @IBOutlet weak var tableView: UITableView!
@@ -29,35 +22,38 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     private var runDataSortedByTime: [String: [RunDataModel.runDataStruct]] = [:]
     private var headers: [String] = []
+}
+
+
+
+// MARK: - View LifeCycle
+
+extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        prepareTableViewData()
-        setupChart()
-        
+        tableView.backgroundColor = .clearColor()
         
         let cellNib = UINib(nibName: "RunDataTableViewCell", bundle: nil)
         tableView.registerNib(cellNib, forCellReuseIdentifier: "RunDataTableViewCell")
-
     }
     
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        clearData()
+        prepareTableViewData()
+        setupChart()
     }
-    
 }
 
 
 
-// MARK: - TableView
+// MARK: - TableViewDataSource
 
 extension HistoryViewController {
 
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("RunDataTableViewCell", forIndexPath: indexPath) as! RunDataTableViewCell
         for header in headers {
@@ -72,17 +68,21 @@ extension HistoryViewController {
         // the number of sections
         return headers.count
     }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // the number of rows
         return runDataSortedByTime[headers[section]]!.count
     }
+    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         // the height
         return 59
     }
+    
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 24
     }
+    
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return headers[section]
     }
@@ -90,14 +90,11 @@ extension HistoryViewController {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //do something when touched
     }
-
-
-    
 }
 
 
 
-// MARK: - Get Data
+// MARK: - Data
 
 extension HistoryViewController {
     
@@ -121,6 +118,13 @@ extension HistoryViewController {
                 headers.append(header)
             }
         }
+        dispatch_async(dispatch_get_main_queue()) { self.tableView.reloadData() }
+    }
+    
+    func clearData() {
+        runDataStructArray = []
+        runDataSortedByTime = [:]
+        headers = []
     }
 }
 
@@ -170,6 +174,17 @@ extension HistoryViewController {
         lineChartView.xAxis.labelPosition = .Bottom
         lineChartView.legend.enabled = false
         lineChartView.descriptionText = ""
+    }
+}
+
+
+
+// MARK: - Initializer
+
+extension HistoryViewController {
+    
+    class func controller() -> HistoryViewController {
+        return UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("HistoryViewController") as! HistoryViewController
     }
 }
 

@@ -11,6 +11,7 @@ import CoreData
 
 class TrackingPageViewController: UIViewController {
     
+    //view
     @IBOutlet weak var finishButtonToResultPage: UIBarButtonItem!
     
     @IBOutlet weak var cancelButtonToHomePage: UIBarButtonItem!
@@ -27,6 +28,8 @@ class TrackingPageViewController: UIViewController {
     
     @IBOutlet weak var mapView: GMSMapView!
     
+    
+    //map
     private let locationManager = CLLocationManager()
     
     private var locationArray: [CLLocation] = []
@@ -38,6 +41,8 @@ class TrackingPageViewController: UIViewController {
     
     var polylineCoordinates: [Dictionary<String, AnyObject>] = []
     
+    
+    //stopWatch
     private enum buttonMode {
         case counting, notCounting
     }
@@ -45,69 +50,6 @@ class TrackingPageViewController: UIViewController {
     private var buttonStatus = buttonMode.notCounting
     
     private let stopwatch = Stopwatch()
-    
-    let context = DataController().managedObjectContext
-    
-    @IBAction func finishRunning(sender: UIBarButtonItem) {
-        if buttonStatus == .counting {
-            locationArrayForPolyline += locationArray
-        }
-        stopwatch.stop()
-        locationManager.stopUpdatingLocation()
-        saveData()
-        performSegueWithIdentifier("ResultPageViewControllerSegue", sender: self)
-    }
-    
-    
-    @IBAction func stopWatchButton(sender: UIButton) {
-        
-        //Button Animation
-        UIView.animateWithDuration(0.6, animations: { () -> Void in
-            switch self.buttonStatus {
-                case .counting:
-                    self.stopWatchButton.transform = CGAffineTransformMakeScale(0.5, 0.5)
-                    self.stopWatchButton.layer.cornerRadius = 15
-                    self.stopWatchButton.clipsToBounds = true
-                
-                case .notCounting:
-                    //self.stopWatchButton.frame.size = CGSize(width: 52, height: 52)
-                    self.stopWatchButton.transform = CGAffineTransformMakeScale(0.8, 0.8)
-                    self.stopWatchButton.layer.cornerRadius = self.stopWatchButton.frame.width / 2
-                    self.stopWatchButton.clipsToBounds = true
-            }
-        })
-
-        //Button Counting and Mapping
-        switch buttonStatus {
-            case .counting:
-                stopwatch.pause()
-                locationArrayForPolyline += locationArray
-                locationArray = []
-            case .notCounting:
-                NSTimer.scheduledTimerWithTimeInterval(
-                    0.01,
-                    target: self,
-                    selector: #selector(TrackingPageViewController.updateElapsedTimeLabel(_:)),
-                    userInfo: nil,
-                    repeats: true
-                )
-                stopwatch.start()
-        }
-        
-        //Changing Status
-        if buttonStatus == .notCounting {
-            buttonStatus = .counting
-            
-        } else {
-            buttonStatus = .notCounting
-            
-        }
-    }
-    
-    
-    @IBAction func cancelButtonToHomePage(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: {})
-    }
     
     func updateElapsedTimeLabel(timer: NSTimer) {
         var totalInterval: NSTimeInterval
@@ -124,70 +66,83 @@ class TrackingPageViewController: UIViewController {
             let tenthsOfSecond = Int(totalInterval * 100 % 100)
             stopwatch.elapsedTimeLabelText = String(format: "%02d:%02d:%02d.%02d", hours, minutes, seconds, tenthsOfSecond)
             timeLabel.text = stopwatch.elapsedTimeLabelText
-            
-            
         } else {
             timer.invalidate()
         }
-        
-        
     }
     
-    func setupStopWatchButton() {
-        stopWatchButton.backgroundColor = .redColor()
-        self.stopWatchButton.layer.cornerRadius = self.stopWatchButton.frame.width/2
-        self.stopWatchButton.clipsToBounds = true
-    }
-    
-    func setupNavigationItem() {
-        cancelButtonToHomePage.setTitleTextAttributes([ NSFontAttributeName: UIFont.mrTextStyle13Font() ], forState: UIControlState.Normal)
-        finishButtonToResultPage.setTitleTextAttributes([ NSFontAttributeName: UIFont.mrTextStyle13Font() ], forState: UIControlState.Normal)
-        
-        //title
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy/MM/dd"
-        self.navigationItem.title = dateFormatter.stringFromDate(NSDate())
-        navigationController?.navigationBar.titleTextAttributes = ([NSFontAttributeName: UIFont.mrTextStyle13Font(), NSForegroundColorAttributeName: UIColor.whiteColor()])
-    }
-    
-    func setupBackground() {
-        
-        self.view.backgroundColor = UIColor.MRLightblueColor()
-        let topGradient = UIColor(red: 0, green: 0, blue: 0, alpha: 0.60).CGColor
-        let bottomGradient = UIColor(red: 0, green: 0, blue: 0, alpha: 0.40).CGColor
-        let gradient = CAGradientLayer()
-        gradient.frame = self.view.frame
-        gradient.colors = [topGradient, bottomGradient]
-        self.view.layer.insertSublayer(gradient, atIndex: 0)
-        
-    }
-    
-    func setupMap() {
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-    }
-    
-    func setup() {
-        setupNavigationItem()
-        setupBackground()
-        setupStopWatchButton()
-        setupMap()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setup()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-    }
-    
-
 }
 
 
+
+// MARK: - Action
+
+extension TrackingPageViewController {
+    
+    @IBAction func stopWatchButton(sender: UIButton) {
+        
+        //Button Animation
+        UIView.animateWithDuration(0.6, animations: { () -> Void in
+            switch self.buttonStatus {
+            case .counting:
+                self.stopWatchButton.transform = CGAffineTransformMakeScale(0.5, 0.5)
+                self.stopWatchButton.layer.cornerRadius = 15
+                self.stopWatchButton.clipsToBounds = true
+                
+            case .notCounting:
+                //self.stopWatchButton.frame.size = CGSize(width: 52, height: 52)
+                self.stopWatchButton.transform = CGAffineTransformMakeScale(0.8, 0.8)
+                self.stopWatchButton.layer.cornerRadius = self.stopWatchButton.frame.width / 2
+                self.stopWatchButton.clipsToBounds = true
+            }
+        })
+        
+        //Button Counting and Mapping
+        switch buttonStatus {
+        case .counting:
+            stopwatch.pause()
+            locationArrayForPolyline += locationArray
+            locationArray = []
+        case .notCounting:
+            NSTimer.scheduledTimerWithTimeInterval(
+                0.01,
+                target: self,
+                selector: #selector(TrackingPageViewController.updateElapsedTimeLabel(_:)),
+                userInfo: nil,
+                repeats: true
+            )
+            stopwatch.start()
+        }
+        
+        //Changing Status
+        if buttonStatus == .notCounting {
+            buttonStatus = .counting
+            
+        } else {
+            buttonStatus = .notCounting
+        }
+        
+    }
+    
+    @IBAction func finishRunning(sender: UIBarButtonItem) {
+        if buttonStatus == .counting {
+            locationArrayForPolyline += locationArray
+        }
+        stopwatch.stop()
+        locationManager.stopUpdatingLocation()
+        saveData()
+        performSegueWithIdentifier("ResultPageViewControllerSegue", sender: self)
+    }
+    
+    @IBAction func cancelButtonToHomePage(sender: UIBarButtonItem) {
+        self.dismissViewControllerAnimated(true, completion: {})
+    }
+    
+}
+
+
+
+// MARK: - Map
 
 extension TrackingPageViewController: CLLocationManagerDelegate {
     
@@ -224,12 +179,73 @@ extension TrackingPageViewController: CLLocationManagerDelegate {
                 locationArray.append(currentLocation)
                 //locationArrayForPolyline.append(currentLocation)
             }
-            
         }
     }
     
 }
 
+
+
+// MARK: - Setup
+
+extension TrackingPageViewController {
+    func setup() {
+        setupNavigationItem()
+        setupBackground()
+        setupStopWatchButton()
+        setupMap()
+    }
+
+    func setupStopWatchButton() {
+        stopWatchButton.backgroundColor = .redColor()
+        self.stopWatchButton.layer.cornerRadius = self.stopWatchButton.frame.width/2
+        self.stopWatchButton.clipsToBounds = true
+    }
+    
+    func setupNavigationItem() {
+        cancelButtonToHomePage.setTitleTextAttributes([ NSFontAttributeName: UIFont.mrTextStyle13Font() ], forState: UIControlState.Normal)
+        finishButtonToResultPage.setTitleTextAttributes([ NSFontAttributeName: UIFont.mrTextStyle13Font() ], forState: UIControlState.Normal)
+        
+        //title
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        self.navigationItem.title = dateFormatter.stringFromDate(NSDate())
+        navigationController?.navigationBar.titleTextAttributes = ([NSFontAttributeName: UIFont.mrTextStyle13Font(), NSForegroundColorAttributeName: UIColor.whiteColor()])
+    }
+    
+    func setupBackground() {
+        
+        self.view.backgroundColor = UIColor.MRLightblueColor()
+        let topGradient = UIColor(red: 0, green: 0, blue: 0, alpha: 0.60).CGColor
+        let bottomGradient = UIColor(red: 0, green: 0, blue: 0, alpha: 0.40).CGColor
+        let gradient = CAGradientLayer()
+        gradient.frame = self.view.frame
+        gradient.colors = [topGradient, bottomGradient]
+        self.view.layer.insertSublayer(gradient, atIndex: 0)
+        
+    }
+    
+    func setupMap() {
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+    }
+}
+
+
+
+// MARK: - View LifeCycle
+
+extension TrackingPageViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setup()
+    }
+}
+
+
+
+// MARK: - Data
 
 extension TrackingPageViewController {
     
@@ -253,6 +269,7 @@ extension TrackingPageViewController {
     }
     
     func saveData() {
+        let context = DataController().managedObjectContext
         let entity = NSEntityDescription.insertNewObjectForEntityForName("Entity", inManagedObjectContext: context)
         entity.setValue(NSDate(), forKey: "date")
         entity.setValue(distance, forKey: "distance")
@@ -265,7 +282,20 @@ extension TrackingPageViewController {
         } catch {
             fatalError("Failure to save context.")
         }
-        
     }
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
