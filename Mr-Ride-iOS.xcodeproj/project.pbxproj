@@ -12,6 +12,9 @@
 		F93BBFF11CF5945100A9E661 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93BBFF01CF5945100A9E661 /* HistoryViewController.swift */; };
 		F953E36B1CF2DC3C00FA3F4E /* UIFont+YBKAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F953E3691CF2DC3C00FA3F4E /* UIFont+YBKAdditions.swift */; };
 		F953E36F1CF2DE8700FA3F4E /* MRColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F953E36E1CF2DE8700FA3F4E /* MRColor.swift */; };
+		F97EC5F21D011E28009FD828 /* RunDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97EC5F01D011E28009FD828 /* RunDataTableViewCell.swift */; };
+		F97EC5F31D011E28009FD828 /* RunDataTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97EC5F11D011E28009FD828 /* RunDataTableViewCell.xib */; };
+		F97EC5F51D01553A009FD828 /* RunDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97EC5F41D01553A009FD828 /* RunDataModel.swift */; };
 		F98436671CFAF53500A4268C /* StopWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98436661CFAF53500A4268C /* StopWatch.swift */; };
 		F9A2EBB21CF2A79A00853CCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A2EBB11CF2A79A00853CCE /* AppDelegate.swift */; };
 		F9A2EBB41CF2A79A00853CCE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A2EBB31CF2A79A00853CCE /* HomeViewController.swift */; };
@@ -49,6 +52,9 @@
 		F93BBFF01CF5945100A9E661 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		F953E3691CF2DC3C00FA3F4E /* UIFont+YBKAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+YBKAdditions.swift"; sourceTree = "<group>"; };
 		F953E36E1CF2DE8700FA3F4E /* MRColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MRColor.swift; sourceTree = "<group>"; };
+		F97EC5F01D011E28009FD828 /* RunDataTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunDataTableViewCell.swift; sourceTree = "<group>"; };
+		F97EC5F11D011E28009FD828 /* RunDataTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RunDataTableViewCell.xib; sourceTree = "<group>"; };
+		F97EC5F41D01553A009FD828 /* RunDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunDataModel.swift; sourceTree = "<group>"; };
 		F98436661CFAF53500A4268C /* StopWatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopWatch.swift; sourceTree = "<group>"; };
 		F9A2EBAE1CF2A79A00853CCE /* Mr-Ride-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mr-Ride-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A2EBB11CF2A79A00853CCE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -190,6 +196,8 @@
 				F9A2EBB51CF2A79A00853CCE /* Main.storyboard */,
 				F9A2EBBA1CF2A79A00853CCE /* LaunchScreen.storyboard */,
 				F93BBFEE1CF590B800A9E661 /* SideMenuCell.swift */,
+				F97EC5F01D011E28009FD828 /* RunDataTableViewCell.swift */,
+				F97EC5F11D011E28009FD828 /* RunDataTableViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -204,6 +212,7 @@
 				F98436661CFAF53500A4268C /* StopWatch.swift */,
 				F9A2EBB11CF2A79A00853CCE /* AppDelegate.swift */,
 				F9A2EBBD1CF2A79A00853CCE /* Info.plist */,
+				F97EC5F41D01553A009FD828 /* RunDataModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -271,6 +280,7 @@
 			files = (
 				F9E55F1F1CF3093100402F96 /* RobotoMono-Italic.ttf in Resources */,
 				F9E55F231CF3093100402F96 /* RobotoMono-MediumItalic.ttf in Resources */,
+				F97EC5F31D011E28009FD828 /* RunDataTableViewCell.xib in Resources */,
 				F9E55F1C1CF3093100402F96 /* LICENSE.txt in Resources */,
 				F9E55F1E1CF3093100402F96 /* RobotoMono-BoldItalic.ttf in Resources */,
 				F9E55F201CF3093100402F96 /* RobotoMono-Light.ttf in Resources */,
@@ -342,6 +352,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9CD4C0B1CFD60F500E251AC /* Entity+CoreDataProperties.swift in Sources */,
+				F97EC5F51D01553A009FD828 /* RunDataModel.swift in Sources */,
+				F97EC5F21D011E28009FD828 /* RunDataTableViewCell.swift in Sources */,
 				F9E9E4A11CF6ED6C00599D85 /* TrackingPageViewController.swift in Sources */,
 				F9E9E4A31CF829CF00599D85 /* ResultPageViewController.swift in Sources */,
 				F9A2EBB41CF2A79A00853CCE /* HomeViewController.swift in Sources */,

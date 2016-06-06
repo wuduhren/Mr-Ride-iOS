@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Roboto-Light.ttf">
@@ -93,6 +94,53 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-177.5" y="-414.5"/>
+        </scene>
+        <!--History View Controller-->
+        <scene sceneID="ZMh-RL-nF6">
+            <objects>
+                <viewController storyboardIdentifier="HistoryViewController" id="v2q-rc-EeS" customClass="HistoryViewController" customModule="Mr_Ride_iOS" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="S35-CC-joh"/>
+                        <viewControllerLayoutGuide type="bottom" id="2Gc-cu-gXo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xiY-MN-e8L">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JeH-gz-Zg6">
+                                <rect key="frame" x="16" y="173" width="343" height="474"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wOl-ye-wG5" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="16" y="20" width="343" height="133"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="133" id="POF-Bt-A6v"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.38823530080000002" green="0.84313726430000002" blue="0.96470588450000005" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="wOl-ye-wG5" secondAttribute="trailing" id="7u0-Or-Sgn"/>
+                            <constraint firstItem="JeH-gz-Zg6" firstAttribute="top" secondItem="wOl-ye-wG5" secondAttribute="bottom" constant="20" id="HNF-hY-aLn"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="wOl-ye-wG5" secondAttribute="leading" id="Tv5-YB-t83"/>
+                            <constraint firstItem="2Gc-cu-gXo" firstAttribute="top" secondItem="JeH-gz-Zg6" secondAttribute="bottom" constant="20" id="VJJ-5J-Gpg"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="JeH-gz-Zg6" secondAttribute="leading" id="cKu-Ys-Hc7"/>
+                            <constraint firstItem="wOl-ye-wG5" firstAttribute="top" secondItem="S35-CC-joh" secondAttribute="bottom" id="iLZ-ns-cLr"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="JeH-gz-Zg6" secondAttribute="trailing" id="jNh-q8-lCF"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
+                    <connections>
+                        <outlet property="lineChartView" destination="wOl-ye-wG5" id="RJD-eC-WiT"/>
+                        <outlet property="tableView" destination="JeH-gz-Zg6" id="e4e-q4-8tB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4LP-3A-Cyi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-177.5" y="358.5"/>
         </scene>
         <!--Tracking Page View Controller-->
         <scene sceneID="KB2-Z2-D4c">
@@ -289,37 +337,6 @@
             </objects>
             <point key="canvasLocation" x="1351.5" y="-386.5"/>
         </scene>
-        <!--History View Controller-->
-        <scene sceneID="e18-hZ-YTO">
-            <objects>
-                <tableViewController storyboardIdentifier="HistoryViewController" id="Md7-AD-PH1" customClass="HistoryViewController" customModule="Mr_Ride_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Nsu-7t-rdy">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="sectionIndexBackgroundColor" red="0.38823530077934265" green="0.84313726425170898" blue="0.96470588445663452" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="8Mr-y0-uHh">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Mr-y0-uHh" id="mSU-oc-XjG">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Md7-AD-PH1" id="phC-No-lq8"/>
-                            <outlet property="delegate" destination="Md7-AD-PH1" id="vcO-Ap-zGW"/>
-                        </connections>
-                    </tableView>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="667"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0E9-aB-kht" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-177.5" y="422.5"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="64T-7V-lpe">
             <objects>
@@ -452,7 +469,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s9K-ln-rxE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1087.5" y="-1228.5"/>
+            <point key="canvasLocation" x="735.5" y="-1148.5"/>
         </scene>
     </scenes>
     <resources>

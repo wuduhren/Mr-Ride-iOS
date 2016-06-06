@@ -10,13 +10,9 @@ import UIKit
 import SideMenu
 
 
-
-class RootViewController: UIViewController, SideMenuDelegate {
+class RootViewController: UIViewController {
     
     var sideMenuNavigationController: UISideMenuNavigationController?
-    
-    
-    
     
     private lazy var homeViewController: HomeViewController = { [unowned self] in
         let homeViewController = HomeViewController.controller()
@@ -31,6 +27,13 @@ class RootViewController: UIViewController, SideMenuDelegate {
         self.didMoveToParentViewController(historyViewController)
         return historyViewController
         }()
+}
+
+
+
+// MARK: - SideMenuDelegate
+
+extension RootViewController: SideMenuDelegate {
     
     func changeChildView(pageString: String){
         
@@ -47,7 +50,13 @@ class RootViewController: UIViewController, SideMenuDelegate {
         default: break
         }
     }
-    
+}
+
+
+
+// MARK: - Setup
+
+extension RootViewController {
     func setupHistoryViewController() {
         view.addSubview(historyViewController.view)
         self.navigationItem.title = "History"
@@ -74,7 +83,13 @@ class RootViewController: UIViewController, SideMenuDelegate {
         SideMenuManager.menuFadeStatusBar = false
         self.edgesForExtendedLayout = UIRectEdge.None
     }
-    
+}
+
+
+
+// MARK: - View LifeCycle
+
+extension RootViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,11 +102,8 @@ class RootViewController: UIViewController, SideMenuDelegate {
         }
         (sideMenuNavigationController?.viewControllers[0] as? SideMenuTableViewController)?.delegate = self
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-
-    
 }
+
+
+
+

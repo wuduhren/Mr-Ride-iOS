@@ -14,8 +14,4 @@ class NavigationController: UINavigationController {
         super.viewDidLoad()
         //self.navigationBar.barStyle = UIBarStyle.Black
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
 }

@@ -8,20 +8,31 @@
 
 import UIKit
 
+
 class HomeViewController: UIViewController {
     
-    class func controller() -> HomeViewController {
-        return UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
-    }
-    
     @IBOutlet weak var letsRideButton: UIButton!
+}
+
+
+
+// MARK: - Action
+
+extension HomeViewController {
     
     @IBAction func letsRideButton(sender: UIButton) {
         let trackingPagese = self.storyboard?.instantiateViewControllerWithIdentifier("TrackingPageNavigationBar") as! UINavigationController
         self.presentViewController(trackingPagese, animated: true, completion: nil)
- 
+        
     }
+}
 
+
+
+// MARK: - Setup
+
+extension HomeViewController {
+    
     func setupLetsRideButton() {
         
         let roundedLayer = CAShapeLayer()
@@ -46,7 +57,6 @@ class HomeViewController: UIViewController {
         
         letsRideButton.addTarget(self, action: #selector(HomeViewController.touchDown(_:)), forControlEvents: UIControlEvents.TouchDown)
         letsRideButton.addTarget(self, action: #selector(HomeViewController.touchUp(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        
     }
     
     func touchDown(sender: UIButton) {
@@ -57,17 +67,27 @@ class HomeViewController: UIViewController {
         letsRideButton.layer.shadowColor = UIColor.blackColor().CGColor
         letsRideButton.setTitleShadowColor(.grayColor(), forState: .Normal)
     }
+}
+
+
+
+// MARK: - View LifeCycle
+
+extension HomeViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLetsRideButton()
     }
-    
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
-
 }
 
+
+
+// MARK: -  Initializer
+
+extension HomeViewController {
+    
+    class func controller() -> HomeViewController {
+        return UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
+    }
+}

@@ -23,16 +23,23 @@ class ResultPageViewController: UIViewController {
     
     @IBOutlet weak var mapView: GMSMapView!
     
-    private let context = DataController().managedObjectContext
-    private let getRequest = NSFetchRequest(entityName: "Entity")
+    var date = NSDate()
+    
+    //map data
     private var polylineDataNSData: NSData?
     private var locationArray: [CLLocation] = []
     
-    
-    
-    @IBAction func closeButtonToHomePage(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: {})
-    }
+    //data
+    let runDataModel = RunDataModel()
+    var runDataStructArray: [RunDataModel.runDataStruct] = []
+    var runDataStruct = RunDataModel.runDataStruct()
+}
+
+
+
+// MARK: - Setup
+
+extension ResultPageViewController {
     
     func setupNavigationItem() {
         closeButtonToHomePage.setTitleTextAttributes([ NSFontAttributeName: UIFont.mrTextStyle13Font(),
@@ -41,58 +48,35 @@ class ResultPageViewController: UIViewController {
         //title
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
-        self.navigationItem.title = dateFormatter.stringFromDate(NSDate())
+        self.navigationItem.title = dateFormatter.stringFromDate(date)
         navigationController?.navigationBar.titleTextAttributes =
             ([NSFontAttributeName: UIFont.mrTextStyle13Font(),
                 NSForegroundColorAttributeName: UIColor.whiteColor()])
     }
+}
+
+// MARK: - View LifeCycle
+
+extension ResultPageViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationItem()
         getData()
-        getPolylineData()
         drawPolyline()
         calculateCameraCenter()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
 }
 
 
 
+// MARK: - Map
+
 extension ResultPageViewController {
     
-    func getData() {
-        do {
-            let data = try context.executeFetchRequest(getRequest)
-            distanceLabel.text = "\(round(data.last!.valueForKey("distance")! as! Double)) m"
-            speedAverageLabel.text = "\(round(data.last!.valueForKey("speed")! as! Double)) km / h"
-            caloriesLabel.text = "\(round(data.last!.valueForKey("calories")! as! Double)) kcal"
-            timeLabel.text = data.last!.valueForKey("time")! as? String
-            polylineDataNSData = data.last!.valueForKey("polyline")! as? NSData
-        } catch {
-            fatalError("error appear when fetching")
-        }
-    }
-    
-    func getPolylineData() {
-        guard
-            let polylineData = NSKeyedUnarchiver.unarchiveObjectWithData(polylineDataNSData!),
-            let polyline = polylineData as? [Dictionary<String, AnyObject>]
-        else { return }
-        for item in polyline {
-            if let latitude = item["latitude"]?.doubleValue,
-                let longitude = item["longitude"]?.doubleValue {
-                let location = CLLocation(latitude: latitude, longitude: longitude)
-                locationArray.append(location)
-            }
-        }
-    }
-    
     func drawPolyline() {
+        parsePolylineData()
+        
         let path = GMSMutablePath()
         
         for location in locationArray {
@@ -111,7 +95,7 @@ extension ResultPageViewController {
         var maxLongitude: Double = -1000
         var minLatitude: Double = 1000
         var minLongitude: Double = 1000
-
+        
         for location in locationArray {
             if location.coordinate.latitude > maxLatitude {
                 maxLatitude = location.coordinate.latitude
@@ -126,44 +110,55 @@ extension ResultPageViewController {
             if location.coordinate.latitude < minLongitude {
                 minLongitude = location.coordinate.longitude
             }
-
+            
         }
         let centerCoordinate = CLLocationCoordinate2DMake((maxLatitude + minLatitude) / 2, (maxLongitude + minLongitude) / 2)
         mapView.camera = GMSCameraPosition(target: centerCoordinate, zoom: 14, bearing: 0, viewingAngle: 0)
     }
-    
-    
-    
 }
 
 
 
+// MARK: - Data
+
+extension ResultPageViewController {
+    
+    func getData() {
+        runDataStructArray = runDataModel.getData()
+        runDataStruct = runDataStructArray.last!
+        
+        date = runDataStruct.date!
+        distanceLabel.text = "\(round(runDataStruct.distance!)) m"
+        speedAverageLabel.text = "\(round(runDataStruct.speed!)) km / h"
+        caloriesLabel.text = "\(round(runDataStruct.calories!)) kcal"
+        timeLabel.text = runDataStruct.time
+        polylineDataNSData = runDataStruct.polyline
+    }
+    
+    func parsePolylineData() {
+        guard
+            let polylineData = NSKeyedUnarchiver.unarchiveObjectWithData(polylineDataNSData!),
+            let polyline = polylineData as? [Dictionary<String, AnyObject>]
+            else { return }
+        for item in polyline {
+            if let latitude = item["latitude"]?.doubleValue,
+                let longitude = item["longitude"]?.doubleValue {
+                let location = CLLocation(latitude: latitude, longitude: longitude)
+                locationArray.append(location)
+            }
+        }
+    }
+}
 
 
 
+// MARK: - Action
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+extension ResultPageViewController {
+    
+    @IBAction func closeButtonToHomePage(sender: UIBarButtonItem) {
+        self.dismissViewControllerAnimated(true, completion: {})
+    }
+}
 
 

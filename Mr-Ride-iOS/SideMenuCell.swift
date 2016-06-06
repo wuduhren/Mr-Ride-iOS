@@ -17,19 +17,26 @@ class SideMenuCell: UITableViewCell {
 
     @IBOutlet weak var button: UIButton!
     
-    @IBAction func button(sender: UIButton) {
-        delegate?.changeChildView(buttonTitle)
-    }
-    
     weak var delegate: SideMenuDelegate?
     
     var buttonTitle = ""
+}
+
+
+
+// MARK: - Action
+
+extension SideMenuCell {
     
-    func setup() {
-        button.titleLabel?.font = .mrTextStyle11Font()
-        button.setTitleColor(.whiteColor(), forState: .Normal)
-        button.setTitle(buttonTitle, forState: .Normal)
+    @IBAction func button(sender: UIButton) {
+        delegate?.changeChildView(buttonTitle)
     }
+}
+
+
+// MARK: - View Lifecycle
+
+extension SideMenuCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -39,10 +46,18 @@ class SideMenuCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-    }
-
 }
+
+
+// MARK: - Setup
+
+extension SideMenuCell {
+    
+    func setup() {
+        button.titleLabel?.font = .mrTextStyle11Font()
+        button.setTitleColor(.whiteColor(), forState: .Normal)
+        button.setTitle(buttonTitle, forState: .Normal)
+    }
+}
+
+
