@@ -113,7 +113,13 @@ extension ResultPageViewController {
             
         }
         let centerCoordinate = CLLocationCoordinate2DMake((maxLatitude + minLatitude) / 2, (maxLongitude + minLongitude) / 2)
-        mapView.camera = GMSCameraPosition(target: centerCoordinate, zoom: 14, bearing: 0, viewingAngle: 0)
+        mapView.camera = GMSCameraPosition(target: centerCoordinate, zoom: 1, bearing: 0, viewingAngle: 0)
+        
+        let northEastCoordinate = CLLocationCoordinate2DMake(maxLatitude, maxLongitude)
+        let southWestCoordinate = CLLocationCoordinate2DMake(minLatitude, minLongitude)
+        let coordinateBounds = GMSCoordinateBounds(coordinate: northEastCoordinate, coordinate: southWestCoordinate)
+        let update = GMSCameraUpdate.fitBounds(coordinateBounds, withPadding: 50.0)
+        mapView.moveCamera(update)
     }
 }
 
@@ -148,6 +154,7 @@ extension ResultPageViewController {
             }
         }
     }
+    
 }
 
 
@@ -160,5 +167,3 @@ extension ResultPageViewController {
         self.dismissViewControllerAnimated(true, completion: {})
     }
 }
-
-
