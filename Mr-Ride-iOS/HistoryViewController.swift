@@ -163,6 +163,7 @@ extension HistoryViewController {
         
         let lineChartData = LineChartData(xVals: dateArray, dataSet: lineChartDataSet)
         lineChartView.data = lineChartData
+        lineChartData.setDrawValues(false)
         
         lineChartView.backgroundColor = UIColor.clearColor()
         lineChartView.drawGridBackgroundEnabled = false

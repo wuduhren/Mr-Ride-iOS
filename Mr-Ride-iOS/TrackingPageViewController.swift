@@ -35,10 +35,13 @@ class TrackingPageViewController: UIViewController {
     private var locationArray: [CLLocation] = []
     private var locationArrayForPolyline: [CLLocation] = []
     
+    //properties
+    private var totalInterval: NSTimeInterval = 0
+    
     private var distance: Double = 0
     
     private var averageSpeed: Double = 0
-    
+
     var polylineCoordinates: [Dictionary<String, AnyObject>] = []
     
     
@@ -51,31 +54,12 @@ class TrackingPageViewController: UIViewController {
     
     private let stopwatch = Stopwatch()
     
-    func updateElapsedTimeLabel(timer: NSTimer) {
-        var totalInterval: NSTimeInterval
-        if stopwatch.intervalBeforPause != nil {
-            totalInterval = stopwatch.intervalBeforPause! + stopwatch.elapsedTime
-        } else {
-            totalInterval = stopwatch.elapsedTime
-        }
-        
-        if stopwatch.isRunning {
-            let hours = Int(totalInterval / 3600)
-            let minutes = Int(totalInterval / 60)
-            let seconds = Int(totalInterval % 60)
-            let tenthsOfSecond = Int(totalInterval * 100 % 100)
-            stopwatch.elapsedTimeLabelText = String(format: "%02d:%02d:%02d.%02d", hours, minutes, seconds, tenthsOfSecond)
-            timeLabel.text = stopwatch.elapsedTimeLabelText
-        } else {
-            timer.invalidate()
-        }
-    }
     
 }
 
 
 
-// MARK: - Action
+// MARK: - StopWatch
 
 extension TrackingPageViewController {
     
@@ -138,6 +122,25 @@ extension TrackingPageViewController {
         self.dismissViewControllerAnimated(true, completion: {})
     }
     
+    func updateElapsedTimeLabel(timer: NSTimer) {
+        
+        if stopwatch.intervalBeforPause != nil {
+            totalInterval = stopwatch.intervalBeforPause! + stopwatch.elapsedTime
+        } else {
+            totalInterval = stopwatch.elapsedTime
+        }
+        
+        if stopwatch.isRunning {
+            let hours = Int(totalInterval / 3600)
+            let minutes = Int(totalInterval / 60)
+            let seconds = Int(totalInterval % 60)
+            let tenthsOfSecond = Int(totalInterval * 100 % 100)
+            stopwatch.elapsedTimeLabelText = String(format: "%02d:%02d:%02d.%02d", hours, minutes, seconds, tenthsOfSecond)
+            timeLabel.text = stopwatch.elapsedTimeLabelText
+        } else {
+            timer.invalidate()
+        }
+    }
 }
 
 
@@ -171,13 +174,14 @@ extension TrackingPageViewController: CLLocationManagerDelegate {
                 polyline.spans = [GMSStyleSpan(color: UIColor.MRBubblegumColor())]
                 polyline.map = mapView
             }
+            
+            //update labels
             distanceLabel.text = "\(round(distance)) m"
             speedAverageLabel.text = "\(round(currentLocation.speed * 3.6)) km / h"
-            caloriesLabel.text = "\(123) kcal"
+            caloriesLabel.text = NSString(format:"%.2f kcal",getCaloriesBurned()) as String
             
             if buttonStatus == .counting {
                 locationArray.append(currentLocation)
-                //locationArrayForPolyline.append(currentLocation)
             }
         }
     }
@@ -261,11 +265,29 @@ extension TrackingPageViewController {
     }
     
     func getAverageSpeed() -> Double {
-        for location in locationArrayForPolyline {
+        var arrayForSpeed = locationArrayForPolyline
+        
+        if locationArrayForPolyline.count == 0 {
+            if locationArray.count == 0 {
+                return 0
+            } else {
+                arrayForSpeed = locationArray
+            }
+        }
+        
+        for location in arrayForSpeed {
             averageSpeed += Double(location.speed)
         }
-        averageSpeed = averageSpeed / Double(locationArrayForPolyline.count)
+        averageSpeed = averageSpeed / Double(arrayForSpeed.count)
         return averageSpeed
+    }
+    
+    func getCaloriesBurned() -> Double {
+        let calorieCalculator = CalorieCalculator()
+        let defaultName = NSUserDefaults.standardUserDefaults()
+        guard let weight = defaultName.valueForKey("weight") as? Double else { return 0 }
+        let kCalBurned = calorieCalculator.kiloCalorieBurned(.Bike, speed: getAverageSpeed(), weight: weight, time: totalInterval/3600)
+        return kCalBurned
     }
     
     func saveData() {
@@ -274,7 +296,7 @@ extension TrackingPageViewController {
         entity.setValue(NSDate(), forKey: "date")
         entity.setValue(distance, forKey: "distance")
         entity.setValue(getAverageSpeed(), forKey: "speed")
-        entity.setValue(123, forKey: "calories")
+        entity.setValue(getCaloriesBurned(), forKey: "calories")
         entity.setValue(timeLabel.text, forKey: "time")
         entity.setValue(getPolylineData(), forKey: "polyline")
         do {

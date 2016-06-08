@@ -136,7 +136,7 @@ extension ResultPageViewController {
         date = runDataStruct.date!
         distanceLabel.text = "\(round(runDataStruct.distance!)) m"
         speedAverageLabel.text = "\(round(runDataStruct.speed!)) km / h"
-        caloriesLabel.text = "\(round(runDataStruct.calories!)) kcal"
+        caloriesLabel.text = NSString(format:"%.2f kcal", runDataStruct.calories!) as String
         timeLabel.text = runDataStruct.time
         polylineDataNSData = runDataStruct.polyline
     }
