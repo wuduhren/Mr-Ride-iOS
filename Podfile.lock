@@ -24,14 +24,16 @@ PODS:
   - RealmSwift (0.100.0):
     - Realm (= 0.100.0)
   - SideMenu (1.1.6)
+  - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - Alamofire (~> 3.3)
   - Charts/Realm (~> 2.2)
-  - FBSDKLoginKit
+  - FBSDKLoginKit (~> 4.11)
   - GoogleMaps (~> 1.13)
   - JSONWebToken (~> 1.4.3)
   - SideMenu (~> 1.1)
+  - SwiftyJSON (~> 2.3)
 
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
@@ -45,7 +47,8 @@ SPEC CHECKSUMS:
   Realm: b13b548e712d28a66678970c45cd245ebb94ba3b
   RealmSwift: 1bb0ba2ceaa06b65d740b4f91bfa06e3fd1b805c
   SideMenu: 187f2b1b087e69f7db5032dba8b5b32091c8e345
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 1a8ebcf3baaae05f4248e516c322e55f0f1845d5
+PODFILE CHECKSUM: e567c1b814b88f697d48b27d30244f9bb6659e73
 
 COCOAPODS: 1.0.0.rc.1

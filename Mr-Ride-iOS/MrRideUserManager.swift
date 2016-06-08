@@ -8,11 +8,11 @@
 
 import Foundation
 import FBSDKLoginKit
+import SwiftyJSON
 
 class MrRideUserManager {
     static let sharedManager = MrRideUserManager()
 }
-
 
 // MARK: - Facebook
 
@@ -24,7 +24,7 @@ extension MrRideUserManager {
         case Cancelled
     }
     
-    typealias LogInWithFacebookSuccess = (user: MrRideUserModel) -> Void
+    typealias LogInWithFacebookSuccess = () -> Void
     typealias LogInWithFacebookFailure = (error: ErrorType) -> Void
     
     func logInWithFacebook(fromViewController fromViewController: UIViewController, success: LogInWithFacebookSuccess, failure: LogInWithFacebookFailure?) {
@@ -34,7 +34,7 @@ extension MrRideUserManager {
         FBSDKLoginManager().logInWithReadPermissions(
             facebook.requiredReadPermissions.map { return $0.rawValue },
             fromViewController: fromViewController,
-            handler: { [unowned self] result, fbError in
+            handler: { result, fbError in
                 
                 if fbError != nil {
                     
@@ -73,82 +73,8 @@ extension MrRideUserManager {
                     return
                     
                 }
-                
-                self.getFacebookProfile(
-                    success: { json in
-                        
-                        do {
-                            
-                            let user = try YBUserModelHelper().parse(json: json)
-                            self.user = user
-                            
-                            success(user: user)
-                            
-                        }
-                        catch(let error) {
-                            
-                            FBSDKLoginManager().logOut()
-                            
-                            failure?(error: error)
-                            
-                        }
-                        
-                    },
-                    failure: { error in
-                        
-                        FBSDKLoginManager().logOut()
-                        
-                        failure?(error: error)
-                        
-                    }
-                )
-                
+                success()
             }
         )
-        
     }
-    
-    enum GetFacebookProfileError: ErrorType {
-        case FacebookError(error: NSError)
-        case NoAccessToken
-    }
-    
-    typealias GetFacebookProfileSuccess = (json: JSON) -> Void
-    typealias GetFacebookProfileFailure = (error: ErrorType) -> Void
-    
-    func getFacebookProfile(success success: GetFacebookProfileSuccess, failure: GetFacebookProfileFailure?) {
-        
-        guard let _ = FBSDKAccessToken.currentAccessToken() else {
-            
-            FBSDKLoginManager().logOut()
-            
-            let error: GetFacebookProfileError = .NoAccessToken
-            
-            failure?(error: error)
-            
-            return
-            
-        }
-        
-        FBSDKGraphRequest(
-            graphPath: "me",
-            parameters: [ "fields": "name, picture.type(large), link, email" ]
-            )
-            .startWithCompletionHandler { _, result, fbError in
-                
-                if fbError != nil {
-                    
-                    let error: GetFacebookProfileError = .FacebookError(error: fbError)
-                    failure?(error: error)
-                    
-                    return
-                    
-                }
-                
-                success(json: JSON(result))
-                
-        }
-        
-    }
-    
 }

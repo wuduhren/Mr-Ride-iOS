@@ -194,20 +194,20 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0 kcal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qv5-2m-tMf">
-                                <rect key="frame" x="38" y="165" width="80" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0 km / h" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oN0-ZK-qpf">
-                                <rect key="frame" x="38" y="100" width="189" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0 cal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qv5-2m-tMf">
+                                <rect key="frame" x="38" y="165" width="189" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0 m" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khL-Ja-uG3">
                                 <rect key="frame" x="38" y="35" width="125" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0 km / h" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oN0-ZK-qpf">
+                                <rect key="frame" x="38" y="100" width="189" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -240,7 +240,7 @@
                         <outlet property="speedAverageLabel" destination="oN0-ZK-qpf" id="uJo-Aa-yag"/>
                         <outlet property="stopWatchButton" destination="kUX-fK-xuG" id="X7G-b4-QxV"/>
                         <outlet property="timeLabel" destination="eRv-Mj-MSx" id="jGh-My-lhc"/>
-                        <segue destination="n4l-s5-KLg" kind="push" identifier="ResultPageViewControllerSegue" id="5Im-Gk-kKy"/>
+                        <segue destination="n4l-s5-KLg" kind="show" identifier="ResultPageViewControllerSegue" id="5Im-Gk-kKy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GbL-wz-9ju" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -337,10 +337,10 @@
             </objects>
             <point key="canvasLocation" x="1007.5" y="-414.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="9BP-A8-qgP">
             <objects>
-                <viewController id="w6G-WN-AGk" sceneMemberID="viewController">
+                <viewController id="w6G-WN-AGk" customClass="LoginViewController" customModule="Mr_Ride_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mCx-fk-Src"/>
                         <viewControllerLayoutGuide type="bottom" id="su8-fd-NPG"/>
@@ -383,15 +383,22 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="FB LOGIN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="daK-1J-vlh">
-                                <rect key="frame" x="76" y="495" width="224" height="60"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cxI-2J-bLC">
-                                <rect key="frame" x="157" y="208" width="97" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sgc-5p-dV4">
+                                <rect key="frame" x="76" y="495" width="224" height="54"/>
+                                <state key="normal" title="FACEBOOK LOGIN"/>
+                                <connections>
+                                    <action selector="loginWithFacebook:" destination="w6G-WN-AGk" eventType="touchUpInside" id="5nn-fJ-JtY"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AnP-gM-PbP">
+                                <rect key="frame" x="126" y="273" width="223" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jpk-Kz-Qh2">
+                                <rect key="frame" x="126" y="217" width="223" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -400,6 +407,10 @@
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="367" height="667"/>
+                    <connections>
+                        <outlet property="heightTextField" destination="Jpk-Kz-Qh2" id="WVh-oZ-eaW"/>
+                        <outlet property="weightTextField" destination="AnP-gM-PbP" id="Z0k-yZ-QSM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0df-fy-v7g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -408,7 +419,7 @@
         <!--Navigation Controller-->
         <scene sceneID="64T-7V-lpe">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jpz-vW-GIF" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="RootViewNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="jpz-vW-GIF" sceneMemberID="viewController">
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="674"/>
