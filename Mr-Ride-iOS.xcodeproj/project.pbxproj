@@ -21,7 +21,6 @@
 		F9A2EBB71CF2A79A00853CCE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9A2EBB51CF2A79A00853CCE /* Main.storyboard */; };
 		F9A2EBB91CF2A79A00853CCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9A2EBB81CF2A79A00853CCE /* Assets.xcassets */; };
 		F9A2EBBC1CF2A79A00853CCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9A2EBBA1CF2A79A00853CCE /* LaunchScreen.storyboard */; };
-		F9CD4C051CFC32F500E251AC /* GoogleMaps.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CD4C041CFC32F500E251AC /* GoogleMaps.m */; };
 		F9CD4C081CFD55EB00E251AC /* RunningDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F9CD4C061CFD55EB00E251AC /* RunningDataModel.xcdatamodeld */; };
 		F9CD4C0B1CFD60F500E251AC /* Entity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CD4C091CFD60F500E251AC /* Entity+CoreDataProperties.swift */; };
 		F9CD4C0C1CFD60F500E251AC /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CD4C0A1CFD60F500E251AC /* Entity.swift */; };
@@ -42,6 +41,11 @@
 		F9E55F4F1CF42D1100402F96 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E55F4E1CF42D1100402F96 /* RootViewController.swift */; };
 		F9E9E4A11CF6ED6C00599D85 /* TrackingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E9E4A01CF6ED6C00599D85 /* TrackingPageViewController.swift */; };
 		F9E9E4A31CF829CF00599D85 /* ResultPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E9E4A21CF829CF00599D85 /* ResultPageViewController.swift */; };
+		F9F0942F1D07C4F60020BFCB /* MrRideUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F0942E1D07C4F60020BFCB /* MrRideUserModel.swift */; };
+		F9F7D67A1D07BE170060BFD6 /* Facebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F7D6791D07BE170060BFD6 /* Facebook.swift */; };
+		F9F7D67C1D07BE6D0060BFD6 /* MrRideFacebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F7D67B1D07BE6D0060BFD6 /* MrRideFacebook.swift */; };
+		F9F7D6801D07BFB20060BFD6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F7D67F1D07BFB20060BFD6 /* LoginViewController.swift */; };
+		F9F7D6831D07C0650060BFD6 /* MrRideUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F7D6821D07C0650060BFD6 /* MrRideUserManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +56,7 @@
 		F93BBFF01CF5945100A9E661 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		F953E3691CF2DC3C00FA3F4E /* UIFont+YBKAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+YBKAdditions.swift"; sourceTree = "<group>"; };
 		F953E36E1CF2DE8700FA3F4E /* MRColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MRColor.swift; sourceTree = "<group>"; };
+		F978A2C11D057FB4007914CA /* Mr-Ride-iOS-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Mr-Ride-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		F97EC5F01D011E28009FD828 /* RunDataTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunDataTableViewCell.swift; sourceTree = "<group>"; };
 		F97EC5F11D011E28009FD828 /* RunDataTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RunDataTableViewCell.xib; sourceTree = "<group>"; };
 		F97EC5F41D01553A009FD828 /* RunDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunDataModel.swift; sourceTree = "<group>"; };
@@ -63,8 +68,6 @@
 		F9A2EBB81CF2A79A00853CCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9A2EBBB1CF2A79A00853CCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F9A2EBBD1CF2A79A00853CCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F9CD4C031CFC32F500E251AC /* Mr-Ride-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mr-Ride-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
-		F9CD4C041CFC32F500E251AC /* GoogleMaps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleMaps.m; sourceTree = "<group>"; };
 		F9CD4C071CFD55EB00E251AC /* RunningDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RunningDataModel.xcdatamodel; sourceTree = "<group>"; };
 		F9CD4C091CFD60F500E251AC /* Entity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Entity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F9CD4C0A1CFD60F500E251AC /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
@@ -85,6 +88,11 @@
 		F9E55F4E1CF42D1100402F96 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		F9E9E4A01CF6ED6C00599D85 /* TrackingPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingPageViewController.swift; sourceTree = "<group>"; };
 		F9E9E4A21CF829CF00599D85 /* ResultPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultPageViewController.swift; sourceTree = "<group>"; };
+		F9F0942E1D07C4F60020BFCB /* MrRideUserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MrRideUserModel.swift; sourceTree = "<group>"; };
+		F9F7D6791D07BE170060BFD6 /* Facebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Facebook.swift; sourceTree = "<group>"; };
+		F9F7D67B1D07BE6D0060BFD6 /* MrRideFacebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MrRideFacebook.swift; sourceTree = "<group>"; };
+		F9F7D67F1D07BFB20060BFD6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F9F7D6821D07C0650060BFD6 /* MrRideUserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MrRideUserManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,7 +148,6 @@
 				F9E55F491CF3E90C00402F96 /* Model */,
 				F9E55F481CF3E90500402F96 /* View */,
 				F9E55F471CF3E8FA00402F96 /* Controller */,
-				F9CE3E251CF2E37D00574689 /* Resources */,
 			);
 			path = "Mr-Ride-iOS";
 			sourceTree = "<group>";
@@ -152,8 +159,7 @@
 				F9A2EBB81CF2A79A00853CCE /* Assets.xcassets */,
 				F953E3691CF2DC3C00FA3F4E /* UIFont+YBKAdditions.swift */,
 				F953E36E1CF2DE8700FA3F4E /* MRColor.swift */,
-				F9CD4C041CFC32F500E251AC /* GoogleMaps.m */,
-				F9CD4C031CFC32F500E251AC /* Mr-Ride-iOS-Bridging-Header.h */,
+				F978A2C11D057FB4007914CA /* Mr-Ride-iOS-Bridging-Header.h */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -179,6 +185,7 @@
 		F9E55F471CF3E8FA00402F96 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				F9F7D67F1D07BFB20060BFD6 /* LoginViewController.swift */,
 				F9E55F451CF3E8F200402F96 /* SideMenuTableViewController.swift */,
 				F9E55F4E1CF42D1100402F96 /* RootViewController.swift */,
 				F9A2EBB31CF2A79A00853CCE /* HomeViewController.swift */,
@@ -205,16 +212,37 @@
 		F9E55F491CF3E90C00402F96 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F9CD4C0D1CFD694400E251AC /* DataController.swift */,
-				F9CD4C091CFD60F500E251AC /* Entity+CoreDataProperties.swift */,
-				F9CD4C0A1CFD60F500E251AC /* Entity.swift */,
-				F9CD4C061CFD55EB00E251AC /* RunningDataModel.xcdatamodeld */,
+				F9CE3E251CF2E37D00574689 /* Resources */,
+				F9F7D6781D07BDFC0060BFD6 /* Facebook */,
+				F9F7D6811D07BFC50060BFD6 /* CoreData */,
 				F98436661CFAF53500A4268C /* StopWatch.swift */,
 				F9A2EBB11CF2A79A00853CCE /* AppDelegate.swift */,
 				F9A2EBBD1CF2A79A00853CCE /* Info.plist */,
-				F97EC5F41D01553A009FD828 /* RunDataModel.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		F9F7D6781D07BDFC0060BFD6 /* Facebook */ = {
+			isa = PBXGroup;
+			children = (
+				F9F7D6791D07BE170060BFD6 /* Facebook.swift */,
+				F9F7D67B1D07BE6D0060BFD6 /* MrRideFacebook.swift */,
+				F9F0942E1D07C4F60020BFCB /* MrRideUserModel.swift */,
+				F9F7D6821D07C0650060BFD6 /* MrRideUserManager.swift */,
+			);
+			name = Facebook;
+			sourceTree = "<group>";
+		};
+		F9F7D6811D07BFC50060BFD6 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				F9CD4C0D1CFD694400E251AC /* DataController.swift */,
+				F97EC5F41D01553A009FD828 /* RunDataModel.swift */,
+				F9CD4C091CFD60F500E251AC /* Entity+CoreDataProperties.swift */,
+				F9CD4C0A1CFD60F500E251AC /* Entity.swift */,
+				F9CD4C061CFD55EB00E251AC /* RunningDataModel.xcdatamodeld */,
+			);
+			name = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -351,8 +379,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9F7D6801D07BFB20060BFD6 /* LoginViewController.swift in Sources */,
 				F9CD4C0B1CFD60F500E251AC /* Entity+CoreDataProperties.swift in Sources */,
 				F97EC5F51D01553A009FD828 /* RunDataModel.swift in Sources */,
+				F9F0942F1D07C4F60020BFCB /* MrRideUserModel.swift in Sources */,
 				F97EC5F21D011E28009FD828 /* RunDataTableViewCell.swift in Sources */,
 				F9E9E4A11CF6ED6C00599D85 /* TrackingPageViewController.swift in Sources */,
 				F9E9E4A31CF829CF00599D85 /* ResultPageViewController.swift in Sources */,
@@ -363,12 +393,14 @@
 				F9CD4C0E1CFD694400E251AC /* DataController.swift in Sources */,
 				F953E36B1CF2DC3C00FA3F4E /* UIFont+YBKAdditions.swift in Sources */,
 				F9E55F4F1CF42D1100402F96 /* RootViewController.swift in Sources */,
+				F9F7D6831D07C0650060BFD6 /* MrRideUserManager.swift in Sources */,
+				F9F7D67C1D07BE6D0060BFD6 /* MrRideFacebook.swift in Sources */,
 				F9E55F461CF3E8F200402F96 /* SideMenuTableViewController.swift in Sources */,
 				F953E36F1CF2DE8700FA3F4E /* MRColor.swift in Sources */,
 				F93BBFF11CF5945100A9E661 /* HistoryViewController.swift in Sources */,
 				F9A2EBB21CF2A79A00853CCE /* AppDelegate.swift in Sources */,
+				F9F7D67A1D07BE170060BFD6 /* Facebook.swift in Sources */,
 				F9CD4C081CFD55EB00E251AC /* RunningDataModel.xcdatamodeld in Sources */,
-				F9CD4C051CFC32F500E251AC /* GoogleMaps.m in Sources */,
 				F93BBFEF1CF590B800A9E661 /* SideMenuCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
