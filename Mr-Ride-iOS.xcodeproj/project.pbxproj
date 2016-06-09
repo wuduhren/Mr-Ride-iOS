@@ -13,6 +13,7 @@
 		F953E36B1CF2DC3C00FA3F4E /* UIFont+YBKAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F953E3691CF2DC3C00FA3F4E /* UIFont+YBKAdditions.swift */; };
 		F953E36F1CF2DE8700FA3F4E /* MRColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F953E36E1CF2DE8700FA3F4E /* MRColor.swift */; };
 		F9616C6B1D084F9900343213 /* CalorieCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9616C6A1D084F9900343213 /* CalorieCalculator.swift */; };
+		F97AA55A1D096F0D0058B082 /* RunningDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F97AA5581D096F0D0058B082 /* RunningDataModel.xcdatamodeld */; };
 		F97EC5F21D011E28009FD828 /* RunDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97EC5F01D011E28009FD828 /* RunDataTableViewCell.swift */; };
 		F97EC5F31D011E28009FD828 /* RunDataTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97EC5F11D011E28009FD828 /* RunDataTableViewCell.xib */; };
 		F97EC5F51D01553A009FD828 /* RunDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97EC5F41D01553A009FD828 /* RunDataModel.swift */; };
@@ -22,7 +23,6 @@
 		F9A2EBB71CF2A79A00853CCE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9A2EBB51CF2A79A00853CCE /* Main.storyboard */; };
 		F9A2EBB91CF2A79A00853CCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9A2EBB81CF2A79A00853CCE /* Assets.xcassets */; };
 		F9A2EBBC1CF2A79A00853CCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9A2EBBA1CF2A79A00853CCE /* LaunchScreen.storyboard */; };
-		F9CD4C081CFD55EB00E251AC /* RunningDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F9CD4C061CFD55EB00E251AC /* RunningDataModel.xcdatamodeld */; };
 		F9CD4C0B1CFD60F500E251AC /* Entity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CD4C091CFD60F500E251AC /* Entity+CoreDataProperties.swift */; };
 		F9CD4C0C1CFD60F500E251AC /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CD4C0A1CFD60F500E251AC /* Entity.swift */; };
 		F9CD4C0E1CFD694400E251AC /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CD4C0D1CFD694400E251AC /* DataController.swift */; };
@@ -57,10 +57,10 @@
 		F953E36E1CF2DE8700FA3F4E /* MRColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MRColor.swift; sourceTree = "<group>"; };
 		F9616C6A1D084F9900343213 /* CalorieCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalorieCalculator.swift; sourceTree = "<group>"; };
 		F978A2C11D057FB4007914CA /* Mr-Ride-iOS-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Mr-Ride-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		F97AA5591D096F0D0058B082 /* RunningDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RunningDataModel.xcdatamodel; sourceTree = "<group>"; };
 		F97EC5F01D011E28009FD828 /* RunDataTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunDataTableViewCell.swift; sourceTree = "<group>"; };
 		F97EC5F11D011E28009FD828 /* RunDataTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RunDataTableViewCell.xib; sourceTree = "<group>"; };
 		F97EC5F41D01553A009FD828 /* RunDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunDataModel.swift; sourceTree = "<group>"; };
-		F983EE341D0967650048F10E /* RunningDataModel_v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RunningDataModel_v2.xcdatamodel; sourceTree = "<group>"; };
 		F98436661CFAF53500A4268C /* StopWatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopWatch.swift; sourceTree = "<group>"; };
 		F9A2EBAE1CF2A79A00853CCE /* Mr-Ride-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mr-Ride-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A2EBB11CF2A79A00853CCE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -69,7 +69,6 @@
 		F9A2EBB81CF2A79A00853CCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9A2EBBB1CF2A79A00853CCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F9A2EBBD1CF2A79A00853CCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F9CD4C071CFD55EB00E251AC /* RunningDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RunningDataModel.xcdatamodel; sourceTree = "<group>"; };
 		F9CD4C091CFD60F500E251AC /* Entity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Entity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F9CD4C0A1CFD60F500E251AC /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		F9CD4C0D1CFD694400E251AC /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
@@ -234,11 +233,11 @@
 		F9F7D6811D07BFC50060BFD6 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				F97AA5581D096F0D0058B082 /* RunningDataModel.xcdatamodeld */,
 				F9CD4C0D1CFD694400E251AC /* DataController.swift */,
 				F97EC5F41D01553A009FD828 /* RunDataModel.swift */,
 				F9CD4C091CFD60F500E251AC /* Entity+CoreDataProperties.swift */,
 				F9CD4C0A1CFD60F500E251AC /* Entity.swift */,
-				F9CD4C061CFD55EB00E251AC /* RunningDataModel.xcdatamodeld */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -388,6 +387,7 @@
 				F9CD4C0C1CFD60F500E251AC /* Entity.swift in Sources */,
 				F98436671CFAF53500A4268C /* StopWatch.swift in Sources */,
 				F9CD4C0E1CFD694400E251AC /* DataController.swift in Sources */,
+				F97AA55A1D096F0D0058B082 /* RunningDataModel.xcdatamodeld in Sources */,
 				F953E36B1CF2DC3C00FA3F4E /* UIFont+YBKAdditions.swift in Sources */,
 				F9E55F4F1CF42D1100402F96 /* RootViewController.swift in Sources */,
 				F9F7D6831D07C0650060BFD6 /* MrRideUserManager.swift in Sources */,
@@ -397,7 +397,6 @@
 				F93BBFF11CF5945100A9E661 /* HistoryViewController.swift in Sources */,
 				F9A2EBB21CF2A79A00853CCE /* AppDelegate.swift in Sources */,
 				F9F7D67A1D07BE170060BFD6 /* Facebook.swift in Sources */,
-				F9CD4C081CFD55EB00E251AC /* RunningDataModel.xcdatamodeld in Sources */,
 				F93BBFEF1CF590B800A9E661 /* SideMenuCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -562,13 +561,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		F9CD4C061CFD55EB00E251AC /* RunningDataModel.xcdatamodeld */ = {
+		F97AA5581D096F0D0058B082 /* RunningDataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				F983EE341D0967650048F10E /* RunningDataModel_v2.xcdatamodel */,
-				F9CD4C071CFD55EB00E251AC /* RunningDataModel.xcdatamodel */,
+				F97AA5591D096F0D0058B082 /* RunningDataModel.xcdatamodel */,
 			);
-			currentVersion = F9CD4C071CFD55EB00E251AC /* RunningDataModel.xcdatamodel */;
+			currentVersion = F97AA5591D096F0D0058B082 /* RunningDataModel.xcdatamodel */;
 			path = RunningDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
