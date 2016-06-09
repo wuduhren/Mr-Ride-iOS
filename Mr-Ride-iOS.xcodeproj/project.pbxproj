@@ -60,6 +60,7 @@
 		F97EC5F01D011E28009FD828 /* RunDataTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunDataTableViewCell.swift; sourceTree = "<group>"; };
 		F97EC5F11D011E28009FD828 /* RunDataTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RunDataTableViewCell.xib; sourceTree = "<group>"; };
 		F97EC5F41D01553A009FD828 /* RunDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunDataModel.swift; sourceTree = "<group>"; };
+		F983EE341D0967650048F10E /* RunningDataModel_v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RunningDataModel_v2.xcdatamodel; sourceTree = "<group>"; };
 		F98436661CFAF53500A4268C /* StopWatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopWatch.swift; sourceTree = "<group>"; };
 		F9A2EBAE1CF2A79A00853CCE /* Mr-Ride-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mr-Ride-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A2EBB11CF2A79A00853CCE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -564,6 +565,7 @@
 		F9CD4C061CFD55EB00E251AC /* RunningDataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				F983EE341D0967650048F10E /* RunningDataModel_v2.xcdatamodel */,
 				F9CD4C071CFD55EB00E251AC /* RunningDataModel.xcdatamodel */,
 			);
 			currentVersion = F9CD4C071CFD55EB00E251AC /* RunningDataModel.xcdatamodel */;

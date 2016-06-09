@@ -161,6 +161,12 @@ extension HistoryViewController {
         lineChartDataSet.drawCubicEnabled = true
         lineChartDataSet.lineWidth = 0.0
         
+        let gradientColors = [UIColor.MRBrightSkyBlue().CGColor, UIColor.MRTurquoiseBlue().CGColor]
+        let colorLocations:[CGFloat] = [0.0, 0.05]
+        let gradient = CGGradientCreateWithColors(CGColorSpaceCreateDeviceRGB(), gradientColors, colorLocations)
+        lineChartDataSet.fill = ChartFill.fillWithLinearGradient(gradient!, angle: 90.0)
+        lineChartDataSet.drawFilledEnabled = true
+        
         let lineChartData = LineChartData(xVals: dateArray, dataSet: lineChartDataSet)
         lineChartView.data = lineChartData
         lineChartData.setDrawValues(false)
@@ -173,8 +179,18 @@ extension HistoryViewController {
         lineChartView.xAxis.gridColor = .clearColor()
         lineChartView.xAxis.labelTextColor = .whiteColor()
         lineChartView.xAxis.labelPosition = .Bottom
+        lineChartView.xAxis.axisLineColor = .whiteColor()
         lineChartView.legend.enabled = false
         lineChartView.descriptionText = ""
+        lineChartView.userInteractionEnabled = false
+        
+        lineChartView.leftAxis.drawAxisLineEnabled = false
+        lineChartView.rightAxis.drawAxisLineEnabled = false
+        lineChartView.leftAxis.drawLabelsEnabled = false
+        lineChartView.rightAxis.drawLabelsEnabled = false
+        
+        //lineChartView.rightAxis.drawGridLinesEnabled = false
+        //lineChartView.leftAxis.gridColor = UIColor.whiteColor()
     }
 }
 
