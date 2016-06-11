@@ -11,7 +11,7 @@ import CoreData
 
 class ResultPageViewController: UIViewController {
 
-    @IBOutlet weak var closeButtonToHomePage: UIBarButtonItem!
+    //@IBOutlet weak var closeButtonToHomePage: UIBarButtonItem!
     
     @IBOutlet weak var distanceLabel: UILabel!
     
@@ -33,6 +33,12 @@ class ResultPageViewController: UIViewController {
     let runDataModel = RunDataModel()
     var runDataStructArray: [RunDataModel.runDataStruct] = []
     var runDataStruct = RunDataModel.runDataStruct()
+    
+    enum PreviousPage {
+        case TrackingPageViewController
+        case HistoryViewController
+    }
+    var previousPage: PreviousPage = .TrackingPageViewController
 }
 
 
@@ -42,8 +48,28 @@ class ResultPageViewController: UIViewController {
 extension ResultPageViewController {
     
     func setupNavigationItem() {
-        closeButtonToHomePage.setTitleTextAttributes([ NSFontAttributeName: UIFont.mrTextStyle13Font(),
-            NSForegroundColorAttributeName: UIColor.whiteColor() ], forState: UIControlState.Normal)
+        if previousPage == .TrackingPageViewController {
+            let closeButtonToHomePage = UIBarButtonItem(title: "Close", style: .Plain, target: self, action: #selector(closeButtonToHomePage(_:)))
+            closeButtonToHomePage.tintColor = UIColor.whiteColor()
+            navigationItem.leftBarButtonItem = closeButtonToHomePage
+            
+            closeButtonToHomePage.setTitleTextAttributes([
+                NSFontAttributeName: UIFont.mrTextStyle13Font(),
+                NSForegroundColorAttributeName: UIColor.whiteColor()
+                ],
+                forState: UIControlState.Normal
+            )
+        }
+        
+        if previousPage == .HistoryViewController {
+            navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        }
+        
+        
+        
+        
+        
+        
         
         //title
         let dateFormatter = NSDateFormatter()
@@ -61,8 +87,8 @@ extension ResultPageViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigationItem()
         getData()
+        setupNavigationItem()
         drawPolyline()
         calculateCameraCenter()
     }
@@ -130,9 +156,11 @@ extension ResultPageViewController {
 extension ResultPageViewController {
     
     func getData() {
-        runDataStructArray = runDataModel.getData()
-        runDataStruct = runDataStructArray.last!
         
+        if previousPage == .TrackingPageViewController {
+            runDataStructArray = runDataModel.getData()
+            runDataStruct = runDataStructArray.last!
+        }
         date = runDataStruct.date!
         distanceLabel.text = "\(round(runDataStruct.distance!)) m"
         speedAverageLabel.text = "\(round(runDataStruct.speed!)) km / h"

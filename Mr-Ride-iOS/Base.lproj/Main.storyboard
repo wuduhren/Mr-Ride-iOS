@@ -109,7 +109,8 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JeH-gz-Zg6">
                                 <rect key="frame" x="16" y="173" width="343" height="474"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wOl-ye-wG5" customClass="LineChartView" customModule="Charts">
@@ -250,7 +251,7 @@
         <!--Result Page View Controller-->
         <scene sceneID="Pgm-1f-Owf">
             <objects>
-                <viewController id="n4l-s5-KLg" customClass="ResultPageViewController" customModule="Mr_Ride_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ResultPageViewController" id="n4l-s5-KLg" customClass="ResultPageViewController" customModule="Mr_Ride_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Lug-Yy-LtL"/>
                         <viewControllerLayoutGuide type="bottom" id="fZy-WU-kuF"/>
@@ -314,19 +315,11 @@
                         </subviews>
                         <color key="backgroundColor" red="0.054901961239999998" green="0.20784313979999999" blue="0.25098040700000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="bky-ke-SPP">
-                        <barButtonItem key="leftBarButtonItem" title="Close" id="8N7-9B-K2Q">
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="closeButtonToHomePage:" destination="n4l-s5-KLg" id="q3v-Me-4k2"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="bky-ke-SPP"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="caloriesLabel" destination="Cok-mf-GvP" id="2zU-fn-gBP"/>
-                        <outlet property="closeButtonToHomePage" destination="8N7-9B-K2Q" id="yL5-Vm-ht9"/>
                         <outlet property="distanceLabel" destination="aqJ-VC-Msk" id="7lq-LR-2el"/>
                         <outlet property="mapView" destination="tEB-mc-6wk" id="7u4-ol-8PO"/>
                         <outlet property="speedAverageLabel" destination="1Bm-3z-vAj" id="f6Y-Xx-FCr"/>

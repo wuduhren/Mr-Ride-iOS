@@ -26,6 +26,8 @@
 		F9CD4C0B1CFD60F500E251AC /* Entity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CD4C091CFD60F500E251AC /* Entity+CoreDataProperties.swift */; };
 		F9CD4C0C1CFD60F500E251AC /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CD4C0A1CFD60F500E251AC /* Entity.swift */; };
 		F9CD4C0E1CFD694400E251AC /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CD4C0D1CFD694400E251AC /* DataController.swift */; };
+		F9D3E5AC1D0972D30096AAB9 /* RunDataTableViewGapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D3E5AA1D0972D30096AAB9 /* RunDataTableViewGapCell.swift */; };
+		F9D3E5AD1D0972D30096AAB9 /* RunDataTableViewGapCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9D3E5AB1D0972D30096AAB9 /* RunDataTableViewGapCell.xib */; };
 		F9E55F1C1CF3093100402F96 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = F9E55F111CF3093100402F96 /* LICENSE.txt */; };
 		F9E55F1D1CF3093100402F96 /* RobotoMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9E55F121CF3093100402F96 /* RobotoMono-Bold.ttf */; };
 		F9E55F1E1CF3093100402F96 /* RobotoMono-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9E55F131CF3093100402F96 /* RobotoMono-BoldItalic.ttf */; };
@@ -72,6 +74,8 @@
 		F9CD4C091CFD60F500E251AC /* Entity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Entity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F9CD4C0A1CFD60F500E251AC /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		F9CD4C0D1CFD694400E251AC /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		F9D3E5AA1D0972D30096AAB9 /* RunDataTableViewGapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunDataTableViewGapCell.swift; sourceTree = "<group>"; };
+		F9D3E5AB1D0972D30096AAB9 /* RunDataTableViewGapCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RunDataTableViewGapCell.xib; sourceTree = "<group>"; };
 		F9E55F111CF3093100402F96 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		F9E55F121CF3093100402F96 /* RobotoMono-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoMono-Bold.ttf"; sourceTree = "<group>"; };
 		F9E55F131CF3093100402F96 /* RobotoMono-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoMono-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -202,6 +206,8 @@
 				F93BBFEE1CF590B800A9E661 /* SideMenuCell.swift */,
 				F97EC5F01D011E28009FD828 /* RunDataTableViewCell.swift */,
 				F97EC5F11D011E28009FD828 /* RunDataTableViewCell.xib */,
+				F9D3E5AA1D0972D30096AAB9 /* RunDataTableViewGapCell.swift */,
+				F9D3E5AB1D0972D30096AAB9 /* RunDataTableViewGapCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -209,9 +215,9 @@
 		F9E55F491CF3E90C00402F96 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F9F7D6811D07BFC50060BFD6 /* CoreData */,
 				F98436661CFAF53500A4268C /* StopWatch.swift */,
 				F9616C6A1D084F9900343213 /* CalorieCalculator.swift */,
+				F9F7D6811D07BFC50060BFD6 /* CoreData */,
 				F9CE3E251CF2E37D00574689 /* Resources */,
 				F9F7D6781D07BDFC0060BFD6 /* Facebook */,
 				F9A2EBB11CF2A79A00853CCE /* AppDelegate.swift */,
@@ -309,6 +315,7 @@
 				F9E55F1C1CF3093100402F96 /* LICENSE.txt in Resources */,
 				F9E55F1E1CF3093100402F96 /* RobotoMono-BoldItalic.ttf in Resources */,
 				F9E55F201CF3093100402F96 /* RobotoMono-Light.ttf in Resources */,
+				F9D3E5AD1D0972D30096AAB9 /* RunDataTableViewGapCell.xib in Resources */,
 				F9E55F1D1CF3093100402F96 /* RobotoMono-Bold.ttf in Resources */,
 				F9E55F211CF3093100402F96 /* RobotoMono-LightItalic.ttf in Resources */,
 				F9A2EBBC1CF2A79A00853CCE /* LaunchScreen.storyboard in Resources */,
@@ -392,6 +399,7 @@
 				F9E55F4F1CF42D1100402F96 /* RootViewController.swift in Sources */,
 				F9F7D6831D07C0650060BFD6 /* MrRideUserManager.swift in Sources */,
 				F9F7D67C1D07BE6D0060BFD6 /* MrRideFacebook.swift in Sources */,
+				F9D3E5AC1D0972D30096AAB9 /* RunDataTableViewGapCell.swift in Sources */,
 				F9E55F461CF3E8F200402F96 /* SideMenuTableViewController.swift in Sources */,
 				F953E36F1CF2DE8700FA3F4E /* MRColor.swift in Sources */,
 				F93BBFF11CF5945100A9E661 /* HistoryViewController.swift in Sources */,

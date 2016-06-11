@@ -22,6 +22,12 @@ class HistoryViewController: UIViewController {
     
     private var runDataSortedByTime: [String: [RunDataModel.runDataStruct]] = [:]
     private var headers: [String] = []
+    
+    enum CellStatus {
+        case recordCell
+        case gap
+    }
+    var cellStatus: CellStatus = .gap
 }
 
 
@@ -32,12 +38,7 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.backgroundColor = .clearColor()
-        
-        let cellNib = UINib(nibName: "RunDataTableViewCell", bundle: nil)
-        tableView.registerNib(cellNib, forCellReuseIdentifier: "RunDataTableViewCell")
+        setupTableView()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -53,15 +54,39 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
 // MARK: - TableViewDataSource
 
 extension HistoryViewController {
+    
+    func setupTableView() {
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        let cellNib = UINib(nibName: "RunDataTableViewCell", bundle: nil)
+        tableView.registerNib(cellNib, forCellReuseIdentifier: "RunDataTableViewCell")
+        let gapCellNib = UINib(nibName: "RunDataTableViewGapCell", bundle: nil)
+        tableView.registerNib(gapCellNib, forCellReuseIdentifier: "RunDataTableViewGapCell")
+
+    }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("RunDataTableViewCell", forIndexPath: indexPath) as! RunDataTableViewCell
-        for header in headers {
-            cell.runDataStruct = runDataSortedByTime[header]![indexPath.row]
-            cell.setup()
-        }
         
-        return cell
+        for header in headers {
+            
+            // first and last return gap cell
+            if indexPath.row == 0 || indexPath.row == runDataSortedByTime[header]!.count + 1 {
+                cellStatus = .gap
+                
+                let cell = tableView.dequeueReusableCellWithIdentifier("RunDataTableViewGapCell", forIndexPath: indexPath) as! RunDataTableViewGapCell
+                return cell
+                
+            } else {
+                cellStatus = .recordCell
+                
+                let cell = tableView.dequeueReusableCellWithIdentifier("RunDataTableViewCell", forIndexPath: indexPath) as! RunDataTableViewCell
+                cell.runDataStruct = runDataSortedByTime[header]![indexPath.row - 1]
+                cell.setup()
+                return cell
+            }
+        }
+        return UITableViewCell()
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -71,12 +96,20 @@ extension HistoryViewController {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // the number of rows
-        return runDataSortedByTime[headers[section]]!.count
+        return runDataSortedByTime[headers[section]]!.count + 2
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         // the height
-        return 59
+        if cellStatus == .recordCell {
+            return 59
+        } else if cellStatus == .gap {
+            return 10
+        } else {
+            print("Something Wrong in HistoryView Cell's Height")
+            return 59
+        }
+        
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -88,7 +121,13 @@ extension HistoryViewController {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //do something when touched
+        let resultPageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ResultPageViewController") as! ResultPageViewController
+        
+        for header in headers {
+            resultPageViewController.runDataStruct = runDataSortedByTime[header]![indexPath.row - 1]
+            resultPageViewController.previousPage = .HistoryViewController
+        }
+        navigationController?.pushViewController(resultPageViewController, animated: true)
     }
 }
 
@@ -161,11 +200,14 @@ extension HistoryViewController {
         lineChartDataSet.drawCubicEnabled = true
         lineChartDataSet.lineWidth = 0.0
         
+        //Gradient Fill
         let gradientColors = [UIColor.MRBrightSkyBlue().CGColor, UIColor.MRTurquoiseBlue().CGColor]
         let colorLocations:[CGFloat] = [0.0, 0.05]
         let gradient = CGGradientCreateWithColors(CGColorSpaceCreateDeviceRGB(), gradientColors, colorLocations)
         lineChartDataSet.fill = ChartFill.fillWithLinearGradient(gradient!, angle: 90.0)
         lineChartDataSet.drawFilledEnabled = true
+        
+        
         
         let lineChartData = LineChartData(xVals: dateArray, dataSet: lineChartDataSet)
         lineChartView.data = lineChartData
