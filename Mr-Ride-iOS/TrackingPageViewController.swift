@@ -44,7 +44,6 @@ class TrackingPageViewController: UIViewController {
 
     var polylineCoordinates: [Dictionary<String, AnyObject>] = []
     
-    
     //stopWatch
     private enum buttonMode {
         case counting, notCounting
@@ -152,7 +151,6 @@ extension TrackingPageViewController: CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .AuthorizedWhenInUse {
             mapView.myLocationEnabled = true
-            mapView.settings.myLocationButton = true
             locationManager.startUpdatingLocation()
         }
     }

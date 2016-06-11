@@ -13,6 +13,57 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var heightTextField: UITextField!
     @IBOutlet weak var weightTextField: UITextField!
+    @IBOutlet weak var heightTextFieldBackground: UIView!
+    @IBOutlet weak var weightTextFieldBackground: UIView!
+    @IBOutlet weak var heightLabel: UILabel!
+    @IBOutlet weak var weightLabel: UILabel!
+    @IBOutlet weak var loginButton: UIButton!
+}
+
+
+
+// MARK: - Setup
+
+extension LoginViewController {
+    
+    func setup() {
+        inputViewSetup()
+        setupLoginButton()
+    }
+    
+    func inputViewSetup() {
+        //TextFieldBackground
+        let topRightBottomRightRoundedLayerForHeightTextFieldBackground = CAShapeLayer()
+        let topRightBottomRightRoundedLayerForWeightTextFieldBackground = CAShapeLayer()
+        let topRightBottomRightRoundedPath = UIBezierPath(
+            roundedRect: heightTextFieldBackground.bounds,
+            byRoundingCorners: [ .TopRight, .BottomRight ],
+            cornerRadii: CGSize(width: 4.0, height: 4.0)
+        )
+        topRightBottomRightRoundedLayerForHeightTextFieldBackground.path = topRightBottomRightRoundedPath.CGPath
+        topRightBottomRightRoundedLayerForWeightTextFieldBackground.path = topRightBottomRightRoundedPath.CGPath
+        heightTextFieldBackground.layer.mask = topRightBottomRightRoundedLayerForHeightTextFieldBackground
+        weightTextFieldBackground.layer.mask = topRightBottomRightRoundedLayerForWeightTextFieldBackground
+        
+        
+        //HeightandWeightLabel
+        let topLeftBottomLeftRoundedLayerForHeightLabel = CAShapeLayer()
+        let topLeftBottomLeftRoundedLayerForWeightLabel = CAShapeLayer()
+        let topLeftBottomLeftRoundedPath = UIBezierPath(
+            roundedRect: heightLabel.bounds,
+            byRoundingCorners: [ .TopLeft, .BottomLeft ],
+            cornerRadii: CGSize(width: 4.0, height: 4.0)
+        )
+        topLeftBottomLeftRoundedLayerForHeightLabel.path = topLeftBottomLeftRoundedPath.CGPath
+        topLeftBottomLeftRoundedLayerForWeightLabel.path = topLeftBottomLeftRoundedPath.CGPath
+        heightLabel.layer.mask = topLeftBottomLeftRoundedLayerForHeightLabel
+        weightLabel.layer.mask = topLeftBottomLeftRoundedLayerForWeightLabel
+    }
+    
+    func setupLoginButton() {
+        loginButton.layer.cornerRadius = 30
+        loginButton.clipsToBounds = true
+    }
 }
 
 
@@ -21,6 +72,11 @@ class LoginViewController: UIViewController {
 extension LoginViewController {
     
     @IBAction func loginWithFacebook(sender: UIButton) {
+        
+        if !weightAndHeightDidSet() {
+            return
+        }
+        
         MrRideUserManager.sharedManager.logInWithFacebook(
             fromViewController: self,
             success: {
@@ -31,23 +87,8 @@ extension LoginViewController {
             failure: { [weak self] error in
                 
                 guard let weakSelf = self else { return }
-                
-                let alert = UIAlertController(
-                    title: NSLocalizedString("Error", comment: ""),
-                    message: "\(error)",
-                    preferredStyle: .Alert
-                )
-                
-                let ok = UIAlertAction(
-                    title: NSLocalizedString("OK", comment: ""),
-                    style: .Cancel,
-                    handler: nil
-                )
-                
-                alert.addAction(ok)
-                
-                weakSelf.presentViewController(alert, animated: true, completion: nil)
-                
+                weakSelf.ErrorAlert("Error",errorMessage: "\(error)")
+                //double check please
             }
         )
 
@@ -60,16 +101,6 @@ extension LoginViewController {
 
 extension LoginViewController {
     
-    func setRootViewController() {
-        if (FBSDKAccessToken.currentAccessToken() != nil) {
-            // User is already logged in, do work such as go to next view controller.
-            let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
-            let initialViewController = self.storyboard!.instantiateViewControllerWithIdentifier("RootViewNavigationController") as! UINavigationController
-            appDelegate.window?.rootViewController = initialViewController
-            appDelegate.window?.makeKeyAndVisible()
-        }
-
-    }
 }
 
 
@@ -84,17 +115,17 @@ extension LoginViewController: UITextFieldDelegate {
         heightTextField.keyboardType = .NumbersAndPunctuation
         weightTextField.keyboardType = .NumbersAndPunctuation
         
-        heightTextField.text = "Enter Your Height"
-        weightTextField.text = "Enter Your Weight"
-        
         heightTextField.textColor = .grayColor()
         weightTextField.textColor = .grayColor()
+        
+        heightTextField.text = "Enter Your Height"
+        weightTextField.text = "Enter Your Weight"
     }
     
     func textFieldDidBeginEditing(textField: UITextField){
         
-        heightTextField.textColor = .blackColor()
-        weightTextField.textColor = .blackColor()
+        heightTextField.textColor = .MRDarkSlateBlueColor()
+        weightTextField.textColor = .MRDarkSlateBlueColor()
         
         if textField === weightTextField {
             weightTextField.text = ""
@@ -111,7 +142,7 @@ extension LoginViewController: UITextFieldDelegate {
         if textField === weightTextField {
             guard let weight = Double(weightTextField.text!) else {
                 weightTextField.text = ""
-                textInputErrorAlert()
+                ErrorAlert("Invalid Input", errorMessage: "please enter again")
                 return
             }
             defaultName.setValue(weight, forKey: "weight")
@@ -119,7 +150,7 @@ extension LoginViewController: UITextFieldDelegate {
         else if textField === heightTextField {
             guard let height = Double(heightTextField.text!) else {
                 heightTextField.text = ""
-                textInputErrorAlert()
+                ErrorAlert("Invalid Input", errorMessage: "please enter again")
                 return
             }
             defaultName.setValue(height, forKey: "height")
@@ -131,11 +162,18 @@ extension LoginViewController: UITextFieldDelegate {
         return false
     }
     
-    func textInputErrorAlert() {
+    func weightAndHeightDidSet() -> Bool {
+        if weightTextField.text == "" || heightTextField.text == "" {
+            ErrorAlert("Unable to Login", errorMessage: "please enter your height and weight")
+            return false
+        } else { return true }
+    }
+    
+    func ErrorAlert(errorTitle: String, errorMessage: String) {
         
         let alert = UIAlertController(
-            title: NSLocalizedString("Invalid Input", comment: ""),
-            message: "please enter again",
+            title: NSLocalizedString(errorTitle, comment: ""),
+            message: errorMessage,
             preferredStyle: .Alert
         )
         
@@ -159,7 +197,19 @@ extension LoginViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setRootViewController()
+        setup()
         setupTextField()
+    }
+    
+    func setRootViewController() {
+        if (FBSDKAccessToken.currentAccessToken() != nil) {
+            // User is already logged in, do work such as go to next view controller.
+            let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
+            let initialViewController = self.storyboard!.instantiateViewControllerWithIdentifier("RootViewNavigationController") as! UINavigationController
+            appDelegate.window?.rootViewController = initialViewController
+            appDelegate.window?.makeKeyAndVisible()
+        }
+        
     }
 }
 
