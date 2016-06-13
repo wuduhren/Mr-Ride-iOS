@@ -99,8 +99,6 @@ extension RootViewController {
                 NSForegroundColorAttributeName: UIColor.whiteColor()])
     }
 
-    
-    
     func setup() {
         setupHomeViewController()
         

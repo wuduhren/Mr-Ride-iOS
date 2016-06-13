@@ -17,8 +17,63 @@ class MapViewController: UIViewController {
     
     @IBOutlet weak var pickerView: UIPickerView!
     
-    let lookForOption = ["Toliet", "Ubike Station"]
+    let lookForOption = ["Toilet", "Ubike Station"]
     
+    var toilets: [ToiletModel] = []
+    
+}
+
+
+
+// MARK: - Data
+
+extension MapViewController {
+    
+    private func getToiletsData() {
+    
+        let mapDataManager = MapDataManager()
+        
+        mapDataManager.getToilets(
+            success: { [weak self] result in
+                
+                guard let weakSelf = self else { return }
+
+                weakSelf.toilets = result
+                
+            },
+            failure: { error in
+                
+                print("ERROR: \(error)")
+            }
+        )
+    }
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}
+
+
+
+
+// MARK: - View LifeCycle
+
+extension MapViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupPickerView()
+        getToiletsData()
+        print(toilets)
+    }
 }
 
 
@@ -69,18 +124,6 @@ extension MapViewController: UIPickerViewDataSource,UIPickerViewDelegate {
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         templookForButtonText = lookForOption[row]
-    }
-}
-
-
-
-// MARK: - View LifeCycle
-
-extension MapViewController {
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupPickerView()
     }
 }
 
