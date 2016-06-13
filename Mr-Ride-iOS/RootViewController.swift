@@ -27,6 +27,13 @@ class RootViewController: UIViewController {
         self.didMoveToParentViewController(historyViewController)
         return historyViewController
         }()
+    
+    private lazy var mapViewController: MapViewController = { [unowned self] in
+        let mapViewController = MapViewController.controller()
+        self.addChildViewController(mapViewController)
+        self.didMoveToParentViewController(mapViewController)
+        return mapViewController
+        }()
 }
 
 
@@ -37,18 +44,28 @@ extension RootViewController: SideMenuDelegate {
     
     func changeChildView(pageString: String){
         
-        homeViewController.view.removeFromSuperview()
-        historyViewController.view.removeFromSuperview()
-        sideMenuNavigationController?.dismissViewControllerAnimated(true, completion: nil)
-        self.navigationItem.titleView = nil
+        clearView()
         
         switch pageString {
+            
         case "Home":
             setupHomeViewController()
         case "History":
             setupHistoryViewController()
+        case "Map":
+            setupMapViewController()
         default: break
+            
         }
+    }
+    
+    func clearView() {
+        
+        homeViewController.view.removeFromSuperview()
+        historyViewController.view.removeFromSuperview()
+        mapViewController.view.removeFromSuperview()
+        sideMenuNavigationController?.dismissViewControllerAnimated(true, completion: nil)
+        self.navigationItem.titleView = nil
     }
 }
 
@@ -57,6 +74,15 @@ extension RootViewController: SideMenuDelegate {
 // MARK: - Setup
 
 extension RootViewController {
+    
+    func setupHomeViewController() {
+        view.addSubview(homeViewController.view)
+        let bikeIconImageView = UIImageView(image:UIImage(named: "icon-bike.png"))
+        bikeIconImageView.image = bikeIconImageView.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        bikeIconImageView.tintColor = .whiteColor()
+        self.navigationItem.titleView = bikeIconImageView
+    }
+    
     func setupHistoryViewController() {
         view.addSubview(historyViewController.view)
         self.navigationItem.title = "History"
@@ -65,13 +91,15 @@ extension RootViewController {
                 NSForegroundColorAttributeName: UIColor.whiteColor()])
     }
     
-    func setupHomeViewController() {
-        let bikeIconImageView = UIImageView(image:UIImage(named: "icon-bike.png"))
-        bikeIconImageView.image = bikeIconImageView.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-        bikeIconImageView.tintColor = .whiteColor()
-        self.navigationItem.titleView = bikeIconImageView
-        view.addSubview(homeViewController.view)
+    func setupMapViewController() {
+        view.addSubview(mapViewController.view)
+        self.navigationItem.title = "Map"
+        navigationController!.navigationBar.titleTextAttributes =
+            ([NSFontAttributeName: UIFont.mrTextStyle13Font(),
+                NSForegroundColorAttributeName: UIColor.whiteColor()])
     }
+
+    
     
     func setup() {
         setupHomeViewController()

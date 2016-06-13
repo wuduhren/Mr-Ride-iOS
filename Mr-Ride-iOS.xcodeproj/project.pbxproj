@@ -28,6 +28,7 @@
 		F9CD4C0E1CFD694400E251AC /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CD4C0D1CFD694400E251AC /* DataController.swift */; };
 		F9D3E5AC1D0972D30096AAB9 /* RunDataTableViewGapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D3E5AA1D0972D30096AAB9 /* RunDataTableViewGapCell.swift */; };
 		F9D3E5AD1D0972D30096AAB9 /* RunDataTableViewGapCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9D3E5AB1D0972D30096AAB9 /* RunDataTableViewGapCell.xib */; };
+		F9D3E5B31D0E4E0B0096AAB9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D3E5B21D0E4E0B0096AAB9 /* MapViewController.swift */; };
 		F9E55F1C1CF3093100402F96 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = F9E55F111CF3093100402F96 /* LICENSE.txt */; };
 		F9E55F1D1CF3093100402F96 /* RobotoMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9E55F121CF3093100402F96 /* RobotoMono-Bold.ttf */; };
 		F9E55F1E1CF3093100402F96 /* RobotoMono-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9E55F131CF3093100402F96 /* RobotoMono-BoldItalic.ttf */; };
@@ -76,6 +77,7 @@
 		F9CD4C0D1CFD694400E251AC /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		F9D3E5AA1D0972D30096AAB9 /* RunDataTableViewGapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunDataTableViewGapCell.swift; sourceTree = "<group>"; };
 		F9D3E5AB1D0972D30096AAB9 /* RunDataTableViewGapCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RunDataTableViewGapCell.xib; sourceTree = "<group>"; };
+		F9D3E5B21D0E4E0B0096AAB9 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		F9E55F111CF3093100402F96 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		F9E55F121CF3093100402F96 /* RobotoMono-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoMono-Bold.ttf"; sourceTree = "<group>"; };
 		F9E55F131CF3093100402F96 /* RobotoMono-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoMono-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				F93BBFF01CF5945100A9E661 /* HistoryViewController.swift */,
 				F9E9E4A01CF6ED6C00599D85 /* TrackingPageViewController.swift */,
 				F9E9E4A21CF829CF00599D85 /* ResultPageViewController.swift */,
+				F9D3E5B21D0E4E0B0096AAB9 /* MapViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 				F97EC5F21D011E28009FD828 /* RunDataTableViewCell.swift in Sources */,
 				F9E9E4A11CF6ED6C00599D85 /* TrackingPageViewController.swift in Sources */,
 				F9E9E4A31CF829CF00599D85 /* ResultPageViewController.swift in Sources */,
+				F9D3E5B31D0E4E0B0096AAB9 /* MapViewController.swift in Sources */,
 				F9A2EBB41CF2A79A00853CCE /* HomeViewController.swift in Sources */,
 				F9CD4C0C1CFD60F500E251AC /* Entity.swift in Sources */,
 				F98436671CFAF53500A4268C /* StopWatch.swift in Sources */,

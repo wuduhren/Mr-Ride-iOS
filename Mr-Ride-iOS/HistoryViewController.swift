@@ -34,7 +34,7 @@ class HistoryViewController: UIViewController {
 
 // MARK: - View LifeCycle
 
-extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
+extension HistoryViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,9 +51,9 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
 
 
 
-// MARK: - TableViewDataSource
+// MARK: - TableViewDataSource and Delegate
 
-extension HistoryViewController {
+extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func setupTableView() {
         tableView.dataSource = self
