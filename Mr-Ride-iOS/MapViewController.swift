@@ -9,6 +9,11 @@
 import UIKit
 
 class MapViewController: UIViewController {
+    
+    
+    @IBOutlet weak var mapView: GMSMapView!
+    private let locationManager = CLLocationManager()
+    
 
     @IBOutlet weak var lookForButton: UIButton!
     var templookForButtonText = ""
@@ -20,6 +25,58 @@ class MapViewController: UIViewController {
     let lookForOption = ["Toilet", "Ubike Station"]
     
     var toilets: [ToiletModel] = []
+    
+    var youbikes: [YoubikeModel] = []
+    
+}
+
+
+
+// MARK: - Map
+
+extension MapViewController: CLLocationManagerDelegate {
+    
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        if status == .AuthorizedWhenInUse {
+            mapView.myLocationEnabled = true
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let currentLocation = locations.first {
+            mapView.camera = GMSCameraPosition(target: currentLocation.coordinate, zoom: 13, bearing: 0, viewingAngle: 0)
+        }
+    }
+    
+    func setupToiletMarkers() {
+        
+        for toilet in toilets {
+            let  position = toilet.coordinate
+            let marker = GMSMarker(position: position)
+            marker.icon = UIImage(named: "icon-toilet")
+            marker.title = "\(toilet.location)"
+            marker.map = mapView
+        }
+    }
+    
+    func setupYoubikeMarkers() {
+        
+        for youbike in youbikes {
+            let  position = youbike.coordinate
+            let marker = GMSMarker(position: position)
+            marker.icon = UIImage(named: "icon-station")
+            marker.title = "\(youbike.bikeRemain) bikes left"
+            marker.map = mapView
+        }
+    }
+
+    
+    
+    func setupMap() {
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+    }
     
 }
 
@@ -34,28 +91,43 @@ extension MapViewController {
         let mapDataManager = MapDataManager()
         
         mapDataManager.getToilets(
-            success: { [weak self] result in
+            success: { [weak self] toilets in
                 
                 guard let weakSelf = self else { return }
 
-                weakSelf.toilets = result
+                weakSelf.toilets = toilets
                 
+                //weakSelf.setupToiletMarkers()
             },
             failure: { error in
                 
                 print("ERROR: \(error)")
             }
         )
-    }
         
+    }
     
-    
-    
-    
-    
-    
-    
-    
+    private func getYoubikeData() {
+        
+        let mapDataManager = MapDataManager()
+        
+        mapDataManager.getYoubikes(
+            success: { [weak self] youbikes in
+                
+                guard let weakSelf = self else { return }
+                
+                weakSelf.youbikes = youbikes
+                
+                weakSelf.setupYoubikeMarkers()
+            },
+            failure: { error in
+                
+                print("ERROR: \(error)")
+            }
+        )
+        
+    }
+
     
     
     
@@ -72,7 +144,8 @@ extension MapViewController {
         super.viewDidLoad()
         setupPickerView()
         getToiletsData()
-        print(toilets)
+        getYoubikeData()
+        setupMap()
     }
 }
 

@@ -33,18 +33,17 @@ extension MapDataManager {
         let request = Alamofire.request(URLRequest).validate().responseData { result in
 
             if let statusCode = result.response?.statusCode {
-                print("MapDataManager statusCode: \(statusCode)")
             }
             
             switch result.result {
-                
+            
             case .Success(let data):
-                
+
                 let json = JSON(data: data)
                 
                 var toilets: [ToiletModel] = []
                 
-                for (_, subJSON) in json["data"] {
+                for (_, subJSON) in json["result"]["results"] {
                     
                     do {
                         let toilet = try ToiletModelHelper().parse(json: subJSON)
@@ -70,6 +69,58 @@ extension MapDataManager {
         return request
         
     }
+}
+
+
+
+// MARK: - Toilets
+
+extension MapDataManager {
+    
+    typealias GetYoubikeSuccess = (youbikes: [YoubikeModel]) -> Void
+    typealias GetYoubikeFailure = (error: ErrorType) -> Void
+    
+    enum GetYoubikeError: ErrorType { case Server(message: String) }
+    
+    func getYoubikes(success success: GetYoubikeSuccess, failure: GetYoubikeFailure?) -> Request {
+        
+        let URLRequest = MapDataRouter.GetYoubike
+        let request = Alamofire.request(URLRequest).validate().responseData { result in
+            
+            if let statusCode = result.response?.statusCode {
+                print("getYoubike statusCode: \(statusCode)")
+            }
+            
+            switch result.result {
+                
+            case .Success(let data):
+                
+                let json = JSON(data: data)
+                
+                var youbikes: [YoubikeModel] = []
+
+                for (_, subJSON) in json["retVal"] {
+                    
+                    do {
+                        let youbike = try YoubikeModelHelper().parse(json: subJSON)
+                        youbikes.append(youbike)
+                    }
+                    catch(let error) { print("ERROR: \(error)") }
+                }
+                success(youbikes: youbikes)
+                
+            case .Failure(let err):
+                
+                let error: GetToiletsError = .Server(message: err.localizedDescription)
+                print("ERROR: \(error)")
+                
+                failure?(error: error)
+                
+            }
+        }
+        return request
+    }
     
     
 }
+

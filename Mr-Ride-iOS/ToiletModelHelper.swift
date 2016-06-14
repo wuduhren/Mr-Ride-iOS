@@ -6,6 +6,7 @@
 //  Copyright © 2016年 AppWorks School WuDuhRen. All rights reserved.
 //
 
+
 import CoreLocation
 import SwiftyJSON
 
@@ -19,15 +20,15 @@ extension ToiletModelHelper {
     struct JSONKey {
         static let Identifier = "_id"
         static let Location = "Location"
-        static let Latitude = "lat"
-        static let Longitude = "lng"
+        static let Latitude = "Latitude"
+        static let Longitude = "Longitude"
     }
     
     enum JSONError: ErrorType { case MissingIdentifier, MissingLatitude, MissingLongitude, MissingLocation }
     
     
     func parse(json json: JSON) throws -> ToiletModel {
-        
+
         guard let identifier = json[JSONKey.Identifier].string else { throw JSONError.MissingIdentifier }
         
         guard let location = json[JSONKey.Location].string else { throw JSONError.MissingLocation }

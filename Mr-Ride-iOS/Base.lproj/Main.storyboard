@@ -225,6 +225,7 @@
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="lookForButton" destination="bjg-KT-h9O" id="Iz5-zl-S1B"/>
+                        <outlet property="mapView" destination="epE-v3-VYk" id="8wR-vA-KJJ"/>
                         <outlet property="pickerView" destination="3qj-FG-FkG" id="dRx-Gi-85R"/>
                         <outlet property="pickerViewWindow" destination="JTL-cS-Mo0" id="qOD-Mh-khN"/>
                     </connections>
