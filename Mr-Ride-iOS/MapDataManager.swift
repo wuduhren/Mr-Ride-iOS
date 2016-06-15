@@ -33,6 +33,7 @@ extension MapDataManager {
         let request = Alamofire.request(URLRequest).validate().responseData { result in
 
             if let statusCode = result.response?.statusCode {
+                //print("getToilets statusCode: \(statusCode)")
             }
             
             switch result.result {
@@ -88,7 +89,7 @@ extension MapDataManager {
         let request = Alamofire.request(URLRequest).validate().responseData { result in
             
             if let statusCode = result.response?.statusCode {
-                print("getYoubike statusCode: \(statusCode)")
+                //print("getYoubike statusCode: \(statusCode)")
             }
             
             switch result.result {
@@ -98,7 +99,7 @@ extension MapDataManager {
                 let json = JSON(data: data)
                 
                 var youbikes: [YoubikeModel] = []
-
+                
                 for (_, subJSON) in json["retVal"] {
                     
                     do {

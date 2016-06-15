@@ -14,7 +14,26 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapView: GMSMapView!
     private let locationManager = CLLocationManager()
     
+    
+    //info view
+    enum MarkerStatus: String {
+        case Toilets
+        case Youbikes
+    }
+    var markerStatus: MarkerStatus = .Youbikes
+    
+    @IBOutlet weak var infoView: UIView!
+    
+    @IBOutlet weak var districtLabel: UILabel!
+    
+    @IBOutlet weak var walkingTimeLabel: UILabel!
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    @IBOutlet weak var locationLabel: UILabel!
+    
 
+    //pickerview
     @IBOutlet weak var lookForButton: UIButton!
     var templookForButtonText = ""
     
@@ -22,11 +41,13 @@ class MapViewController: UIViewController {
     
     @IBOutlet weak var pickerView: UIPickerView!
     
-    let lookForOption = ["Toilet", "Ubike Station"]
+    private let lookForOption = ["Ubike Station", "Toilet"]
     
-    var toilets: [ToiletModel] = []
     
-    var youbikes: [YoubikeModel] = []
+    //data
+    private var toilets: [ToiletModel] = []
+    
+    private var youbikes: [YoubikeModel] = []
     
 }
 
@@ -34,7 +55,7 @@ class MapViewController: UIViewController {
 
 // MARK: - Map
 
-extension MapViewController: CLLocationManagerDelegate {
+extension MapViewController: CLLocationManagerDelegate, GMSMapViewDelegate {
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .AuthorizedWhenInUse {
@@ -45,35 +66,80 @@ extension MapViewController: CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let currentLocation = locations.first {
-            mapView.camera = GMSCameraPosition(target: currentLocation.coordinate, zoom: 13, bearing: 0, viewingAngle: 0)
+            mapView.camera = GMSCameraPosition(target: currentLocation.coordinate, zoom: 16, bearing: 0, viewingAngle: 0)
+            locationManager.stopUpdatingLocation()
         }
     }
     
-    func setupToiletMarkers() {
+    func mapView(mapView: GMSMapView, didTapMarker marker: GMSMarker) -> Bool {
+        infoView.hidden = false
         
+        switch markerStatus {
+            
+        case .Youbikes:
+            guard let youbikeIndex = marker.userData as? Int else { return false }
+            districtLabel.text = youbikes[youbikeIndex].district
+            districtLabel.layer.borderColor = UIColor.whiteColor().CGColor
+            districtLabel.layer.borderWidth = 0.5
+            
+            nameLabel.text = youbikes[youbikeIndex].name
+            locationLabel.text = youbikes[youbikeIndex].location
+            
+        case .Toilets:
+            guard let toiletIndex = marker.userData as? Int else { return false }
+            districtLabel.hidden = true
+            nameLabel.text = toilets[toiletIndex].location
+            locationLabel.hidden = true
+        }
+        
+        return false
+        
+    }
+    
+    
+    func mapView(mapView: GMSMapView, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
+        
+        infoView.hidden = true
+        pickerViewWindow.hidden = true
+        
+    }
+        
+    func setupToiletMarkers() {
+        mapView.clear()
+        
+        var toiletIndex = 0
         for toilet in toilets {
             let  position = toilet.coordinate
             let marker = GMSMarker(position: position)
             marker.icon = UIImage(named: "icon-toilet")
             marker.title = "\(toilet.location)"
+            marker.userData = toiletIndex
             marker.map = mapView
+            
+            toiletIndex += 1
         }
     }
     
     func setupYoubikeMarkers() {
+        mapView.clear()
         
+        var youbikeIndex = 0
         for youbike in youbikes {
             let  position = youbike.coordinate
             let marker = GMSMarker(position: position)
             marker.icon = UIImage(named: "icon-station")
             marker.title = "\(youbike.bikeRemain) bikes left"
+            marker.userData = youbikeIndex
             marker.map = mapView
+            
+            youbikeIndex += 1
         }
     }
 
     
     
     func setupMap() {
+        mapView.delegate = self
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
     }
@@ -135,6 +201,21 @@ extension MapViewController {
 
 
 
+// MARK: - Setup
+
+extension MapViewController {
+    func setup() {
+        getToiletsData()
+        getYoubikeData()
+        setupMap()
+        
+        infoView.hidden = true
+        setupPickerView()
+    }
+    
+}
+
+
 
 // MARK: - View LifeCycle
 
@@ -142,12 +223,10 @@ extension MapViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupPickerView()
-        getToiletsData()
-        getYoubikeData()
-        setupMap()
+        setup()
     }
 }
+
 
 
 
@@ -196,6 +275,17 @@ extension MapViewController: UIPickerViewDataSource,UIPickerViewDelegate {
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        switch row {
+            case 0:
+                markerStatus = .Youbikes
+                setupYoubikeMarkers()
+            case 1:
+                markerStatus = .Toilets
+                setupToiletMarkers()
+            default: break
+        }
+        
         templookForButtonText = lookForOption[row]
     }
 }

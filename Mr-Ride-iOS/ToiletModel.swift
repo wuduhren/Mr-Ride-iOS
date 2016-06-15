@@ -14,7 +14,7 @@ class ToiletModel {
     let coordinate: CLLocationCoordinate2D
     let location: String
  
-    init(identifier: String, location: String, coordinate: CLLocationCoordinate2D) {
+    init(identifier: String,location: String, coordinate: CLLocationCoordinate2D) {
         
         self.identifier = identifier
         self.coordinate = coordinate
