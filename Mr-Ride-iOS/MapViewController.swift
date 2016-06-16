@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import MapKit
 
 class MapViewController: UIViewController {
     
-    
+    //map
     @IBOutlet weak var mapView: GMSMapView!
     private let locationManager = CLLocationManager()
+    private var didSetCamera = false
+    private var currentLocation: CLLocation?
     
     
     //info view
@@ -26,7 +29,7 @@ class MapViewController: UIViewController {
     
     @IBOutlet weak var districtLabel: UILabel!
     
-    @IBOutlet weak var walkingTimeLabel: UILabel!
+    @IBOutlet weak var estimatedArrivalTimeLabel: UILabel!
     
     @IBOutlet weak var nameLabel: UILabel!
     
@@ -41,7 +44,7 @@ class MapViewController: UIViewController {
     
     @IBOutlet weak var pickerView: UIPickerView!
     
-    private let lookForOption = ["Ubike Station", "Toilet"]
+    private let pickerTitle = ["Ubike Station", "Toilet"]
     
     
     //data
@@ -55,21 +58,7 @@ class MapViewController: UIViewController {
 
 // MARK: - Map
 
-extension MapViewController: CLLocationManagerDelegate, GMSMapViewDelegate {
-    
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if status == .AuthorizedWhenInUse {
-            mapView.myLocationEnabled = true
-            locationManager.startUpdatingLocation()
-        }
-    }
-    
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let currentLocation = locations.first {
-            mapView.camera = GMSCameraPosition(target: currentLocation.coordinate, zoom: 16, bearing: 0, viewingAngle: 0)
-            locationManager.stopUpdatingLocation()
-        }
-    }
+extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
     
     func mapView(mapView: GMSMapView, didTapMarker marker: GMSMarker) -> Bool {
         infoView.hidden = false
@@ -84,12 +73,16 @@ extension MapViewController: CLLocationManagerDelegate, GMSMapViewDelegate {
             
             nameLabel.text = youbikes[youbikeIndex].name
             locationLabel.text = youbikes[youbikeIndex].location
+            setupEstimatedArrivalTimeLabel(marker.position)
+            marker.iconView.backgroundColor = .MRLightblueColor()
             
         case .Toilets:
             guard let toiletIndex = marker.userData as? Int else { return false }
             districtLabel.hidden = true
             nameLabel.text = toilets[toiletIndex].location
             locationLabel.hidden = true
+            setupEstimatedArrivalTimeLabel(marker.position)
+            marker.iconView.backgroundColor = .MRLightblueColor()
         }
         
         return false
@@ -101,17 +94,35 @@ extension MapViewController: CLLocationManagerDelegate, GMSMapViewDelegate {
         
         infoView.hidden = true
         pickerViewWindow.hidden = true
-        
     }
+    
+    private func getMarkerIconImage(iconImageName: String) -> UIView {
         
-    func setupToiletMarkers() {
+        let iconImage = UIImage(named: iconImageName)
+        let tintedImage = iconImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        let iconImageView = UIImageView(image: tintedImage!)
+        iconImageView.tintColor = .MRDarkSlateBlueColor()
+        
+        let iconBackgroundView = UIView()
+        iconBackgroundView.backgroundColor = .whiteColor()
+        iconBackgroundView.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
+        iconBackgroundView.layer.cornerRadius = iconBackgroundView.frame.width / 2
+        iconBackgroundView.clipsToBounds = true
+        
+        iconBackgroundView.addSubview(iconImageView)
+        iconImageView.center = iconBackgroundView.center
+        
+        return iconBackgroundView
+    }
+    
+    private func setupToiletMarkers() {
         mapView.clear()
         
         var toiletIndex = 0
         for toilet in toilets {
             let  position = toilet.coordinate
             let marker = GMSMarker(position: position)
-            marker.icon = UIImage(named: "icon-toilet")
+            marker.iconView = getMarkerIconImage("icon-toilet")
             marker.title = "\(toilet.location)"
             marker.userData = toiletIndex
             marker.map = mapView
@@ -120,28 +131,84 @@ extension MapViewController: CLLocationManagerDelegate, GMSMapViewDelegate {
         }
     }
     
-    func setupYoubikeMarkers() {
+    private func setupYoubikeMarkers() {
         mapView.clear()
         
         var youbikeIndex = 0
         for youbike in youbikes {
             let  position = youbike.coordinate
             let marker = GMSMarker(position: position)
-            marker.icon = UIImage(named: "icon-station")
+            marker.iconView = getMarkerIconImage("icon-station")
             marker.title = "\(youbike.bikeRemain) bikes left"
             marker.userData = youbikeIndex
             marker.map = mapView
             
             youbikeIndex += 1
         }
+        
     }
+    
+    private func setupEstimatedArrivalTimeLabel(destinationCoordinates: CLLocationCoordinate2D) {
 
+        var EstimateArrivalTimeInMinutes = 0.0
+        
+        let sourcePlacemark = MKPlacemark(coordinate: currentLocation!.coordinate, addressDictionary: nil)
+        let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
+        
+        let destinationPlacemark = MKPlacemark(coordinate: destinationCoordinates, addressDictionary: nil)
+        let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
+
+        let request = MKDirectionsRequest()
+        request.source = sourceMapItem
+        request.destination = destinationMapItem
+        request.transportType = MKDirectionsTransportType.Automobile
+        request.requestsAlternateRoutes = false
+        let directions = MKDirections(request: request)
+        directions.calculateDirectionsWithCompletionHandler { response, error in
+            
+            guard let route = response?.routes.first else {
+                print("getEstimateArrivalTime Error: \(error)")
+                return
+            }
+            
+            EstimateArrivalTimeInMinutes = route.expectedTravelTime / 60
+            self.estimatedArrivalTimeLabel.text = "\(round(EstimateArrivalTimeInMinutes)) minutes"
+        }
+    }
     
+    private func setupCamera(cameraCenter: CLLocationCoordinate2D) {
+        if didSetCamera == false {
+            mapView.camera = GMSCameraPosition(target: cameraCenter, zoom: 16, bearing: 0, viewingAngle: 0)
+        }
+        didSetCamera = true
+    }
     
-    func setupMap() {
+    private func setupMap() {
         mapView.delegate = self
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
+    }
+    
+}
+
+// MARK: - CLLocationManagerDelegate
+
+
+extension MapViewController: CLLocationManagerDelegate {
+    
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        if status == .AuthorizedWhenInUse {
+            mapView.myLocationEnabled = true
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        currentLocation = locations.first
+        
+        if currentLocation != nil {
+            setupCamera(currentLocation!.coordinate)
+        }
     }
     
 }
@@ -193,10 +260,6 @@ extension MapViewController {
         )
         
     }
-
-    
-    
-    
 }
 
 
@@ -204,15 +267,13 @@ extension MapViewController {
 // MARK: - Setup
 
 extension MapViewController {
-    func setup() {
+    private func setup() {
         getToiletsData()
         getYoubikeData()
         setupMap()
-        
         infoView.hidden = true
         setupPickerView()
     }
-    
 }
 
 
@@ -234,7 +295,7 @@ extension MapViewController {
 
 extension MapViewController {
     
-    func setupPickerView() {
+    private func setupPickerView() {
         pickerView.dataSource = self
         pickerView.delegate = self
 
@@ -267,11 +328,11 @@ extension MapViewController: UIPickerViewDataSource,UIPickerViewDelegate {
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return lookForOption.count
+        return pickerTitle.count
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return lookForOption[row]
+        return pickerTitle[row]
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -286,7 +347,7 @@ extension MapViewController: UIPickerViewDataSource,UIPickerViewDelegate {
             default: break
         }
         
-        templookForButtonText = lookForOption[row]
+        templookForButtonText = pickerTitle[row]
     }
 }
 
