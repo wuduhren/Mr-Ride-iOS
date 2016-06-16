@@ -38,7 +38,7 @@ class MapViewController: UIViewController {
 
     //pickerview
     @IBOutlet weak var lookForButton: UIButton!
-    var templookForButtonText = ""
+    private var templookForButtonText = ""
     
     @IBOutlet weak var pickerViewWindow: UIView!
     
@@ -189,7 +189,6 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
     }
-    
 }
 
 // MARK: - CLLocationManagerDelegate
@@ -271,7 +270,6 @@ extension MapViewController {
     private func setup() {
         getToiletsData()
         getYoubikeData()
-        setupMap()
         infoView.hidden = true
         setupPickerView()
     }
@@ -286,6 +284,24 @@ extension MapViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillDisappear(true)
+        setupMap()
+        // need to set delegate only before using, because TrackingPage also have the same delegate.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        didSetCamera = false
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        mapView.delegate = nil
+        locationManager.delegate = nil
+        didSetCamera = false
+        super.viewWillDisappear(true)
     }
 }
 

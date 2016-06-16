@@ -145,12 +145,28 @@
 			children = (
 				F9D3E5B41D0E7C9A0096AAB9 /* MapDataManager.swift */,
 				F946DA3D1D0E7E3D009BDAD6 /* MapDataRouter.swift */,
+				F979ED861D126A5E0012CF35 /* Youbike */,
+				F979ED851D126A480012CF35 /* Toilets */,
+			);
+			name = MapData;
+			sourceTree = "<group>";
+		};
+		F979ED851D126A480012CF35 /* Toilets */ = {
+			isa = PBXGroup;
+			children = (
 				F946DA421D0E8B86009BDAD6 /* ToiletModel.swift */,
 				F946DA3F1D0E84A3009BDAD6 /* ToiletModelHelper.swift */,
+			);
+			name = Toilets;
+			sourceTree = "<group>";
+		};
+		F979ED861D126A5E0012CF35 /* Youbike */ = {
+			isa = PBXGroup;
+			children = (
 				F979ED811D0FEDC60012CF35 /* YoubikeDataModel.swift */,
 				F979ED831D0FF57B0012CF35 /* YoubikeModelHelper.swift */,
 			);
-			name = MapData;
+			name = Youbike;
 			sourceTree = "<group>";
 		};
 		F9A2EBA51CF2A79A00853CCE = {
