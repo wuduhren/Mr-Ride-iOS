@@ -59,7 +59,7 @@ extension RootViewController: SideMenuDelegate {
         }
     }
     
-    func clearView() {
+    private func clearView() {
         
         homeViewController.view.removeFromSuperview()
         historyViewController.view.removeFromSuperview()
@@ -75,7 +75,7 @@ extension RootViewController: SideMenuDelegate {
 
 extension RootViewController {
     
-    func setupHomeViewController() {
+    private func setupHomeViewController() {
         view.addSubview(homeViewController.view)
         let bikeIconImageView = UIImageView(image:UIImage(named: "icon-bike.png"))
         bikeIconImageView.image = bikeIconImageView.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
@@ -83,7 +83,7 @@ extension RootViewController {
         self.navigationItem.titleView = bikeIconImageView
     }
     
-    func setupHistoryViewController() {
+    private func setupHistoryViewController() {
         view.addSubview(historyViewController.view)
         self.navigationItem.title = "History"
         navigationController!.navigationBar.titleTextAttributes =
@@ -91,7 +91,7 @@ extension RootViewController {
                 NSForegroundColorAttributeName: UIColor.whiteColor()])
     }
     
-    func setupMapViewController() {
+    private func setupMapViewController() {
         view.addSubview(mapViewController.view)
         self.navigationItem.title = "Map"
         navigationController!.navigationBar.titleTextAttributes =
@@ -99,7 +99,7 @@ extension RootViewController {
                 NSForegroundColorAttributeName: UIColor.whiteColor()])
     }
 
-    func setup() {
+    private func setup() {
         setupHomeViewController()
         
         //navigationBorderHidden

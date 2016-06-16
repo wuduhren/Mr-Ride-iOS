@@ -55,7 +55,7 @@ extension HistoryViewController {
 
 extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func setupTableView() {
+    private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -137,7 +137,7 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension HistoryViewController {
     
-    func prepareTableViewData() {
+    private func prepareTableViewData() {
         runDataStructArray = runDataModel.getData()
         
         let dateFormatter = NSDateFormatter()
@@ -160,7 +160,7 @@ extension HistoryViewController {
         dispatch_async(dispatch_get_main_queue()) { self.tableView.reloadData() }
     }
     
-    func clearData() {
+    private func clearData() {
         runDataStructArray = []
         runDataSortedByTime = [:]
         headers = []
@@ -173,7 +173,7 @@ extension HistoryViewController {
 
 extension HistoryViewController {
     
-    func setupChart() {
+    private func setupChart() {
         var distanceArray: [Double] = []
         var dateArray: [String] = []
         let dateFormatter = NSDateFormatter()

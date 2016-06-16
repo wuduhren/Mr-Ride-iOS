@@ -191,20 +191,20 @@ extension TrackingPageViewController: CLLocationManagerDelegate {
 // MARK: - Setup
 
 extension TrackingPageViewController {
-    func setup() {
+    private func setup() {
         setupNavigationItem()
         setupBackground()
         setupStopWatchButton()
         setupMap()
     }
 
-    func setupStopWatchButton() {
+    private func setupStopWatchButton() {
         stopWatchButton.backgroundColor = .redColor()
         self.stopWatchButton.layer.cornerRadius = self.stopWatchButton.frame.width/2
         self.stopWatchButton.clipsToBounds = true
     }
     
-    func setupNavigationItem() {
+    private func setupNavigationItem() {
         cancelButtonToHomePage.setTitleTextAttributes([ NSFontAttributeName: UIFont.mrTextStyle13Font() ], forState: UIControlState.Normal)
         finishButtonToResultPage.setTitleTextAttributes([ NSFontAttributeName: UIFont.mrTextStyle13Font() ], forState: UIControlState.Normal)
         
@@ -215,7 +215,7 @@ extension TrackingPageViewController {
         navigationController?.navigationBar.titleTextAttributes = ([NSFontAttributeName: UIFont.mrTextStyle13Font(), NSForegroundColorAttributeName: UIColor.whiteColor()])
     }
     
-    func setupBackground() {
+    private func setupBackground() {
         
         self.view.backgroundColor = UIColor.MRLightblueColor()
         let topGradient = UIColor(red: 0, green: 0, blue: 0, alpha: 0.60).CGColor
@@ -227,7 +227,7 @@ extension TrackingPageViewController {
         
     }
     
-    func setupMap() {
+    private func setupMap() {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
     }
@@ -251,7 +251,7 @@ extension TrackingPageViewController {
 
 extension TrackingPageViewController {
     
-    func getPolylineData() -> NSData {
+    private func getPolylineData() -> NSData {
         for location in locationArrayForPolyline {
             let longitude = NSNumber(double: Double(location.coordinate.longitude))
             let latitude = NSNumber(double: Double(location.coordinate.latitude))
@@ -262,7 +262,7 @@ extension TrackingPageViewController {
         return polylineData
     }
     
-    func getAverageSpeed() -> Double {
+    private func getAverageSpeed() -> Double {
         var arrayForSpeed = locationArrayForPolyline
         
         if locationArrayForPolyline.count == 0 {
@@ -280,7 +280,7 @@ extension TrackingPageViewController {
         return averageSpeed
     }
     
-    func getCaloriesBurned() -> Double {
+    private func getCaloriesBurned() -> Double {
         let calorieCalculator = CalorieCalculator()
         let defaultName = NSUserDefaults.standardUserDefaults()
         guard let weight = defaultName.valueForKey("weight") as? Double else { return 0 }
@@ -288,7 +288,7 @@ extension TrackingPageViewController {
         return kCalBurned
     }
     
-    func saveData() {
+    private func saveData() {
         let context = DataController().managedObjectContext
         let entity = NSEntityDescription.insertNewObjectForEntityForName("Entity", inManagedObjectContext: context)
         entity.setValue(NSDate(), forKey: "date")

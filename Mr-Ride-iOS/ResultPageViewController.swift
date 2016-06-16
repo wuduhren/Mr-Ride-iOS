@@ -30,7 +30,7 @@ class ResultPageViewController: UIViewController {
     private var locationArray: [CLLocation] = []
     
     //data
-    let runDataModel = RunDataModel()
+    private let runDataModel = RunDataModel()
     var runDataStructArray: [RunDataModel.runDataStruct] = []
     var runDataStruct = RunDataModel.runDataStruct()
     
@@ -47,7 +47,7 @@ class ResultPageViewController: UIViewController {
 
 extension ResultPageViewController {
     
-    func setupNavigationItem() {
+    private func setupNavigationItem() {
         if previousPage == .TrackingPageViewController {
             let closeButtonToHomePage = UIBarButtonItem(title: "Close", style: .Plain, target: self, action: #selector(closeButtonToHomePage(_:)))
             closeButtonToHomePage.tintColor = UIColor.whiteColor()
@@ -100,7 +100,7 @@ extension ResultPageViewController {
 
 extension ResultPageViewController {
     
-    func drawPolyline() {
+    private func drawPolyline() {
         parsePolylineData()
         
         let path = GMSMutablePath()
@@ -116,7 +116,7 @@ extension ResultPageViewController {
         
     }
     
-    func calculateCameraCenter() {
+    private func calculateCameraCenter() {
         var maxLatitude: Double = -1000
         var maxLongitude: Double = -1000
         var minLatitude: Double = 1000
@@ -155,7 +155,7 @@ extension ResultPageViewController {
 
 extension ResultPageViewController {
     
-    func getData() {
+    private func getData() {
         
         if previousPage == .TrackingPageViewController {
             runDataStructArray = runDataModel.getData()
@@ -169,7 +169,7 @@ extension ResultPageViewController {
         polylineDataNSData = runDataStruct.polyline
     }
     
-    func parsePolylineData() {
+    private func parsePolylineData() {
         guard
             let polylineData = NSKeyedUnarchiver.unarchiveObjectWithData(polylineDataNSData!),
             let polyline = polylineData as? [Dictionary<String, AnyObject>]

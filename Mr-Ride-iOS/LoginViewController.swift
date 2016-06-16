@@ -26,12 +26,12 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController {
     
-    func setup() {
+    private func setup() {
         inputViewSetup()
         setupLoginButton()
     }
     
-    func inputViewSetup() {
+    private func inputViewSetup() {
         //TextFieldBackground
         let topRightBottomRightRoundedLayerForHeightTextFieldBackground = CAShapeLayer()
         let topRightBottomRightRoundedLayerForWeightTextFieldBackground = CAShapeLayer()
@@ -60,7 +60,7 @@ extension LoginViewController {
         weightLabel.layer.mask = topLeftBottomLeftRoundedLayerForWeightLabel
     }
     
-    func setupLoginButton() {
+    private func setupLoginButton() {
         loginButton.layer.cornerRadius = 30
         loginButton.clipsToBounds = true
     }
@@ -97,18 +97,11 @@ extension LoginViewController {
 
 
 
-// MARK: - setRootViewController
-
-extension LoginViewController {
-    
-}
-
-
 // MARK: - TextFieldDelegate
 
 extension LoginViewController: UITextFieldDelegate {
     
-    func setupTextField(){
+    private func setupTextField(){
         heightTextField.delegate = self
         weightTextField.delegate = self
         
@@ -162,14 +155,14 @@ extension LoginViewController: UITextFieldDelegate {
         return false
     }
     
-    func weightAndHeightDidSet() -> Bool {
+    private func weightAndHeightDidSet() -> Bool {
         if weightTextField.text == "" || heightTextField.text == "" {
             ErrorAlert("Unable to Login", errorMessage: "please enter your height and weight")
             return false
         } else { return true }
     }
     
-    func ErrorAlert(errorTitle: String, errorMessage: String) {
+    private func ErrorAlert(errorTitle: String, errorMessage: String) {
         
         let alert = UIAlertController(
             title: NSLocalizedString(errorTitle, comment: ""),
@@ -201,7 +194,7 @@ extension LoginViewController {
         setupTextField()
     }
     
-    func setRootViewController() {
+    private func setRootViewController() {
         if (FBSDKAccessToken.currentAccessToken() != nil) {
             // User is already logged in, do work such as go to next view controller.
             let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate

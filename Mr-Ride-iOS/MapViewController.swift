@@ -19,11 +19,11 @@ class MapViewController: UIViewController {
     
     
     //info view
-    enum MarkerStatus: String {
+    private enum MarkerStatus: String {
         case Toilets
         case Youbikes
     }
-    var markerStatus: MarkerStatus = .Youbikes
+    private var markerStatus: MarkerStatus = .Youbikes
     
     @IBOutlet weak var infoView: UIView!
     
@@ -152,7 +152,8 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
 
         var EstimateArrivalTimeInMinutes = 0.0
         
-        let sourcePlacemark = MKPlacemark(coordinate: currentLocation!.coordinate, addressDictionary: nil)
+        guard let currentLocation = currentLocation else { return }
+        let sourcePlacemark = MKPlacemark(coordinate: currentLocation.coordinate, addressDictionary: nil)
         let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
         
         let destinationPlacemark = MKPlacemark(coordinate: destinationCoordinates, addressDictionary: nil)
