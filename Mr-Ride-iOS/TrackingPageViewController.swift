@@ -69,7 +69,7 @@ extension TrackingPageViewController {
             switch self.buttonStatus {
             case .counting:
                 self.stopWatchButton.transform = CGAffineTransformMakeScale(0.5, 0.5)
-                self.stopWatchButton.layer.cornerRadius = 15
+                self.stopWatchButton.layer.cornerRadius = self.stopWatchButton.frame.width / 2
                 self.stopWatchButton.clipsToBounds = true
                 
             case .notCounting:
@@ -242,6 +242,16 @@ extension TrackingPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillDisappear(true)
+        setupMap()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        locationManager.delegate = nil
+        super.viewWillDisappear(true)
     }
 }
 
