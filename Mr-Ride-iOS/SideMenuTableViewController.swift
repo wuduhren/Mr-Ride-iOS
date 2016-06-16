@@ -12,7 +12,7 @@ import UIKit
 
 class SideMenuTableViewController: UITableViewController {
 
-    private let menu = ["Home", "History"]
+    private let menu = ["Home", "History", "Map"]
     
     weak var delegate: SideMenuDelegate?
 }
@@ -50,7 +50,7 @@ extension SideMenuTableViewController {
 
 extension SideMenuTableViewController {
     
-    func setup() {
+    private func setup() {
         self.navigationController?.navigationBarHidden = true
         self.tableView.contentInset = UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0)
         self.view.backgroundColor = .MRDarkSlateBlueColor()

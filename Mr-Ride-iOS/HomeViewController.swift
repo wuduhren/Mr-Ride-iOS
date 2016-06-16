@@ -33,7 +33,7 @@ extension HomeViewController {
 
 extension HomeViewController {
     
-    func setupLetsRideButton() {
+    private func setupLetsRideButton() {
         
         let roundedLayer = CAShapeLayer()
         let roundedPath = UIBezierPath(
