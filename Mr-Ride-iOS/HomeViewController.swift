@@ -12,12 +12,20 @@ import Charts
 
 class HomeViewController: UIViewController {
     
+    @IBOutlet weak var totalDistance: UILabel!
+    private var totalDistanceLabelText: Double = 0
+    
     @IBOutlet weak var lineChartView: LineChartView!
+    
+    @IBOutlet weak var totalCount: UILabel!
+    private var totalCountLabelText: Int = 0
+    
+    @IBOutlet weak var averageSpeed: UILabel!
+    private var averageSpeedLabelText: Double = 0
+
     @IBOutlet weak var letsRideButton: UIButton!
     
     private var runDataStructArray: [RunDataModel.runDataStruct] = []
-    
-    
 }
 
 
@@ -27,18 +35,51 @@ class HomeViewController: UIViewController {
 extension HomeViewController {
     
     @IBAction func letsRideButton(sender: UIButton) {
-        let trackingPagese = self.storyboard?.instantiateViewControllerWithIdentifier("TrackingPageNavigationBar") as! UINavigationController
-        self.presentViewController(trackingPagese, animated: true, completion: nil)
+        let TrackingPageNavigationBar = self.storyboard?.instantiateViewControllerWithIdentifier("TrackingPageNavigationBar") as! UINavigationController
+        let trackingPageViewController = TrackingPageNavigationBar.viewControllers[0] as? TrackingPageViewController
+        trackingPageViewController?.delegate = self
+        TrackingPageNavigationBar.modalPresentationStyle = .OverCurrentContext
+        self.presentViewController(TrackingPageNavigationBar, animated: true, completion: nil)
+        hideLabels()
+    }
+    
+    func hideLabels() {
+        for subview in view.subviews where subview is UILabel {
+            subview.hidden = true
+        }
+    }
+    
+    func showLabels() {
+        
+        setupLabels()
+        
+        setupChart()
+        for subview in view.subviews where subview is UILabel {
+            subview.hidden = false
+        }
     }
 }
 
 
 
-// MARK: - Chart
+// MARK: - Setup
 
 extension HomeViewController {
     
+    private func getRunData() {
+        let runDataModel = RunDataModel()
+        runDataStructArray = runDataModel.getData()
+    }
+    
+    func setup() {
+        setupLetsRideButton()
+        setupChart()
+        setupLabels()
+    }
+
     private func setupChart() {
+        getRunData()
+        
         var distanceArray: [Double] = []
         var dateArray: [String] = []
         let dateFormatter = NSDateFormatter()
@@ -73,7 +114,6 @@ extension HomeViewController {
         lineChartDataSet.drawFilledEnabled = true
         
         
-        
         let lineChartData = LineChartData(xVals: dateArray, dataSet: lineChartDataSet)
         lineChartView.data = lineChartData
         lineChartData.setDrawValues(false)
@@ -99,19 +139,23 @@ extension HomeViewController {
         //lineChartView.rightAxis.drawGridLinesEnabled = false
         //lineChartView.leftAxis.gridColor = UIColor.whiteColor()
     }
-    
-    private func getRunData() {
-        let runDataModel = RunDataModel()
-        runDataStructArray = runDataModel.getData()
+
+    private func setupLabels() {
+        getRunData()
+        
+        for runDataStruct in runDataStructArray {
+            totalDistanceLabelText += runDataStruct.distance!
+            averageSpeedLabelText += runDataStruct.speed!
+        }
+        
+        averageSpeedLabelText = averageSpeedLabelText / Double(runDataStructArray.count)
+        totalCountLabelText = runDataStructArray.count
+        
+        totalDistance.text = "\(totalDistanceLabelText) km"
+        totalCount.text = "\(totalCountLabelText) times"
+        averageSpeed.text = "\(round(averageSpeedLabelText)) km/h"
     }
-}
 
-
-
-// MARK: - Setup
-
-extension HomeViewController {
-    
     private func setupLetsRideButton() {
         
         let roundedLayer = CAShapeLayer()
@@ -156,10 +200,9 @@ extension HomeViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupLetsRideButton()
-        getRunData()
-        setupChart()
+        setup()
     }
+    
 }
 
 
