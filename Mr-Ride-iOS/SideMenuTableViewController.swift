@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import FBSDKLoginKit
 
 
 class SideMenuTableViewController: UITableViewController {
@@ -56,6 +56,25 @@ extension SideMenuTableViewController {
         self.view.backgroundColor = .MRDarkSlateBlueColor()
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
     }
+    
+    private func setupbutton() {
+        
+        let button = UIButton(frame: CGRect(x: 60, y: 470, width: 150, height: 32))
+        button.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.3)
+        button.setTitle("Log Out", forState: .Normal)
+        button.addTarget(self, action: #selector(SideMenuTableViewController.facebookLogout(_:)), forControlEvents: UIControlEvents.TouchDown)
+        tableView.addSubview(button)
+    }
+    
+    func facebookLogout(sender: UIButton) {
+        FBSDKLoginManager().logOut()
+        
+        let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
+        let initialViewController = self.storyboard!.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+        appDelegate.window?.rootViewController = initialViewController
+        appDelegate.window?.makeKeyAndVisible()
+    }
+    
 }
 
 
@@ -67,6 +86,7 @@ extension SideMenuTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        setupbutton()
     }
 }
 

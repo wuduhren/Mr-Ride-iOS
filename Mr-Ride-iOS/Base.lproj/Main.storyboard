@@ -116,13 +116,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image-history-background" translatesAutoresizingMaskIntoConstraints="NO" id="dXy-d5-7SF">
-                                <rect key="frame" x="-4" y="270" width="383" height="333"/>
+                                <rect key="frame" x="-4" y="334" width="383" height="333"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="333" id="Nfu-MN-bkl"/>
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JeH-gz-Zg6">
-                                <rect key="frame" x="16" y="173" width="343" height="474"/>
+                                <rect key="frame" x="16" y="173" width="343" height="494"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -141,9 +141,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="wOl-ye-wG5" secondAttribute="trailing" id="7u0-Or-Sgn"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dXy-d5-7SF" secondAttribute="trailing" constant="-20" id="FWF-sr-QhB"/>
                             <constraint firstItem="JeH-gz-Zg6" firstAttribute="top" secondItem="wOl-ye-wG5" secondAttribute="bottom" constant="20" id="HNF-hY-aLn"/>
-                            <constraint firstItem="2Gc-cu-gXo" firstAttribute="top" secondItem="dXy-d5-7SF" secondAttribute="bottom" constant="64" id="Ojf-MO-RYb"/>
+                            <constraint firstItem="2Gc-cu-gXo" firstAttribute="top" secondItem="dXy-d5-7SF" secondAttribute="bottom" id="Ojf-MO-RYb"/>
                             <constraint firstAttribute="leadingMargin" secondItem="wOl-ye-wG5" secondAttribute="leading" id="Tv5-YB-t83"/>
-                            <constraint firstItem="2Gc-cu-gXo" firstAttribute="top" secondItem="JeH-gz-Zg6" secondAttribute="bottom" constant="20" id="VJJ-5J-Gpg"/>
+                            <constraint firstItem="2Gc-cu-gXo" firstAttribute="top" secondItem="JeH-gz-Zg6" secondAttribute="bottom" id="VJJ-5J-Gpg"/>
                             <constraint firstAttribute="leadingMargin" secondItem="JeH-gz-Zg6" secondAttribute="leading" id="cKu-Ys-Hc7"/>
                             <constraint firstItem="wOl-ye-wG5" firstAttribute="top" secondItem="S35-CC-joh" secondAttribute="bottom" id="iLZ-ns-cLr"/>
                             <constraint firstAttribute="trailingMargin" secondItem="JeH-gz-Zg6" secondAttribute="trailing" id="jNh-q8-lCF"/>
@@ -180,7 +180,7 @@
                                 </constraints>
                             </view>
                             <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2i-9Y-WCQ">
-                                <rect key="frame" x="35" y="407" width="303" height="128"/>
+                                <rect key="frame" x="35" y="408" width="303" height="128"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Xinyi Dist." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b7m-R0-3Mb">
                                         <rect key="frame" x="20" y="20" width="64" height="16"/>
@@ -189,7 +189,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="27 mins" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ejy-UP-OKE">
-                                        <rect key="frame" x="256" y="20" width="58" height="21"/>
+                                        <rect key="frame" x="244" y="20" width="58" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -297,7 +297,7 @@
                             <constraint firstItem="epE-v3-VYk" firstAttribute="leading" secondItem="4v4-Yb-J6F" secondAttribute="leadingMargin" constant="20" id="TBL-iZ-80u"/>
                             <constraint firstItem="epE-v3-VYk" firstAttribute="top" secondItem="x7V-IX-xcM" secondAttribute="bottom" constant="20" id="Yg7-Te-tj5"/>
                             <constraint firstItem="d2i-9Y-WCQ" firstAttribute="width" secondItem="epE-v3-VYk" secondAttribute="width" id="ahf-CS-ZCk"/>
-                            <constraint firstItem="d2i-9Y-WCQ" firstAttribute="top" secondItem="epE-v3-VYk" secondAttribute="bottom" constant="-130" id="eU4-o6-iSX"/>
+                            <constraint firstItem="d2i-9Y-WCQ" firstAttribute="top" secondItem="epE-v3-VYk" secondAttribute="bottom" constant="-129" id="eU4-o6-iSX"/>
                             <constraint firstItem="JTL-cS-Mo0" firstAttribute="centerX" secondItem="epE-v3-VYk" secondAttribute="centerX" id="lJr-Nn-OpL"/>
                             <constraint firstItem="d2i-9Y-WCQ" firstAttribute="leading" secondItem="epE-v3-VYk" secondAttribute="trailing" constant="-304" id="zfb-2Q-Xtp"/>
                         </constraints>
@@ -527,7 +527,7 @@
         <!--Login View Controller-->
         <scene sceneID="9BP-A8-qgP">
             <objects>
-                <viewController id="w6G-WN-AGk" customClass="LoginViewController" customModule="Mr_Ride_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="w6G-WN-AGk" customClass="LoginViewController" customModule="Mr_Ride_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mCx-fk-Src"/>
                         <viewControllerLayoutGuide type="bottom" id="su8-fd-NPG"/>
@@ -536,6 +536,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="367" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="image-history-background" translatesAutoresizingMaskIntoConstraints="NO" id="FCN-FW-V8V">
+                                <rect key="frame" x="0.0" y="342" width="367" height="333"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mr. Ride" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uww-Rp-VqS">
                                 <rect key="frame" x="66" y="58" width="235" height="71"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="60"/>

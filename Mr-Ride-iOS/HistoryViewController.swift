@@ -175,15 +175,11 @@ extension HistoryViewController {
 extension HistoryViewController {
     
     private func setupBackground() {
-        print("setupBackground")
         let gradientLayer = CAGradientLayer()
-//        gradientLayer.backgroundColor = UIColor.MRRedColor().CGColor
         gradientLayer.colors = [UIColor.MRLightblueColor().CGColor, UIColor.MRPineGreen50Color().CGColor]
         gradientLayer.locations = [0.5, 1]
         gradientLayer.frame = view.frame
         self.view.layer.insertSublayer(gradientLayer, atIndex: 1)
-        print()
-        
     }
     
     private func setupChart() {

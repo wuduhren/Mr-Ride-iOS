@@ -17,6 +17,7 @@ class MapViewController: UIViewController {
     private var didSetCamera = false
     private var currentLocation: CLLocation?
     
+    var tempMarker: GMSMarker?
     
     //info view
     private enum MarkerStatus: String {
@@ -62,6 +63,7 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
     
     func mapView(mapView: GMSMapView, didTapMarker marker: GMSMarker) -> Bool {
         infoView.hidden = false
+        tempMarker?.iconView.backgroundColor = .whiteColor()
         
         switch markerStatus {
             
@@ -75,6 +77,7 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
             locationLabel.text = youbikes[youbikeIndex].location
             setupEstimatedArrivalTimeLabel(marker.position)
             marker.iconView.backgroundColor = .MRLightblueColor()
+            tempMarker = marker
             
         case .Toilets:
             guard let toiletIndex = marker.userData as? Int else { return false }
@@ -83,6 +86,7 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
             locationLabel.hidden = true
             setupEstimatedArrivalTimeLabel(marker.position)
             marker.iconView.backgroundColor = .MRLightblueColor()
+            tempMarker = marker
         }
         
         return false
@@ -179,7 +183,7 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
     
     private func setupCamera(cameraCenter: CLLocationCoordinate2D) {
         if didSetCamera == false {
-            mapView.camera = GMSCameraPosition(target: cameraCenter, zoom: 16, bearing: 0, viewingAngle: 0)
+            mapView.camera = GMSCameraPosition(target: cameraCenter, zoom: 15, bearing: 0, viewingAngle: 0)
         }
         didSetCamera = true
     }

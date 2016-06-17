@@ -50,7 +50,7 @@ extension HomeViewController {
     }
     
     func showLabels() {
-        
+        totalDistanceLabelText = 0
         setupLabels()
         
         setupChart()

@@ -115,7 +115,6 @@ extension TrackingPageViewController {
             locationArrayForPolyline += locationArray
         }
         stopwatch.stop()
-        locationManager.stopUpdatingLocation()
         saveData()
         performSegueWithIdentifier("ResultPageViewControllerSegue", sender: self)
     }

@@ -3,19 +3,13 @@
 [![License](https://img.shields.io/cocoapods/l/SideMenu.svg?style=flat)](http://cocoapods.org/pods/SideMenu)
 [![Platform](https://img.shields.io/cocoapods/p/SideMenu.svg?style=flat)](http://cocoapods.org/pods/SideMenu)
 
-## Shameless Requests First
-**1. ### If you like SideMenu, give it a ★ at the top right of its [GitHub](https://github.com/jonkykong/SideMenu) page.**
-
-**2. I need an invite to Dribbble to share SideMenu. Invite me: https://dribbble.com/jonkykong**
-
-## Overview
+### If you like SideMenu, give it a ★ at the top right of its [GitHub](https://github.com/jonkykong/SideMenu) page.
 
 SideMenu is a simple and versatile side menu control written in Swift.
-* **It can be implemented in storyboard without a single line of [code](#code-less-storyboard-implementation).**
-* Four standard animation styles to choose from (even parallax if you want to get weird).
+* **It can be implemented in storyboard without a single line of code.**
+* Three standard animation styles to choose from.
 * Highly customizable without needing to write tons of custom code.
-* Supports continuous swiping between side menus on boths sides in a single gesture.
-* Global menu configuration. Set-up once and be done for all screens.
+* Supports continuous swiping between each side menu in a single gesture.
 * Menus can be presented and dismissed the same as any other View Controller since this control uses custom transitions.
 
 Check out the example project or this [interactive demo](https://appetize.io/app/64a9v3e6b8c6f53zvn5pnny80m) to see it in action!
@@ -122,13 +116,6 @@ menuAddPanGestureToPresent(toView toView: UIView) -> UIPanGestureRecognizer
 
 ## Known Issues
 Don't try to change the status bar appearance when presenting a menu. When used with quick gestures/animations, it causes the presentation animation to not complete properly and locks the UI. See [radar 21961293](http://www.openradar.me/21961293) for more information.
-
-## About Me
-My name is Jon Kent and I'm a freelance iOS designer, developer, and mobile strategist. I love coffee and play the drums. **Hire me!**
-
-🌎 Web: [http://jonkent.me](http://jonkent.me)
-
-✉️ Email: [contact@jonkent.me](mailto:contact@jonkent.me)
 
 ## License
 
