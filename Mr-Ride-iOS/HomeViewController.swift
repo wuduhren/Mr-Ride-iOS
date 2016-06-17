@@ -151,9 +151,10 @@ extension HomeViewController {
         averageSpeedLabelText = averageSpeedLabelText / Double(runDataStructArray.count)
         totalCountLabelText = runDataStructArray.count
         
-        totalDistance.text = "\(totalDistanceLabelText) km"
+        totalDistance.text = "\(Int(totalDistanceLabelText)) km"
         totalCount.text = "\(totalCountLabelText) times"
         averageSpeed.text = "\(round(averageSpeedLabelText)) km/h"
+        totalDistance.adjustsFontSizeToFitWidth = true
     }
 
     private func setupLetsRideButton() {
