@@ -10,6 +10,8 @@ import UIKit
 import CoreData
 
 class ResultPageViewController: UIViewController {
+    
+    weak var delegate: TrackingPageViewController?
 
     //@IBOutlet weak var closeButtonToHomePage: UIBarButtonItem!
     
@@ -65,12 +67,6 @@ extension ResultPageViewController {
             navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         }
         
-        
-        
-        
-        
-        
-        
         //title
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
@@ -78,6 +74,18 @@ extension ResultPageViewController {
         navigationController?.navigationBar.titleTextAttributes =
             ([NSFontAttributeName: UIFont.mrTextStyle13Font(),
                 NSForegroundColorAttributeName: UIColor.whiteColor()])
+    }
+    
+    private func setupBackground() {
+        
+        self.view.backgroundColor = UIColor.clearColor()
+        let topGradient = UIColor(red: 0, green: 0, blue: 0, alpha: 0.60).CGColor
+        let bottomGradient = UIColor(red: 0, green: 0, blue: 0, alpha: 0.40).CGColor
+        let gradient = CAGradientLayer()
+        gradient.frame = self.view.frame
+        gradient.colors = [topGradient, bottomGradient]
+        self.view.layer.insertSublayer(gradient, atIndex: 0)
+        
     }
 }
 
@@ -88,6 +96,7 @@ extension ResultPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getData()
+        setupBackground()
         setupNavigationItem()
         drawPolyline()
         calculateCameraCenter()
@@ -192,6 +201,7 @@ extension ResultPageViewController {
 extension ResultPageViewController {
     
     @IBAction func closeButtonToHomePage(sender: UIBarButtonItem) {
+        delegate?.delegate?.showLabels()
         self.dismissViewControllerAnimated(true, completion: {})
     }
 }

@@ -11,6 +11,9 @@ import CoreData
 
 class TrackingPageViewController: UIViewController {
     
+    
+    weak var delegate: HomeViewController?
+    
     //view
     @IBOutlet weak var finishButtonToResultPage: UIBarButtonItem!
     
@@ -118,6 +121,7 @@ extension TrackingPageViewController {
     }
     
     @IBAction func cancelButtonToHomePage(sender: UIBarButtonItem) {
+        delegate?.showLabels()
         self.dismissViewControllerAnimated(true, completion: {})
     }
     
@@ -217,7 +221,7 @@ extension TrackingPageViewController {
     
     private func setupBackground() {
         
-        self.view.backgroundColor = UIColor.MRLightblueColor()
+        self.view.backgroundColor = UIColor.clearColor()
         let topGradient = UIColor(red: 0, green: 0, blue: 0, alpha: 0.60).CGColor
         let bottomGradient = UIColor(red: 0, green: 0, blue: 0, alpha: 0.40).CGColor
         let gradient = CAGradientLayer()
@@ -252,6 +256,13 @@ extension TrackingPageViewController {
     override func viewWillDisappear(animated: Bool) {
         locationManager.delegate = nil
         super.viewWillDisappear(true)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ResultPageViewControllerSegue" {
+            let resultPageViewController = segue.destinationViewController as? ResultPageViewController
+            resultPageViewController?.delegate = self
+        }
     }
 }
 

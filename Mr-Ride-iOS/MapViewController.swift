@@ -361,6 +361,7 @@ extension MapViewController: UIPickerViewDataSource,UIPickerViewDelegate {
             case 1:
                 markerStatus = .Toilets
                 setupToiletMarkers()
+                print("setupToiletMarkers")
             default: break
         }
         
