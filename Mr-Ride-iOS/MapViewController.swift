@@ -39,13 +39,13 @@ class MapViewController: UIViewController {
 
     //pickerview
     @IBOutlet weak var lookForButton: UIButton!
-    private var templookForButtonText = ""
+    private var templookForButtonText = "Youbike"
     
     @IBOutlet weak var pickerViewWindow: UIView!
     
     @IBOutlet weak var pickerView: UIPickerView!
     
-    private let pickerTitle = ["Ubike Station", "Toilet"]
+    private let pickerTitle = ["Youbike", "Toilet"]
     
     
     //data
@@ -63,6 +63,11 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
     
     func mapView(mapView: GMSMapView, didTapMarker marker: GMSMarker) -> Bool {
         infoView.hidden = false
+        
+        //close picker window
+        pickerViewWindow.hidden = true
+        lookForButton.titleLabel?.text = templookForButtonText
+        
         tempMarker?.iconView.backgroundColor = .whiteColor()
         
         switch markerStatus {
@@ -365,7 +370,6 @@ extension MapViewController: UIPickerViewDataSource,UIPickerViewDelegate {
             case 1:
                 markerStatus = .Toilets
                 setupToiletMarkers()
-                print("setupToiletMarkers")
             default: break
         }
         
