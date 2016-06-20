@@ -12,8 +12,6 @@ import CoreData
 class ResultPageViewController: UIViewController {
     
     weak var delegate: TrackingPageViewController?
-
-    //@IBOutlet weak var closeButtonToHomePage: UIBarButtonItem!
     
     @IBOutlet weak var distanceLabel: UILabel!
     
@@ -77,15 +75,20 @@ extension ResultPageViewController {
     }
     
     private func setupBackground() {
-        
-        self.view.backgroundColor = UIColor.clearColor()
-        let topGradient = UIColor(red: 0, green: 0, blue: 0, alpha: 0.60).CGColor
-        let bottomGradient = UIColor(red: 0, green: 0, blue: 0, alpha: 0.40).CGColor
-        let gradient = CAGradientLayer()
-        gradient.frame = self.view.frame
-        gradient.colors = [topGradient, bottomGradient]
-        self.view.layer.insertSublayer(gradient, atIndex: 0)
-        
+        if previousPage == .HistoryViewController {
+            view.backgroundColor = UIColor.MRDarkSlateBlueColor()
+        } else if previousPage == .TrackingPageViewController {
+            //gradient
+            view.backgroundColor = UIColor.clearColor()
+            let topGradient = UIColor(red: 0, green: 0, blue: 0, alpha: 0.60).CGColor
+            let bottomGradient = UIColor(red: 0, green: 0, blue: 0, alpha: 0.40).CGColor
+            let gradient = CAGradientLayer()
+            gradient.frame = self.view.frame
+            gradient.colors = [topGradient, bottomGradient]
+            self.view.layer.insertSublayer(gradient, atIndex: 0)
+        } else {
+            view.backgroundColor = UIColor.MRDarkSlateBlueColor()
+        }
     }
 }
 

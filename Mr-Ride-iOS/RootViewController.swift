@@ -8,6 +8,7 @@
 
 import UIKit
 import SideMenu
+import PureLayout
 
 
 class RootViewController: UIViewController {
@@ -77,6 +78,8 @@ extension RootViewController {
     
     private func setupHomeViewController() {
         view.addSubview(homeViewController.view)
+        homeViewController.view.autoPinEdgesToSuperviewEdges()
+        
         let bikeIconImageView = UIImageView(image:UIImage(named: "icon-bike.png"))
         bikeIconImageView.image = bikeIconImageView.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
         bikeIconImageView.tintColor = .whiteColor()
@@ -85,6 +88,8 @@ extension RootViewController {
     
     private func setupHistoryViewController() {
         view.addSubview(historyViewController.view)
+        historyViewController.view.autoPinEdgesToSuperviewEdges()
+        
         self.navigationItem.title = "History"
         navigationController!.navigationBar.titleTextAttributes =
             ([NSFontAttributeName: UIFont.mrTextStyle13Font(),
@@ -93,6 +98,8 @@ extension RootViewController {
     
     private func setupMapViewController() {
         view.addSubview(mapViewController.view)
+        mapViewController.view.autoPinEdgesToSuperviewEdges()
+        
         self.navigationItem.title = "Map"
         navigationController!.navigationBar.titleTextAttributes =
             ([NSFontAttributeName: UIFont.mrTextStyle13Font(),

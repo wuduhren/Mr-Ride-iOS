@@ -91,4 +91,14 @@ extension UIColor {
     class func MRBrightSkyBlue() -> UIColor {
         return UIColor(red: 0.0 / 255.0, green: 190.0 / 255.0, blue: 240.0 / 255.0, alpha: 1.0)
     }
+    
+    class func MRPineGreen50Color() -> UIColor {
+        return UIColor(red: 4.0 / 255.0, green: 20.0 / 255.0, blue: 25.0 / 255.0, alpha: 0.5)
+    }
+    
+    class func MRPineGreen85Color() -> UIColor {
+        return UIColor(red: 13.0 / 255.0, green: 53.0 / 255.0, blue: 64.0 / 255.0, alpha: 0.85)
+    }
+
+    
 }

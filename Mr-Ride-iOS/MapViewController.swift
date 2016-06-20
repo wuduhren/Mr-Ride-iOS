@@ -17,6 +17,7 @@ class MapViewController: UIViewController {
     private var didSetCamera = false
     private var currentLocation: CLLocation?
     
+    var tempMarker: GMSMarker?
     
     //info view
     private enum MarkerStatus: String {
@@ -38,13 +39,13 @@ class MapViewController: UIViewController {
 
     //pickerview
     @IBOutlet weak var lookForButton: UIButton!
-    private var templookForButtonText = ""
+    private var templookForButtonText = "Youbike"
     
     @IBOutlet weak var pickerViewWindow: UIView!
     
     @IBOutlet weak var pickerView: UIPickerView!
     
-    private let pickerTitle = ["Ubike Station", "Toilet"]
+    private let pickerTitle = ["Youbike", "Toilet"]
     
     
     //data
@@ -63,6 +64,12 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
     func mapView(mapView: GMSMapView, didTapMarker marker: GMSMarker) -> Bool {
         infoView.hidden = false
         
+        //close picker window
+        pickerViewWindow.hidden = true
+        lookForButton.titleLabel?.text = templookForButtonText
+        
+        tempMarker?.iconView.backgroundColor = .whiteColor()
+        
         switch markerStatus {
             
         case .Youbikes:
@@ -75,6 +82,7 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
             locationLabel.text = youbikes[youbikeIndex].location
             setupEstimatedArrivalTimeLabel(marker.position)
             marker.iconView.backgroundColor = .MRLightblueColor()
+            tempMarker = marker
             
         case .Toilets:
             guard let toiletIndex = marker.userData as? Int else { return false }
@@ -83,6 +91,7 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
             locationLabel.hidden = true
             setupEstimatedArrivalTimeLabel(marker.position)
             marker.iconView.backgroundColor = .MRLightblueColor()
+            tempMarker = marker
         }
         
         return false
@@ -179,7 +188,7 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
     
     private func setupCamera(cameraCenter: CLLocationCoordinate2D) {
         if didSetCamera == false {
-            mapView.camera = GMSCameraPosition(target: cameraCenter, zoom: 16, bearing: 0, viewingAngle: 0)
+            mapView.camera = GMSCameraPosition(target: cameraCenter, zoom: 15, bearing: 0, viewingAngle: 0)
         }
         didSetCamera = true
     }
@@ -361,7 +370,6 @@ extension MapViewController: UIPickerViewDataSource,UIPickerViewDelegate {
             case 1:
                 markerStatus = .Toilets
                 setupToiletMarkers()
-                print("setupToiletMarkers")
             default: break
         }
         

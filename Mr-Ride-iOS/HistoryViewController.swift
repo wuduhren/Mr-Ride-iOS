@@ -38,6 +38,7 @@ extension HistoryViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupBackground()
         setupTableView()
     }
     
@@ -169,9 +170,17 @@ extension HistoryViewController {
 
 
 
-// MARK: - Chart
+// MARK: - Setup
 
 extension HistoryViewController {
+    
+    private func setupBackground() {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [UIColor.MRLightblueColor().CGColor, UIColor.MRPineGreen50Color().CGColor]
+        gradientLayer.locations = [0.5, 1]
+        gradientLayer.frame = view.frame
+        self.view.layer.insertSublayer(gradientLayer, atIndex: 1)
+    }
     
     private func setupChart() {
         var distanceArray: [Double] = []

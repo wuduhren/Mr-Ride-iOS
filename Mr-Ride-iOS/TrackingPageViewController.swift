@@ -55,8 +55,6 @@ class TrackingPageViewController: UIViewController {
     private var buttonStatus = buttonMode.notCounting
     
     private let stopwatch = Stopwatch()
-    
-    
 }
 
 
@@ -115,7 +113,6 @@ extension TrackingPageViewController {
             locationArrayForPolyline += locationArray
         }
         stopwatch.stop()
-        locationManager.stopUpdatingLocation()
         saveData()
         performSegueWithIdentifier("ResultPageViewControllerSegue", sender: self)
     }
@@ -228,7 +225,6 @@ extension TrackingPageViewController {
         gradient.frame = self.view.frame
         gradient.colors = [topGradient, bottomGradient]
         self.view.layer.insertSublayer(gradient, atIndex: 0)
-        
     }
     
     private func setupMap() {
