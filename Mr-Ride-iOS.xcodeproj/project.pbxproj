@@ -13,6 +13,7 @@
 		F946DA3E1D0E7E3D009BDAD6 /* MapDataRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F946DA3D1D0E7E3D009BDAD6 /* MapDataRouter.swift */; };
 		F946DA401D0E84A3009BDAD6 /* ToiletModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F946DA3F1D0E84A3009BDAD6 /* ToiletModelHelper.swift */; };
 		F946DA431D0E8B86009BDAD6 /* ToiletModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F946DA421D0E8B86009BDAD6 /* ToiletModel.swift */; };
+		F94BF6611D18EC130006FD56 /* RootViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94BF6601D18EC130006FD56 /* RootViewManager.swift */; };
 		F953E36B1CF2DC3C00FA3F4E /* UIFont+YBKAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F953E3691CF2DC3C00FA3F4E /* UIFont+YBKAdditions.swift */; };
 		F953E36F1CF2DE8700FA3F4E /* MRColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F953E36E1CF2DE8700FA3F4E /* MRColor.swift */; };
 		F9616C6B1D084F9900343213 /* CalorieCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9616C6A1D084F9900343213 /* CalorieCalculator.swift */; };
@@ -65,6 +66,7 @@
 		F946DA3D1D0E7E3D009BDAD6 /* MapDataRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapDataRouter.swift; sourceTree = "<group>"; };
 		F946DA3F1D0E84A3009BDAD6 /* ToiletModelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToiletModelHelper.swift; sourceTree = "<group>"; };
 		F946DA421D0E8B86009BDAD6 /* ToiletModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToiletModel.swift; sourceTree = "<group>"; };
+		F94BF6601D18EC130006FD56 /* RootViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewManager.swift; sourceTree = "<group>"; };
 		F953E3691CF2DC3C00FA3F4E /* UIFont+YBKAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+YBKAdditions.swift"; sourceTree = "<group>"; };
 		F953E36E1CF2DE8700FA3F4E /* MRColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MRColor.swift; sourceTree = "<group>"; };
 		F9616C6A1D084F9900343213 /* CalorieCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalorieCalculator.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 		F9F7D6781D07BDFC0060BFD6 /* Facebook */ = {
 			isa = PBXGroup;
 			children = (
+				F94BF6601D18EC130006FD56 /* RootViewManager.swift */,
 				F9F7D6791D07BE170060BFD6 /* Facebook.swift */,
 				F9F7D67B1D07BE6D0060BFD6 /* MrRideFacebook.swift */,
 				F9F7D6821D07C0650060BFD6 /* MrRideUserManager.swift */,
@@ -432,6 +435,7 @@
 				F9F7D6801D07BFB20060BFD6 /* LoginViewController.swift in Sources */,
 				F9616C6B1D084F9900343213 /* CalorieCalculator.swift in Sources */,
 				F9CD4C0B1CFD60F500E251AC /* Entity+CoreDataProperties.swift in Sources */,
+				F94BF6611D18EC130006FD56 /* RootViewManager.swift in Sources */,
 				F97EC5F51D01553A009FD828 /* RunDataModel.swift in Sources */,
 				F97EC5F21D011E28009FD828 /* RunDataTableViewCell.swift in Sources */,
 				F9E9E4A11CF6ED6C00599D85 /* TrackingPageViewController.swift in Sources */,

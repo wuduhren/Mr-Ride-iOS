@@ -90,8 +90,12 @@ extension LoginViewController {
             fromViewController: self,
             success: {
                 
-                let initialViewController = self.storyboard!.instantiateViewControllerWithIdentifier("RootViewNavigationController") as! UINavigationController
-                self.presentViewController(initialViewController, animated: true, completion: nil)
+                RootViewManager.sharedManager.changeRootViewController(
+                    viewController: RootViewController.controller(),
+                    animated: false,
+                    success: nil,
+                    failure: nil
+                )
             },
             failure: { [weak self] error in
                 
@@ -206,10 +210,13 @@ extension LoginViewController {
     private func setRootViewController() {
         if (FBSDKAccessToken.currentAccessToken() != nil) {
             // User is already logged in, do work such as go to next view controller.
-            let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
-            let initialViewController = self.storyboard!.instantiateViewControllerWithIdentifier("RootViewNavigationController") as! UINavigationController
-            appDelegate.window?.rootViewController = initialViewController
-            appDelegate.window?.makeKeyAndVisible()
+            
+            RootViewManager.sharedManager.changeRootViewController(
+                viewController: RootViewController.controller(),
+                animated: false,
+                success: nil,
+                failure: nil
+            )
         }
         
     }
@@ -217,5 +224,11 @@ extension LoginViewController {
 
 
 
+// MARK: -  Initializer
 
-
+extension LoginViewController {
+    
+    class func controller() -> LoginViewController {
+        return UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+    }
+}

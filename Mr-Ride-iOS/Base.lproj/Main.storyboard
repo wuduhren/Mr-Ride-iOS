@@ -296,7 +296,7 @@
                                     <constraint firstAttribute="width" constant="226" id="jAo-tT-JfA"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Ubike Station">
+                                <state key="normal" title="Youbike">
                                     <color key="titleColor" red="0.054901960780000002" green="0.20784313730000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -845,7 +845,7 @@
         <!--Root View Controller-->
         <scene sceneID="Moc-Fn-NQF">
             <objects>
-                <viewController id="rBB-5y-rq4" customClass="RootViewController" customModule="Mr_Ride_iOS" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RootViewController" id="rBB-5y-rq4" customClass="RootViewController" customModule="Mr_Ride_iOS" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ugh-l5-JcU"/>
                         <viewControllerLayoutGuide type="bottom" id="Hwf-mK-L4L"/>

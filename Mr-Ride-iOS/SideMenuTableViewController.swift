@@ -66,16 +66,28 @@ extension SideMenuTableViewController {
         tableView.addSubview(button)
     }
     
+
+    
+}
+
+
+
+// MARK: - LogOut
+
+extension SideMenuTableViewController {
+
     func facebookLogout(sender: UIButton) {
         FBSDKLoginManager().logOut()
         
-        let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
-        let initialViewController = self.storyboard!.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
-        appDelegate.window?.rootViewController = initialViewController
-        appDelegate.window?.makeKeyAndVisible()
+        RootViewManager.sharedManager.changeRootViewController(
+            viewController: LoginViewController.controller(),
+            animated: true,
+            success: nil,
+            failure: nil
+        )
     }
-    
 }
+
 
 
 
