@@ -28,6 +28,11 @@ class HistoryViewController: UIViewController {
         case gap
     }
     var cellStatus: CellStatus = .gap
+    
+    
+    deinit {
+        //print("HistoryViewController deinit at \(self)")
+    }
 }
 
 
@@ -40,6 +45,7 @@ extension HistoryViewController {
         super.viewDidLoad()
         setupBackground()
         setupTableView()
+        //print("HistoryViewController viewDidLoad at \(self)")
     }
     
     override func viewWillAppear(animated: Bool) {

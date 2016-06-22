@@ -26,6 +26,11 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var letsRideButton: UIButton!
     
     private var runDataStructArray: [RunDataModel.runDataStruct] = []
+    
+    
+    deinit {
+        //print("HomeViewController deinit at \(self)")
+    }
 }
 
 
@@ -202,6 +207,7 @@ extension HomeViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        //print("HomeViewController viewDidLoad at \(self)")
     }
     
 }

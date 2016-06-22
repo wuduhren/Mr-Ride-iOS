@@ -35,6 +35,11 @@ class RootViewController: UIViewController {
         self.didMoveToParentViewController(mapViewController)
         return mapViewController
         }()
+    
+    
+    deinit {
+        //print("RootViewController deinit at \(self)")
+    }
 }
 
 
@@ -127,6 +132,7 @@ extension RootViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        //print("RootViewController viewDidLoad at \(self)")
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -134,6 +140,18 @@ extension RootViewController {
             sideMenuNavigationController = (segue.destinationViewController as? UISideMenuNavigationController)!
         }
         (sideMenuNavigationController?.viewControllers[0] as? SideMenuTableViewController)?.delegate = self
+    }
+    
+}
+
+
+
+// MARK: -  Initializer
+
+extension RootViewController {
+    //return RootViewController's NavigationController
+    class func controller() -> UINavigationController {
+        return UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RootViewNavigationController") as! UINavigationController
     }
 }
 

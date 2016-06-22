@@ -55,6 +55,10 @@ class TrackingPageViewController: UIViewController {
     private var buttonStatus = buttonMode.notCounting
     
     private let stopwatch = Stopwatch()
+    
+    deinit {
+        //print("TrackingPageViewController deinit at \(self)")
+    }
 }
 
 
@@ -242,6 +246,7 @@ extension TrackingPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        //print("TrackingPageViewController viewDidLoad at \(self)")
     }
     
     override func viewWillAppear(animated: Bool) {

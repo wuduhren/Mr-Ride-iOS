@@ -53,6 +53,11 @@ class MapViewController: UIViewController {
     
     private var youbikes: [YoubikeModel] = []
     
+    
+    deinit {
+        //print("MapViewController deinit at \(self)")
+    }
+
 }
 
 
@@ -293,6 +298,7 @@ extension MapViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        //print("MapViewController viewDidLoad at \(self)")
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -312,6 +318,7 @@ extension MapViewController {
         didSetCamera = false
         super.viewWillDisappear(true)
     }
+    
 }
 
 
