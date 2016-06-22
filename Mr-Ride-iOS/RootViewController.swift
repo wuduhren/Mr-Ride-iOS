@@ -36,10 +36,10 @@ class RootViewController: UIViewController {
         return mapViewController
         }()
     
-    deinit {
-        print("RootViewController released")
-    }
     
+    deinit {
+        //print("RootViewController deinit at \(self)")
+    }
 }
 
 
@@ -132,7 +132,7 @@ extension RootViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        //print("RootViewController: \(self)")
+        //print("RootViewController viewDidLoad at \(self)")
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

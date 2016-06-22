@@ -18,6 +18,12 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var heightLabel: UILabel!
     @IBOutlet weak var weightLabel: UILabel!
     @IBOutlet weak var loginButton: UIButton!
+    
+    
+    deinit {
+        //print("LoginViewController deinit at \(self)")
+    }
+
 }
 
 
@@ -172,6 +178,11 @@ extension LoginViewController: UITextFieldDelegate {
         if weightTextField.text == "" || heightTextField.text == "" {
             ErrorAlert("Unable to Login", errorMessage: "please enter your height and weight")
             return false
+            
+        } else if weightTextField.text == "Enter Your Height" || heightTextField.text == "Enter Your Height" {
+            ErrorAlert("Unable to Login", errorMessage: "please enter your height and weight")
+            return false
+            
         } else { return true }
     }
     
@@ -205,6 +216,7 @@ extension LoginViewController {
         setRootViewController()
         setup()
         setupTextField()
+        //print("LoginViewController viewDidLoad at \(self)")
     }
     
     private func setRootViewController() {

@@ -263,6 +263,7 @@
 			children = (
 				F98436661CFAF53500A4268C /* StopWatch.swift */,
 				F9616C6A1D084F9900343213 /* CalorieCalculator.swift */,
+				F94BF6601D18EC130006FD56 /* RootViewManager.swift */,
 				F946DA411D0E88B1009BDAD6 /* MapData */,
 				F9F7D6811D07BFC50060BFD6 /* CoreData */,
 				F9CE3E251CF2E37D00574689 /* Resources */,
@@ -276,7 +277,6 @@
 		F9F7D6781D07BDFC0060BFD6 /* Facebook */ = {
 			isa = PBXGroup;
 			children = (
-				F94BF6601D18EC130006FD56 /* RootViewManager.swift */,
 				F9F7D6791D07BE170060BFD6 /* Facebook.swift */,
 				F9F7D67B1D07BE6D0060BFD6 /* MrRideFacebook.swift */,
 				F9F7D6821D07C0650060BFD6 /* MrRideUserManager.swift */,

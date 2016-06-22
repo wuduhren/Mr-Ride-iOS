@@ -15,6 +15,12 @@ class SideMenuTableViewController: UITableViewController {
     private let menu = ["Home", "History", "Map"]
     
     weak var delegate: SideMenuDelegate?
+    
+    
+    deinit {
+        //print("SideMenuTableViewController deinit at \(self)")
+    }
+
 }
 
 
@@ -65,9 +71,6 @@ extension SideMenuTableViewController {
         button.addTarget(self, action: #selector(SideMenuTableViewController.facebookLogout(_:)), forControlEvents: UIControlEvents.TouchDown)
         tableView.addSubview(button)
     }
-    
-
-    
 }
 
 
@@ -85,6 +88,7 @@ extension SideMenuTableViewController {
             success: nil,
             failure: nil
         )
+        //self.dismissViewControllerAnimated(true, completion: {})
     }
 }
 
@@ -99,6 +103,7 @@ extension SideMenuTableViewController {
         super.viewDidLoad()
         setup()
         setupbutton()
+        //print("SideMenuTableViewController viewDidLoad \(self)")
     }
 }
 
