@@ -12,5 +12,6 @@ target “Mr-Ride-iOS“ do
 	pod 'FBSDKLoginKit', '4.11'
 	pod 'SwiftyJSON', '2.3'
 	pod 'PureLayout', '3.0'
+	pod 'Crashlytics', '3.7'
 
 end
