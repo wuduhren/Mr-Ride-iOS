@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (3.3.0)
+  - Amplitude-iOS (3.7.0)
   - Bolts (1.7.0):
     - Bolts/AppLinks (= 1.7.0)
     - Bolts/Tasks (= 1.7.0)
@@ -10,12 +11,31 @@ PODS:
   - Charts/Realm (2.2.4):
     - Charts/Core
     - RealmSwift (~> 0.97)
+  - Crashlytics (3.7.0):
+    - Fabric (~> 1.6.3)
   - CryptoSwift (0.2.2)
+  - Fabric (1.6.7)
   - FBSDKCoreKit (4.11.0):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.11.0):
     - FBSDKCoreKit
+  - Google/Analytics (2.0.4):
+    - Google/Core
+    - GoogleAnalytics (~> 3.12)
+  - Google/Core (2.0.4):
+    - GoogleInterchangeUtilities (~> 1.0)
+    - GoogleNetworkingUtilities (~> 1.0)
+    - GoogleSymbolUtilities (~> 1.0)
+    - GoogleUtilities (~> 1.1)
+  - GoogleAnalytics (3.14.0)
+  - GoogleInterchangeUtilities (1.2.0):
+    - GoogleSymbolUtilities (~> 1.0)
   - GoogleMaps (1.13.0)
+  - GoogleNetworkingUtilities (1.2.0):
+    - GoogleSymbolUtilities (~> 1.0)
+  - GoogleSymbolUtilities (1.1.0)
+  - GoogleUtilities (1.3.0):
+    - GoogleSymbolUtilities (~> 1.0)
   - JSONWebToken (1.4.3):
     - CryptoSwift (= 0.2.2)
   - PureLayout (3.0.0)
@@ -29,8 +49,11 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (= 3.3)
+  - Amplitude-iOS (= 3.7.0)
   - Charts/Realm (~> 2.2)
+  - Crashlytics (= 3.7)
   - FBSDKLoginKit (= 4.11)
+  - Google/Analytics
   - GoogleMaps (= 1.13)
   - JSONWebToken (= 1.4.3)
   - PureLayout (= 3.0)
@@ -39,12 +62,21 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 9054db4a1b1ca9e363223183e01cea380159a27c
+  Amplitude-iOS: 8bc8b9dc9c1898dbe5da541e21e8941ec085644f
   Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
   Charts: a9e735c83c6d376ade20f6612dcf0ba217394a49
+  Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   CryptoSwift: d382228d6301c09474132417878a741c2a2e68cd
+  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   FBSDKCoreKit: 686ac982723a14ec9ddb85e2f81235d7706c891b
   FBSDKLoginKit: bade9fc78277764149ccc5bfaadbf13c83175c6a
+  Google: d0932824c5b97c96be489aa6f4e8cd6c294d637d
+  GoogleAnalytics: 9be1afdb8deeac4bb5f13ca7f7d3b9db2a1f43dc
+  GoogleInterchangeUtilities: 427382e42d8a340038bec37c6fdfd316e14b5fa2
   GoogleMaps: 7a6caeb8336d7cb42982e969fc9b1b20a889fe79
+  GoogleNetworkingUtilities: ec1e9911aca811eb18b7144394fee6168b607785
+  GoogleSymbolUtilities: eb3965ea12710569c7b80db198a39e39b18613f7
+  GoogleUtilities: 5c653f7df2eedf0ce0efdfe5afe4f831f375fd7a
   JSONWebToken: acdab3aeedf8d44f5cf09ad469deb42c4faf3740
   PureLayout: 270dfee2236f697ab1d5e2771c2e5c248495fa0d
   Realm: b13b548e712d28a66678970c45cd245ebb94ba3b
@@ -52,6 +84,6 @@ SPEC CHECKSUMS:
   SideMenu: e100593c13de401c4dafb3ecb675b8a88533077d
   SwiftyJSON: 8d6b61a70277ef2a5d710d372e06e7e2d87fb9e4
 
-PODFILE CHECKSUM: fde9aeba359ec7af3e3c11fec8ee7da9f94dde20
+PODFILE CHECKSUM: 4b55f0aeda21e7b723911ca82ac839331491a51b
 
 COCOAPODS: 1.0.0.rc.1

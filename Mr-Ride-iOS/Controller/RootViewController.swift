@@ -9,7 +9,7 @@
 import UIKit
 import SideMenu
 import PureLayout
-
+import Amplitude_iOS
 
 class RootViewController: UIViewController {
     
@@ -135,6 +135,18 @@ extension RootViewController {
         //print("RootViewController viewDidLoad at \(self)")
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "RootViewController")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+        
+        Amplitude.instance().logEvent("rootViewController viewWillAppear")
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "SideMenuNavigationController") {
             sideMenuNavigationController = (segue.destinationViewController as? UISideMenuNavigationController)!
@@ -154,6 +166,10 @@ extension RootViewController {
         return UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RootViewNavigationController") as! UINavigationController
     }
 }
+
+
+
+
 
 
 

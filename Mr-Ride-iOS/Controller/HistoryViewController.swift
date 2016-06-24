@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import Charts
+import Crashlytics
 
 
 class HistoryViewController: UIViewController {
@@ -46,6 +47,8 @@ extension HistoryViewController {
         setupBackground()
         setupTableView()
         //print("HistoryViewController viewDidLoad at \(self)")
+        //Crashlytics.sharedInstance().crash()
+
     }
     
     override func viewWillAppear(animated: Bool) {

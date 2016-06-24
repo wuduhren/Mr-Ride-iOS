@@ -79,9 +79,11 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
             
         case .Youbikes:
             guard let youbikeIndex = marker.userData as? Int else { return false }
+            districtLabel.hidden = false
             districtLabel.text = youbikes[youbikeIndex].district
             districtLabel.layer.borderColor = UIColor.whiteColor().CGColor
-            districtLabel.layer.borderWidth = 0.5
+            districtLabel.layer.borderWidth = 0.7
+            locationLabel.hidden = false
             
             nameLabel.text = youbikes[youbikeIndex].name
             locationLabel.text = youbikes[youbikeIndex].location
