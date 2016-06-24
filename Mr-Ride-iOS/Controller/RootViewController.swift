@@ -11,6 +11,7 @@ import SideMenu
 import PureLayout
 
 
+
 class RootViewController: UIViewController {
     
     var sideMenuNavigationController: UISideMenuNavigationController?
@@ -133,6 +134,16 @@ extension RootViewController {
         super.viewDidLoad()
         setup()
         //print("RootViewController viewDidLoad at \(self)")
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "RootViewController")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

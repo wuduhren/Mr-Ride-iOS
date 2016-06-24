@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7C4CA5DCB0B980DE62F54883 /* Pods_Mr_Ride_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EF88E2F89EEED4143779B7 /* Pods_Mr_Ride_iOS.framework */; };
+		F91B0F891D1CC0B900791762 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F91B0F881D1CC0B900791762 /* GoogleService-Info.plist */; };
 		F93BBFEF1CF590B800A9E661 /* SideMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93BBFEE1CF590B800A9E661 /* SideMenuCell.swift */; };
 		F93BBFF11CF5945100A9E661 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93BBFF01CF5945100A9E661 /* HistoryViewController.swift */; };
 		F946DA3E1D0E7E3D009BDAD6 /* MapDataRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F946DA3D1D0E7E3D009BDAD6 /* MapDataRouter.swift */; };
@@ -61,6 +62,8 @@
 		66EF88E2F89EEED4143779B7 /* Pods_Mr_Ride_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mr_Ride_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A45D7F7E8E6896C21D7AF9DA /* Pods-Mr-Ride-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mr-Ride-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mr-Ride-iOS/Pods-Mr-Ride-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		B839DBAFF8269066CD6F4A18 /* Pods-Mr-Ride-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mr-Ride-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mr-Ride-iOS/Pods-Mr-Ride-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		F91B0F881D1CC0B900791762 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Model/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F91B0F8B1D1CD3E200791762 /* Mr-Ride-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mr-Ride-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		F93BBFEE1CF590B800A9E661 /* SideMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuCell.swift; sourceTree = "<group>"; };
 		F93BBFF01CF5945100A9E661 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		F946DA3D1D0E7E3D009BDAD6 /* MapDataRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapDataRouter.swift; path = MapData/MapDataRouter.swift; sourceTree = "<group>"; };
@@ -70,7 +73,6 @@
 		F953E3691CF2DC3C00FA3F4E /* UIFont+YBKAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+YBKAdditions.swift"; sourceTree = "<group>"; };
 		F953E36E1CF2DE8700FA3F4E /* MRColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MRColor.swift; sourceTree = "<group>"; };
 		F9616C6A1D084F9900343213 /* CalorieCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalorieCalculator.swift; sourceTree = "<group>"; };
-		F978A2C11D057FB4007914CA /* Mr-Ride-iOS-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Mr-Ride-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		F979ED811D0FEDC60012CF35 /* YoubikeDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoubikeDataModel.swift; sourceTree = "<group>"; };
 		F979ED831D0FF57B0012CF35 /* YoubikeModelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoubikeModelHelper.swift; sourceTree = "<group>"; };
 		F97AA5591D096F0D0058B082 /* RunningDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RunningDataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -79,12 +81,12 @@
 		F97EC5F41D01553A009FD828 /* RunDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunDataModel.swift; sourceTree = "<group>"; };
 		F98436661CFAF53500A4268C /* StopWatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopWatch.swift; sourceTree = "<group>"; };
 		F9A2EBAE1CF2A79A00853CCE /* Mr-Ride-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mr-Ride-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F9A2EBB11CF2A79A00853CCE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F9A2EBB11CF2A79A00853CCE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../Model/AppDelegate.swift; sourceTree = "<group>"; };
 		F9A2EBB31CF2A79A00853CCE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F9A2EBB61CF2A79A00853CCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F9A2EBB81CF2A79A00853CCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9A2EBBB1CF2A79A00853CCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		F9A2EBBD1CF2A79A00853CCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9A2EBBD1CF2A79A00853CCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Model/Info.plist; sourceTree = "<group>"; };
 		F9CD4C091CFD60F500E251AC /* Entity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Entity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F9CD4C0A1CFD60F500E251AC /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		F9CD4C0D1CFD694400E251AC /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
@@ -142,6 +144,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		F91B0F8A1D1CD3D000791762 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				F91B0F8B1D1CD3E200791762 /* Mr-Ride-iOS-Bridging-Header.h */,
+				F91B0F881D1CC0B900791762 /* GoogleService-Info.plist */,
+				F9A2EBBD1CF2A79A00853CCE /* Info.plist */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		F946DA411D0E88B1009BDAD6 /* MapData */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +206,7 @@
 		F9A2EBB01CF2A79A00853CCE /* Mr-Ride-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				F91B0F8A1D1CD3D000791762 /* Utilities */,
 				F9E55F491CF3E90C00402F96 /* Model */,
 				F9E55F481CF3E90500402F96 /* View */,
 				F9E55F471CF3E8FA00402F96 /* Controller */,
@@ -233,6 +246,7 @@
 		F9E55F471CF3E8FA00402F96 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				F9A2EBB11CF2A79A00853CCE /* AppDelegate.swift */,
 				F9F7D67F1D07BFB20060BFD6 /* LoginViewController.swift */,
 				F9E55F451CF3E8F200402F96 /* SideMenuTableViewController.swift */,
 				F9E55F4E1CF42D1100402F96 /* RootViewController.swift */,
@@ -269,9 +283,6 @@
 				F9F7D6811D07BFC50060BFD6 /* CoreData */,
 				F9CE3E251CF2E37D00574689 /* Resources */,
 				F9F7D6781D07BDFC0060BFD6 /* Facebook */,
-				F9A2EBB11CF2A79A00853CCE /* AppDelegate.swift */,
-				F978A2C11D057FB4007914CA /* Mr-Ride-iOS-Bridging-Header.h */,
-				F9A2EBBD1CF2A79A00853CCE /* Info.plist */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -372,6 +383,7 @@
 				F9A2EBBC1CF2A79A00853CCE /* LaunchScreen.storyboard in Resources */,
 				F9A2EBB91CF2A79A00853CCE /* Assets.xcassets in Resources */,
 				F9A2EBB71CF2A79A00853CCE /* Main.storyboard in Resources */,
+				F91B0F891D1CC0B900791762 /* GoogleService-Info.plist in Resources */,
 				F9E55F221CF3093100402F96 /* RobotoMono-Medium.ttf in Resources */,
 				F9E55F241CF3093100402F96 /* RobotoMono-Regular.ttf in Resources */,
 				F9E55F251CF3093100402F96 /* RobotoMono-Thin.ttf in Resources */,
@@ -592,6 +604,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = "Mr-Ride-iOS/Model/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
