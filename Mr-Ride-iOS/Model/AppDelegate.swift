@@ -10,6 +10,7 @@ import UIKit
 import FBSDKCoreKit
 import Fabric
 import Crashlytics
+import Amplitude_iOS
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private let googleMapsApiKey = "AIzaSyCAfmr60XWb1ealjZqdl-WeTDCSpXCDddY"
 
+    private let AmplitudeApiKey = "fbedd98fce4b5345724dfc4c23edd003"
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         //Crashlytics
@@ -39,6 +41,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let gai = GAI.sharedInstance()
         gai.trackUncaughtExceptions = true  // report uncaught exceptions
         gai.logger.logLevel = GAILogLevel.Verbose  // remove before app release
+        
+        //Amplitude
+        Amplitude.instance().initializeApiKey(AmplitudeApiKey)
         
         return true
     }

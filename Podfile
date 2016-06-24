@@ -13,6 +13,7 @@ target “Mr-Ride-iOS“ do
 	pod 'SwiftyJSON', '2.3'
 	pod 'PureLayout', '3.0'
 	pod 'Crashlytics', '3.7'
-	pod 'Google/Analytics’, '3.14.0'
+	pod 'Google/Analytics’
+	pod 'Amplitude-iOS', '3.7.0'
 
 end

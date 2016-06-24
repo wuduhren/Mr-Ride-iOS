@@ -9,8 +9,7 @@
 import UIKit
 import SideMenu
 import PureLayout
-
-
+import Amplitude_iOS
 
 class RootViewController: UIViewController {
     
@@ -144,6 +143,8 @@ extension RootViewController {
         
         let builder = GAIDictionaryBuilder.createScreenView()
         tracker.send(builder.build() as [NSObject : AnyObject])
+        
+        Amplitude.instance().logEvent("rootViewController viewWillAppear")
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
