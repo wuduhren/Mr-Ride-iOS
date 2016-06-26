@@ -1,5 +1,5 @@
 //
-//  ToiletDataModel.swift
+//  RiversideToiletModel.swift
 //  Mr-Ride-iOS
 //
 //  Created by Eph on 2016/6/13.
@@ -8,7 +8,7 @@
 
 import CoreLocation
 
-class ToiletModel {
+class RiversideToiletModel {
     
     let identifier: String
     let coordinate: CLLocationCoordinate2D

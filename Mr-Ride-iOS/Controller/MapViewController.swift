@@ -21,7 +21,8 @@ class MapViewController: UIViewController {
     
     //info view
     private enum MarkerStatus: String {
-        case Toilets
+        case PublicToilets
+        case RiversideToilets
         case Youbikes
     }
     private var markerStatus: MarkerStatus = .Youbikes
@@ -45,13 +46,15 @@ class MapViewController: UIViewController {
     
     @IBOutlet weak var pickerView: UIPickerView!
     
-    private let pickerTitle = ["Youbike", "Toilet"]
+    private let pickerTitle = ["Youbike", "Riverside Toilets", "Public Toilets"]
     
     
     //data
-    private var toilets: [ToiletModel] = []
+    private var riversideToilets: [RiversideToiletModel] = []
     
     private var youbikes: [YoubikeModel] = []
+    
+    private var publicToilets: [PublicToiletModel] = []
     
     
     deinit {
@@ -91,15 +94,32 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
             marker.iconView.backgroundColor = .MRLightblueColor()
             tempMarker = marker
             
-        case .Toilets:
-            guard let toiletIndex = marker.userData as? Int else { return false }
+        case .RiversideToilets:
+            guard let riversideToiletIndex = marker.userData as? Int else { return false }
             districtLabel.hidden = true
-            nameLabel.text = toilets[toiletIndex].location
+            nameLabel.text = riversideToilets[riversideToiletIndex].location
             locationLabel.hidden = true
             setupEstimatedArrivalTimeLabel(marker.position)
             marker.iconView.backgroundColor = .MRLightblueColor()
             tempMarker = marker
+            
+        case .PublicToilets:
+            guard let publicToiletIndex = marker.userData as? Int else { return false }
+            districtLabel.hidden = false
+            districtLabel.text = publicToilets[publicToiletIndex].district
+            districtLabel.layer.borderColor = UIColor.whiteColor().CGColor
+            districtLabel.layer.borderWidth = 0.7
+            locationLabel.hidden = false
+            
+            nameLabel.text = publicToilets[publicToiletIndex].name
+            locationLabel.text = publicToilets[publicToiletIndex].location
+            setupEstimatedArrivalTimeLabel(marker.position)
+            marker.iconView.backgroundColor = .MRLightblueColor()
+            tempMarker = marker
+
         }
+        
+        
         
         return false
         
@@ -131,19 +151,34 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
         return iconBackgroundView
     }
     
-    private func setupToiletMarkers() {
+    private func setupPublicToiletMarkers() {
         mapView.clear()
         
-        var toiletIndex = 0
-        for toilet in toilets {
-            let  position = toilet.coordinate
+        var publicToiletIndex = 0
+        for publicToilet in publicToilets.filter(isNearCurrentLocation) {
+            let  position = publicToilet.coordinate
             let marker = GMSMarker(position: position)
             marker.iconView = getMarkerIconImage("icon-toilet")
-            marker.title = "\(toilet.location)"
-            marker.userData = toiletIndex
+            marker.title = "\(publicToilet.name)"
+            marker.userData = publicToiletIndex
+            marker.map = mapView
+            publicToiletIndex += 1
+        }
+    }
+    
+    private func setupRiversideToiletMarkers() {
+        mapView.clear()
+        
+        var riversideToiletIndex = 0
+        for riversideToilet in riversideToilets {
+            let  position = riversideToilet.coordinate
+            let marker = GMSMarker(position: position)
+            marker.iconView = getMarkerIconImage("icon-toilet")
+            marker.title = "\(riversideToilet.location)"
+            marker.userData = riversideToiletIndex
             marker.map = mapView
             
-            toiletIndex += 1
+            riversideToiletIndex += 1
         }
     }
     
@@ -164,11 +199,11 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
         
     }
     
-    private func setupEstimatedArrivalTimeLabel(destinationCoordinates: CLLocationCoordinate2D) {
+    private func setupEstimatedArrivalTimeLabel(destinationCoordinates: CLLocationCoordinate2D) -> Double {
 
         var EstimateArrivalTimeInMinutes = 0.0
         
-        guard let currentLocation = currentLocation else { return }
+        guard let currentLocation = currentLocation else { return 0 }
         let sourcePlacemark = MKPlacemark(coordinate: currentLocation.coordinate, addressDictionary: nil)
         let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
         
@@ -178,7 +213,7 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
         let request = MKDirectionsRequest()
         request.source = sourceMapItem
         request.destination = destinationMapItem
-        request.transportType = MKDirectionsTransportType.Automobile
+        request.transportType = MKDirectionsTransportType.Walking
         request.requestsAlternateRoutes = false
         let directions = MKDirections(request: request)
         directions.calculateDirectionsWithCompletionHandler { response, error in
@@ -187,15 +222,15 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
                 print("getEstimateArrivalTime Error: \(error)")
                 return
             }
-            
             EstimateArrivalTimeInMinutes = route.expectedTravelTime / 60
             self.estimatedArrivalTimeLabel.text = "\(round(EstimateArrivalTimeInMinutes)) minutes"
         }
+        return EstimateArrivalTimeInMinutes
     }
     
     private func setupCamera(cameraCenter: CLLocationCoordinate2D) {
         if didSetCamera == false {
-            mapView.camera = GMSCameraPosition(target: cameraCenter, zoom: 15, bearing: 0, viewingAngle: 0)
+            mapView.camera = GMSCameraPosition(target: cameraCenter, zoom: 16, bearing: 0, viewingAngle: 0)
         }
         didSetCamera = true
     }
@@ -205,6 +240,20 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
     }
+    
+    private func isNearCurrentLocation(publicToilet: PublicToiletModel) -> Bool {
+        
+        let publicToiletCoordinateLocation = CLLocation(latitude: publicToilet.coordinate.latitude, longitude: publicToilet.coordinate.longitude)
+        
+        if currentLocation == nil { return false }
+        let distanceInMeters = publicToiletCoordinateLocation.distanceFromLocation(currentLocation!)
+        
+//        if let distanceInMeters = publicToiletCoordinateLocation.distanceFromLocation(currentLocation?) {
+//            return distanceInMeters < 500
+//        }
+        return distanceInMeters < 500
+    }
+
 }
 
 // MARK: - CLLocationManagerDelegate
@@ -235,16 +284,22 @@ extension MapViewController: CLLocationManagerDelegate {
 
 extension MapViewController {
     
-    private func getToiletsData() {
+    private func getData() {
+        getPublicToiletsData()
+        getRiversideToiletsData()
+        getYoubikeData()
+    }
+    
+    private func getRiversideToiletsData() {
     
         let mapDataManager = MapDataManager()
         
-        mapDataManager.getToilets(
-            success: { [weak self] toilets in
+        mapDataManager.getRiversideToilets(
+            success: { [weak self] riversideToilets in
                 
                 guard let weakSelf = self else { return }
 
-                weakSelf.toilets = toilets
+                weakSelf.riversideToilets = riversideToilets
                 
                 //weakSelf.setupToiletMarkers()
             },
@@ -255,6 +310,25 @@ extension MapViewController {
         )
         
     }
+    
+    private func getPublicToiletsData() {
+        
+        let mapDataManager = MapDataManager()
+        
+            mapDataManager.getPublicToilets(
+                success: { [weak self] publicToilets in
+                    
+                    guard let weakSelf = self else { return }
+                    weakSelf.publicToilets = publicToilets
+                },
+                failure: { error in
+                    
+                    print("ERROR: \(error)")
+                }
+            )
+        
+    }
+
     
     private func getYoubikeData() {
         
@@ -276,6 +350,7 @@ extension MapViewController {
         )
         
     }
+
 }
 
 
@@ -284,9 +359,8 @@ extension MapViewController {
 
 extension MapViewController {
     private func setup() {
-        getToiletsData()
-        getYoubikeData()
         infoView.hidden = true
+        lookForButton.titleLabel?.adjustsFontSizeToFitWidth = true
         setupPickerView()
     }
 }
@@ -299,6 +373,8 @@ extension MapViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupMap()
+        getData()
         setup()
         //print("MapViewController viewDidLoad at \(self)")
     }
@@ -377,8 +453,11 @@ extension MapViewController: UIPickerViewDataSource,UIPickerViewDelegate {
                 markerStatus = .Youbikes
                 setupYoubikeMarkers()
             case 1:
-                markerStatus = .Toilets
-                setupToiletMarkers()
+                markerStatus = .RiversideToilets
+                setupRiversideToiletMarkers()
+            case 2:
+                markerStatus = .PublicToilets
+                setupPublicToiletMarkers()
             default: break
         }
         

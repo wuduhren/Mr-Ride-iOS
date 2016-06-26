@@ -18,63 +18,118 @@ class MapDataManager {
 
 
 
-// MARK: - Toilets
+// MARK: - PublicToilets
 
 extension MapDataManager {
     
-    typealias GetToiletsSuccess = (toilets: [ToiletModel]) -> Void
-    typealias GetToiletsFailure = (error: ErrorType) -> Void
+    typealias GetPublicToiletsSuccess = (riversideToilets: [PublicToiletModel]) -> Void
+    typealias GetPublicToiletsFailure = (error: ErrorType) -> Void
     
-    enum GetToiletsError: ErrorType { case Server(message: String) }
+    enum GetPublicToiletsError: ErrorType { case Server(message: String) }
     
-    func getToilets(success success: GetToiletsSuccess, failure: GetToiletsFailure?) -> Request {
+    func getPublicToilets(success success: GetPublicToiletsSuccess, failure: GetPublicToiletsFailure?) {
         
-        let URLRequest = MapDataRouter.GetToilets
-        let request = Alamofire.request(URLRequest).validate().responseData { result in
-
-            if let statusCode = result.response?.statusCode {
-                //print("getToilets statusCode: \(statusCode)")
-            }
-            
-            switch result.result {
-            
-            case .Success(let data):
-
-                let json = JSON(data: data)
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0) ){
+        
+            let URLRequest = MapDataRouter.GetPublicToilets
+            let request = Alamofire.request(URLRequest).validate().responseData { result in
                 
-                var toilets: [ToiletModel] = []
-                
-                for (_, subJSON) in json["result"]["results"] {
-                    
-                    do {
-                        let toilet = try ToiletModelHelper().parse(json: subJSON)
-                        toilets.append(toilet)
-                    }
-                    catch(let error) { print("ERROR: \(error)") }
-                    
+                if let statusCode = result.response?.statusCode {
+                    print("getPublicToilets statusCode: \(statusCode)")
                 }
                 
-                success(toilets: toilets)
-                
-            case .Failure(let err):
-                
-                let error: GetToiletsError = .Server(message: err.localizedDescription)
-                print("ERROR: \(error)")
-                
-                failure?(error: error)
-                
+                switch result.result {
+                    
+                case .Success(let data):
+                    
+                    let json = JSON(data: data)
+                    
+                    var publicToilets: [PublicToiletModel] = []
+                    
+                    for (_, subJSON) in json["result"]["results"] {
+                        
+                        do {
+                            let publicToilet = try PublicToiletModelHelper().parse(json: subJSON)
+                            publicToilets.append(publicToilet)
+                        }
+                        catch(let error) { print("ERROR: \(error)") }
+                        
+                    }
+                    
+                    success(riversideToilets: publicToilets)
+                    
+                case .Failure(let err):
+                    
+                    let error: GetPublicToiletsError = .Server(message: err.localizedDescription)
+                    print("ERROR: \(error)")
+                    
+                    failure?(error: error)
+                }
             }
-            
         }
-        
-        return request
-        
     }
 }
 
 
 
-// MARK: - Toilets
+
+// MARK: - RiversideToilets
+
+extension MapDataManager {
+    
+    typealias GetRiversideToiletsSuccess = (riversideToilets: [RiversideToiletModel]) -> Void
+    typealias GetRiversideToiletsFailure = (error: ErrorType) -> Void
+    
+    enum GetRiversideToiletsError: ErrorType { case Server(message: String) }
+    
+    func getRiversideToilets(success success: GetRiversideToiletsSuccess, failure: GetRiversideToiletsFailure?) {
+        
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0) ){
+        
+            let URLRequest = MapDataRouter.GetRiverSideToilets
+            let request = Alamofire.request(URLRequest).validate().responseData { result in
+
+                if let statusCode = result.response?.statusCode {
+                    //print("RiversideToilets statusCode: \(statusCode)")
+                }
+                
+                switch result.result {
+                
+                case .Success(let data):
+
+                    let json = JSON(data: data)
+                    
+                    var riversideToilets: [RiversideToiletModel] = []
+                    
+                    for (_, subJSON) in json["result"]["results"] {
+                        
+                        do {
+                            let riversideToilet = try RiversideToiletModelHelper().parse(json: subJSON)
+                            riversideToilets.append(riversideToilet)
+                        }
+                        catch(let error) { print("ERROR: \(error)") }
+                        
+                    }
+                    
+                    success(riversideToilets: riversideToilets)
+                    
+                case .Failure(let err):
+                    
+                    let error: GetRiversideToiletsError = .Server(message: err.localizedDescription)
+                    print("ERROR: \(error)")
+                    
+                    failure?(error: error)
+                    
+                }
+                
+            }
+        }
+    }
+}
+
+
+
+// MARK: - Youbike
 
 extension MapDataManager {
     
@@ -83,43 +138,44 @@ extension MapDataManager {
     
     enum GetYoubikeError: ErrorType { case Server(message: String) }
     
-    func getYoubikes(success success: GetYoubikeSuccess, failure: GetYoubikeFailure?) -> Request {
+    func getYoubikes(success success: GetYoubikeSuccess, failure: GetYoubikeFailure?) {
         
-        let URLRequest = MapDataRouter.GetYoubike
-        let request = Alamofire.request(URLRequest).validate().responseData { result in
-            
-            if let statusCode = result.response?.statusCode {
-                //print("getYoubike statusCode: \(statusCode)")
-            }
-            
-            switch result.result {
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0) ){
+        
+            let URLRequest = MapDataRouter.GetYoubike
+            let request = Alamofire.request(URLRequest).validate().responseData { result in
                 
-            case .Success(let data):
-                
-                let json = JSON(data: data)
-                
-                var youbikes: [YoubikeModel] = []
-                
-                for (_, subJSON) in json["retVal"] {
-                    
-                    do {
-                        let youbike = try YoubikeModelHelper().parse(json: subJSON)
-                        youbikes.append(youbike)
-                    }
-                    catch(let error) { print("ERROR: \(error)") }
+                if let statusCode = result.response?.statusCode {
+                    //print("getYoubike statusCode: \(statusCode)")
                 }
-                success(youbikes: youbikes)
                 
-            case .Failure(let err):
-                
-                let error: GetToiletsError = .Server(message: err.localizedDescription)
-                print("ERROR: \(error)")
-                
-                failure?(error: error)
-                
+                switch result.result {
+                    
+                case .Success(let data):
+                    
+                    let json = JSON(data: data)
+                    
+                    var youbikes: [YoubikeModel] = []
+                    
+                    for (_, subJSON) in json["retVal"] {
+                        
+                        do {
+                            let youbike = try YoubikeModelHelper().parse(json: subJSON)
+                            youbikes.append(youbike)
+                        }
+                        catch(let error) { print("ERROR: \(error)") }
+                    }
+                    success(youbikes: youbikes)
+                    
+                case .Failure(let err):
+                    
+                    let error: GetYoubikeError = .Server(message: err.localizedDescription)
+                    print("ERROR: \(error)")
+                    
+                    failure?(error: error)
+                }
             }
         }
-        return request
     }
     
     

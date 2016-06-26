@@ -11,7 +11,8 @@ import Alamofire
 import JWT
 
 enum MapDataRouter {
-    case GetToilets
+    case GetPublicToilets
+    case GetRiverSideToilets
     case GetYoubike
 }
 
@@ -23,8 +24,9 @@ extension MapDataRouter: URLRequestConvertible {
     var method: Alamofire.Method {
         
         switch self {
-            case .GetToilets: return .GET
+            case .GetRiverSideToilets: return .GET
             case .GetYoubike: return .GET
+            case .GetPublicToilets: return .GET
         }
         
     }
@@ -32,8 +34,9 @@ extension MapDataRouter: URLRequestConvertible {
     var url: NSURL {
         
         switch self {
-            case .GetToilets: return NSURL(string: "http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=fe49c753-9358-49dd-8235-1fcadf5bfd3f")!
+            case .GetRiverSideToilets: return NSURL(string: "http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=fe49c753-9358-49dd-8235-1fcadf5bfd3f")!
             case .GetYoubike: return NSURL(string: "http://data.taipei/youbike")!
+            case .GetPublicToilets: return NSURL(string: "http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=008ed7cf-2340-4bc4-89b0-e258a5573be2")!
         }
         
     }
