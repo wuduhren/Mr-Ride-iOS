@@ -230,7 +230,7 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
     
     private func setupCamera(cameraCenter: CLLocationCoordinate2D) {
         if didSetCamera == false {
-            mapView.camera = GMSCameraPosition(target: cameraCenter, zoom: 15, bearing: 0, viewingAngle: 0)
+            mapView.camera = GMSCameraPosition(target: cameraCenter, zoom: 16, bearing: 0, viewingAngle: 0)
         }
         didSetCamera = true
     }
