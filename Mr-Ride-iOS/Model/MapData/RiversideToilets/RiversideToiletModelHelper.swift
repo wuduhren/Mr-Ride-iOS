@@ -1,5 +1,5 @@
 //
-//  MrRideToiletModel.swift
+//  RiversideToiletModelHelper.swift
 //  Mr-Ride-iOS
 //
 //  Created by Eph on 2016/6/13.
@@ -10,12 +10,12 @@
 import CoreLocation
 import SwiftyJSON
 
-struct ToiletModelHelper { }
+struct RiversideToiletModelHelper { }
 
 
 // MARK: - JSONParsable
 
-extension ToiletModelHelper {
+extension RiversideToiletModelHelper {
     
     struct JSONKey {
         static let Identifier = "_id"
@@ -27,7 +27,7 @@ extension ToiletModelHelper {
     enum JSONError: ErrorType { case MissingIdentifier, MissingLatitude, MissingLongitude, MissingLocation }
     
     
-    func parse(json json: JSON) throws -> ToiletModel {
+    func parse(json json: JSON) throws -> RiversideToiletModel {
 
         guard let identifier = json[JSONKey.Identifier].string else { throw JSONError.MissingIdentifier }
         
@@ -43,14 +43,14 @@ extension ToiletModelHelper {
         let longitude = numberFormatter.numberFromString(longitudeString) as? Double ?? 0.0
 
         
-        let toilet = ToiletModel (
+        let riversideToilet = RiversideToiletModel (
             identifier: identifier,
             location: location,
             coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
             
         )
         
-        return toilet
+        return riversideToilet
     }
     
     

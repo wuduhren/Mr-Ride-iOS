@@ -360,16 +360,20 @@
                                             <constraint firstItem="gpa-iM-gOo" firstAttribute="top" secondItem="mLI-tr-cmX" secondAttribute="top" constant="12" id="uQi-Ev-OQE"/>
                                         </constraints>
                                     </view>
-                                    <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3qj-FG-FkG">
-                                        <rect key="frame" x="0.0" y="45" width="375" height="216"/>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3qj-FG-FkG">
+                                        <rect key="frame" x="0.0" y="44" width="383" height="217"/>
                                     </pickerView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="3qj-FG-FkG" secondAttribute="bottom" id="8sA-wy-60a"/>
                                     <constraint firstItem="mLI-tr-cmX" firstAttribute="top" secondItem="JTL-cS-Mo0" secondAttribute="top" id="Ukx-Yz-7cS"/>
                                     <constraint firstItem="mLI-tr-cmX" firstAttribute="leading" secondItem="JTL-cS-Mo0" secondAttribute="leading" id="Utx-QN-0vY"/>
                                     <constraint firstAttribute="trailing" secondItem="mLI-tr-cmX" secondAttribute="trailing" id="XPO-YS-EdZ"/>
                                     <constraint firstAttribute="height" constant="261" id="bha-2r-NJx"/>
+                                    <constraint firstItem="3qj-FG-FkG" firstAttribute="top" secondItem="mLI-tr-cmX" secondAttribute="bottom" id="dlv-ae-eFT"/>
+                                    <constraint firstItem="3qj-FG-FkG" firstAttribute="leading" secondItem="JTL-cS-Mo0" secondAttribute="leading" id="eh7-V1-Ejn"/>
+                                    <constraint firstAttribute="trailing" secondItem="3qj-FG-FkG" secondAttribute="trailing" id="tgq-3Q-4an"/>
                                 </constraints>
                             </view>
                         </subviews>

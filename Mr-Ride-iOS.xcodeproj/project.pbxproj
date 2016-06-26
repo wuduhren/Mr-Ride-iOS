@@ -12,8 +12,8 @@
 		F93BBFEF1CF590B800A9E661 /* SideMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93BBFEE1CF590B800A9E661 /* SideMenuCell.swift */; };
 		F93BBFF11CF5945100A9E661 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93BBFF01CF5945100A9E661 /* HistoryViewController.swift */; };
 		F946DA3E1D0E7E3D009BDAD6 /* MapDataRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F946DA3D1D0E7E3D009BDAD6 /* MapDataRouter.swift */; };
-		F946DA401D0E84A3009BDAD6 /* ToiletModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F946DA3F1D0E84A3009BDAD6 /* ToiletModelHelper.swift */; };
-		F946DA431D0E8B86009BDAD6 /* ToiletModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F946DA421D0E8B86009BDAD6 /* ToiletModel.swift */; };
+		F946DA401D0E84A3009BDAD6 /* RiversideToiletModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F946DA3F1D0E84A3009BDAD6 /* RiversideToiletModelHelper.swift */; };
+		F946DA431D0E8B86009BDAD6 /* RiversideToiletModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F946DA421D0E8B86009BDAD6 /* RiversideToiletModel.swift */; };
 		F94BF6611D18EC130006FD56 /* RootViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94BF6601D18EC130006FD56 /* RootViewManager.swift */; };
 		F953E36B1CF2DC3C00FA3F4E /* UIFont+YBKAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F953E3691CF2DC3C00FA3F4E /* UIFont+YBKAdditions.swift */; };
 		F953E36F1CF2DE8700FA3F4E /* MRColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F953E36E1CF2DE8700FA3F4E /* MRColor.swift */; };
@@ -25,6 +25,8 @@
 		F97EC5F31D011E28009FD828 /* RunDataTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97EC5F11D011E28009FD828 /* RunDataTableViewCell.xib */; };
 		F97EC5F51D01553A009FD828 /* RunDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97EC5F41D01553A009FD828 /* RunDataModel.swift */; };
 		F98436671CFAF53500A4268C /* StopWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98436661CFAF53500A4268C /* StopWatch.swift */; };
+		F989AC471D1D13A80062F65D /* PublicToiletModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F989AC461D1D13A80062F65D /* PublicToiletModel.swift */; };
+		F989AC491D1D154D0062F65D /* PublicToiletModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F989AC481D1D154D0062F65D /* PublicToiletModelHelper.swift */; };
 		F9A2EBB21CF2A79A00853CCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A2EBB11CF2A79A00853CCE /* AppDelegate.swift */; };
 		F9A2EBB41CF2A79A00853CCE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A2EBB31CF2A79A00853CCE /* HomeViewController.swift */; };
 		F9A2EBB71CF2A79A00853CCE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9A2EBB51CF2A79A00853CCE /* Main.storyboard */; };
@@ -67,8 +69,8 @@
 		F93BBFEE1CF590B800A9E661 /* SideMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuCell.swift; sourceTree = "<group>"; };
 		F93BBFF01CF5945100A9E661 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		F946DA3D1D0E7E3D009BDAD6 /* MapDataRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapDataRouter.swift; path = MapData/MapDataRouter.swift; sourceTree = "<group>"; };
-		F946DA3F1D0E84A3009BDAD6 /* ToiletModelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToiletModelHelper.swift; sourceTree = "<group>"; };
-		F946DA421D0E8B86009BDAD6 /* ToiletModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToiletModel.swift; sourceTree = "<group>"; };
+		F946DA3F1D0E84A3009BDAD6 /* RiversideToiletModelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiversideToiletModelHelper.swift; sourceTree = "<group>"; };
+		F946DA421D0E8B86009BDAD6 /* RiversideToiletModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiversideToiletModel.swift; sourceTree = "<group>"; };
 		F94BF6601D18EC130006FD56 /* RootViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewManager.swift; sourceTree = "<group>"; };
 		F953E3691CF2DC3C00FA3F4E /* UIFont+YBKAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+YBKAdditions.swift"; sourceTree = "<group>"; };
 		F953E36E1CF2DE8700FA3F4E /* MRColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MRColor.swift; sourceTree = "<group>"; };
@@ -80,6 +82,8 @@
 		F97EC5F11D011E28009FD828 /* RunDataTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RunDataTableViewCell.xib; sourceTree = "<group>"; };
 		F97EC5F41D01553A009FD828 /* RunDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunDataModel.swift; sourceTree = "<group>"; };
 		F98436661CFAF53500A4268C /* StopWatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopWatch.swift; sourceTree = "<group>"; };
+		F989AC461D1D13A80062F65D /* PublicToiletModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicToiletModel.swift; sourceTree = "<group>"; };
+		F989AC481D1D154D0062F65D /* PublicToiletModelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicToiletModelHelper.swift; sourceTree = "<group>"; };
 		F9A2EBAE1CF2A79A00853CCE /* Mr-Ride-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mr-Ride-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A2EBB11CF2A79A00853CCE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../Model/AppDelegate.swift; sourceTree = "<group>"; };
 		F9A2EBB31CF2A79A00853CCE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -159,20 +163,21 @@
 			children = (
 				F9D3E5B41D0E7C9A0096AAB9 /* MapDataManager.swift */,
 				F946DA3D1D0E7E3D009BDAD6 /* MapDataRouter.swift */,
+				F989AC451D1D06DC0062F65D /* PublicToilets */,
 				F979ED861D126A5E0012CF35 /* Youbike */,
-				F979ED851D126A480012CF35 /* Toilets */,
+				F979ED851D126A480012CF35 /* RiversideToilets */,
 			);
 			name = MapData;
 			sourceTree = "<group>";
 		};
-		F979ED851D126A480012CF35 /* Toilets */ = {
+		F979ED851D126A480012CF35 /* RiversideToilets */ = {
 			isa = PBXGroup;
 			children = (
-				F946DA421D0E8B86009BDAD6 /* ToiletModel.swift */,
-				F946DA3F1D0E84A3009BDAD6 /* ToiletModelHelper.swift */,
+				F946DA421D0E8B86009BDAD6 /* RiversideToiletModel.swift */,
+				F946DA3F1D0E84A3009BDAD6 /* RiversideToiletModelHelper.swift */,
 			);
-			name = Toilets;
-			path = MapData/Toilets;
+			name = RiversideToilets;
+			path = MapData/RiversideToilets;
 			sourceTree = "<group>";
 		};
 		F979ED861D126A5E0012CF35 /* Youbike */ = {
@@ -183,6 +188,16 @@
 			);
 			name = Youbike;
 			path = MapData/Youbike.swift;
+			sourceTree = "<group>";
+		};
+		F989AC451D1D06DC0062F65D /* PublicToilets */ = {
+			isa = PBXGroup;
+			children = (
+				F989AC461D1D13A80062F65D /* PublicToiletModel.swift */,
+				F989AC481D1D154D0062F65D /* PublicToiletModelHelper.swift */,
+			);
+			name = PublicToilets;
+			path = MapData/PublicToilets;
 			sourceTree = "<group>";
 		};
 		F9A2EBA51CF2A79A00853CCE = {
@@ -462,6 +477,7 @@
 				F979ED821D0FEDC60012CF35 /* YoubikeDataModel.swift in Sources */,
 				F9F7D6801D07BFB20060BFD6 /* LoginViewController.swift in Sources */,
 				F9616C6B1D084F9900343213 /* CalorieCalculator.swift in Sources */,
+				F989AC491D1D154D0062F65D /* PublicToiletModelHelper.swift in Sources */,
 				F9CD4C0B1CFD60F500E251AC /* Entity+CoreDataProperties.swift in Sources */,
 				F94BF6611D18EC130006FD56 /* RootViewManager.swift in Sources */,
 				F97EC5F51D01553A009FD828 /* RunDataModel.swift in Sources */,
@@ -478,15 +494,16 @@
 				F9D3E5B51D0E7C9A0096AAB9 /* MapDataManager.swift in Sources */,
 				F9E55F4F1CF42D1100402F96 /* RootViewController.swift in Sources */,
 				F9F7D6831D07C0650060BFD6 /* MrRideUserManager.swift in Sources */,
+				F989AC471D1D13A80062F65D /* PublicToiletModel.swift in Sources */,
 				F9F7D67C1D07BE6D0060BFD6 /* MrRideFacebook.swift in Sources */,
 				F9D3E5AC1D0972D30096AAB9 /* RunDataTableViewGapCell.swift in Sources */,
 				F979ED841D0FF57B0012CF35 /* YoubikeModelHelper.swift in Sources */,
 				F9E55F461CF3E8F200402F96 /* SideMenuTableViewController.swift in Sources */,
 				F953E36F1CF2DE8700FA3F4E /* MRColor.swift in Sources */,
 				F93BBFF11CF5945100A9E661 /* HistoryViewController.swift in Sources */,
-				F946DA401D0E84A3009BDAD6 /* ToiletModelHelper.swift in Sources */,
+				F946DA401D0E84A3009BDAD6 /* RiversideToiletModelHelper.swift in Sources */,
 				F9A2EBB21CF2A79A00853CCE /* AppDelegate.swift in Sources */,
-				F946DA431D0E8B86009BDAD6 /* ToiletModel.swift in Sources */,
+				F946DA431D0E8B86009BDAD6 /* RiversideToiletModel.swift in Sources */,
 				F946DA3E1D0E7E3D009BDAD6 /* MapDataRouter.swift in Sources */,
 				F9F7D67A1D07BE170060BFD6 /* Facebook.swift in Sources */,
 				F93BBFEF1CF590B800A9E661 /* SideMenuCell.swift in Sources */,
