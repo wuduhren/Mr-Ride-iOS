@@ -8,6 +8,7 @@
 
 import UIKit
 import FBSDKLoginKit
+import Amplitude_iOS
 
 class LoginViewController: UIViewController {
     
@@ -88,6 +89,8 @@ extension LoginViewController {
     
     @IBAction func loginWithFacebook(sender: UIButton) {
         
+        Amplitude.instance().logEvent("select_log_in_facebook_in_loginView")
+        
         if !weightAndHeightDidSet() {
             return
         }
@@ -141,9 +144,13 @@ extension LoginViewController: UITextFieldDelegate {
         
         if textField === weightTextField {
             weightTextField.text = ""
+            
+            Amplitude.instance().logEvent("select_weight_text_field_in_loginView")
         }
         else if textField === heightTextField {
             heightTextField.text = ""
+            
+            Amplitude.instance().logEvent("select_height_text_field_in_loginView")
         }
     }
     
@@ -216,7 +223,8 @@ extension LoginViewController {
         setRootViewController()
         setup()
         setupTextField()
-        //print("LoginViewController viewDidLoad at \(self)")
+        
+        Amplitude.instance().logEvent("view_in_loginView")
     }
     
     private func setRootViewController() {

@@ -19,6 +19,7 @@ class RunDataModel {
         var calories: Double?
         var time: String?
         var polyline: NSData?
+        var objectID: NSManagedObjectID?
     }
     
     private let context = DataController().managedObjectContext
@@ -41,6 +42,7 @@ class RunDataModel {
                 tempStruct.calories = eachData.valueForKey("calories")! as? Double
                 tempStruct.time = eachData.valueForKey("time")! as? String
                 tempStruct.polyline = eachData.valueForKey("polyline")! as? NSData
+                tempStruct.objectID = eachData.objectID
                 runDataStructArray.append(tempStruct)
             }
             

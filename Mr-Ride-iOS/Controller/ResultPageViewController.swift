@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Amplitude_iOS
 
 class ResultPageViewController: UIViewController {
     
@@ -103,6 +104,8 @@ extension ResultPageViewController {
         setupNavigationItem()
         drawPolyline()
         calculateCameraCenter()
+        
+        Amplitude.instance().logEvent("view_in_record_resultPage", withEventProperties: ["record_id": "\(runDataStruct.objectID)"])
     }
 }
 
@@ -206,5 +209,7 @@ extension ResultPageViewController {
     @IBAction func closeButtonToHomePage(sender: UIBarButtonItem) {
         delegate?.delegate?.showLabels()
         self.dismissViewControllerAnimated(true, completion: {})
+        
+        Amplitude.instance().logEvent("select_close_in_history", withEventProperties: ["record_id": "\(runDataStruct.objectID)"])
     }
 }

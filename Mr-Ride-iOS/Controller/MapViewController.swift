@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import Amplitude_iOS
 
 class MapViewController: UIViewController {
     
@@ -81,6 +82,7 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
         switch markerStatus {
             
         case .Youbikes:
+            
             guard let youbikeIndex = marker.userData as? Int else { return false }
             districtLabel.hidden = false
             districtLabel.text = youbikes[youbikeIndex].district
@@ -94,7 +96,10 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
             marker.iconView.backgroundColor = .MRLightblueColor()
             tempMarker = marker
             
+            Amplitude.instance().logEvent("select_youbike_map", withEventProperties: ["youbike_id": "\( youbikes[youbikeIndex].identifier)"])
+            
         case .RiversideToilets:
+            
             guard let riversideToiletIndex = marker.userData as? Int else { return false }
             districtLabel.hidden = true
             nameLabel.text = riversideToilets[riversideToiletIndex].location
@@ -103,7 +108,10 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
             marker.iconView.backgroundColor = .MRLightblueColor()
             tempMarker = marker
             
+            Amplitude.instance().logEvent("select_riverside_toilet_map", withEventProperties: ["riverside_toilet_id": "\(riversideToilets[riversideToiletIndex].identifier)"])
+            
         case .PublicToilets:
+            
             guard let publicToiletIndex = marker.userData as? Int else { return false }
             districtLabel.hidden = false
             districtLabel.text = publicToilets[publicToiletIndex].district
@@ -116,6 +124,8 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
             setupEstimatedArrivalTimeLabel(marker.position)
             marker.iconView.backgroundColor = .MRLightblueColor()
             tempMarker = marker
+            
+            Amplitude.instance().logEvent("select_public_toilet_map", withEventProperties: ["public_toilet_id": "\(publicToilets[publicToiletIndex].identifier)"])
 
         }
         
@@ -184,7 +194,7 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
     
     private func setupYoubikeMarkers() {
         mapView.clear()
-        
+
         var youbikeIndex = 0
         for youbike in youbikes {
             let  position = youbike.coordinate
@@ -452,12 +462,15 @@ extension MapViewController: UIPickerViewDataSource,UIPickerViewDelegate {
             case 0:
                 markerStatus = .Youbikes
                 setupYoubikeMarkers()
+                Amplitude.instance().logEvent("select_look_for_in_youbike_map")
             case 1:
                 markerStatus = .RiversideToilets
                 setupRiversideToiletMarkers()
+                Amplitude.instance().logEvent("select_look_for_in_riverside_toilet_map")
             case 2:
                 markerStatus = .PublicToilets
                 setupPublicToiletMarkers()
+                Amplitude.instance().logEvent("select_look_for_in_public_toilet_map")
             default: break
         }
         

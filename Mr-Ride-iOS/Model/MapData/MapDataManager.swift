@@ -35,7 +35,7 @@ extension MapDataManager {
             let request = Alamofire.request(URLRequest).validate().responseData { result in
                 
                 if let statusCode = result.response?.statusCode {
-                    print("getPublicToilets statusCode: \(statusCode)")
+                    //print("getPublicToilets statusCode: \(statusCode)")
                 }
                 
                 switch result.result {

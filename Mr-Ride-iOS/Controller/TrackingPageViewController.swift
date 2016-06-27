@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Amplitude_iOS
 
 class TrackingPageViewController: UIViewController {
     
@@ -106,8 +107,13 @@ extension TrackingPageViewController {
         if buttonStatus == .notCounting {
             buttonStatus = .counting
             
+            Amplitude.instance().logEvent("select_start_in_trackingPage")
+            
         } else {
             buttonStatus = .notCounting
+            
+            Amplitude.instance().logEvent("select_pause_in_trackingPage")
+
         }
         
     }
@@ -119,11 +125,15 @@ extension TrackingPageViewController {
         stopwatch.stop()
         saveData()
         performSegueWithIdentifier("ResultPageViewControllerSegue", sender: self)
+        
+        Amplitude.instance().logEvent("select_finish_in_trackingPage")
     }
     
     @IBAction func cancelButtonToHomePage(sender: UIBarButtonItem) {
         delegate?.showLabels()
         self.dismissViewControllerAnimated(true, completion: {})
+        Amplitude.instance().logEvent("select_cancel_in_trackingPage")
+        
     }
     
     func updateElapsedTimeLabel(timer: NSTimer) {
@@ -163,7 +173,7 @@ extension TrackingPageViewController: CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let currentLocation = locations.first {
             
-            mapView.camera = GMSCameraPosition(target: currentLocation.coordinate, zoom: 16, bearing: 0, viewingAngle: 0)
+            mapView.camera = GMSCameraPosition(target: currentLocation.coordinate, zoom: 17, bearing: 0, viewingAngle: 0)
             
             if locationArray.count > 0 && buttonStatus == .counting {
                 distance += currentLocation.distanceFromLocation(locationArray.last!)
@@ -234,6 +244,9 @@ extension TrackingPageViewController {
     private func setupMap() {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
+        //locationManager.distanceFilter = 10
+        locationManager.activityType = .Fitness
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
 }
 
@@ -246,7 +259,8 @@ extension TrackingPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        //print("TrackingPageViewController viewDidLoad at \(self)")
+        Amplitude.instance().logEvent("view_in_trackingPage")
+
     }
     
     override func viewWillAppear(animated: Bool) {

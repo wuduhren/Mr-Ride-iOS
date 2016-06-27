@@ -8,6 +8,7 @@
 
 import UIKit
 import FBSDKLoginKit
+import Amplitude_iOS
 
 
 class SideMenuTableViewController: UITableViewController {
@@ -81,6 +82,7 @@ extension SideMenuTableViewController {
 
     func facebookLogout(sender: UIButton) {
         FBSDKLoginManager().logOut()
+        Amplitude.instance().logEvent("select_logout_in_menu")
         
         RootViewManager.sharedManager.changeRootViewController(
             viewController: LoginViewController.controller(),
@@ -88,7 +90,6 @@ extension SideMenuTableViewController {
             success: nil,
             failure: nil
         )
-        //self.dismissViewControllerAnimated(true, completion: {})
     }
 }
 
@@ -103,7 +104,8 @@ extension SideMenuTableViewController {
         super.viewDidLoad()
         setup()
         setupbutton()
-        //print("SideMenuTableViewController viewDidLoad \(self)")
+        
+        Amplitude.instance().logEvent("view_in_menu")
     }
 }
 
