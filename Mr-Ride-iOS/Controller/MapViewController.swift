@@ -194,6 +194,7 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
     
     private func setupYoubikeMarkers() {
         mapView.clear()
+        //youbikes = youbikes.filter(isNearCurrentLocation)
 
         var youbikeIndex = 0
         for youbike in youbikes {
@@ -260,6 +261,17 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
 
         return distanceInMeters < 500
     }
+    
+    private func isNearCurrentLocation(youbike: YoubikeModel) -> Bool {
+        
+        let youbikeCoordinateLocation = CLLocation(latitude: youbike.coordinate.latitude, longitude: youbike.coordinate.longitude)
+        
+        if currentLocation == nil { return false }
+        let distanceInMeters = youbikeCoordinateLocation.distanceFromLocation(currentLocation!)
+        
+        return distanceInMeters < 1500
+    }
+
 
 }
 
