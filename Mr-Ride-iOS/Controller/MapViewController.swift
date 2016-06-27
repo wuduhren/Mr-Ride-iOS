@@ -59,7 +59,7 @@ class MapViewController: UIViewController {
     
     
     deinit {
-        //print("MapViewController deinit at \(self)")
+        print("MapViewController deinit at \(self)")
     }
 
 }
@@ -75,7 +75,7 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
         
         //close picker window
         pickerViewWindow.hidden = true
-        lookForButton.titleLabel?.text = templookForButtonText
+        lookForButton.setTitle(templookForButtonText, forState: .Normal)
         
         tempMarker?.iconView.backgroundColor = .whiteColor()
         
@@ -163,9 +163,9 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
     
     private func setupPublicToiletMarkers() {
         mapView.clear()
-        
+        publicToilets = publicToilets.filter(isNearCurrentLocation)
         var publicToiletIndex = 0
-        for publicToilet in publicToilets.filter(isNearCurrentLocation) {
+        for publicToilet in publicToilets {
             let  position = publicToilet.coordinate
             let marker = GMSMarker(position: position)
             marker.iconView = getMarkerIconImage("icon-toilet")
@@ -194,6 +194,7 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
     
     private func setupYoubikeMarkers() {
         mapView.clear()
+        //youbikes = youbikes.filter(isNearCurrentLocation)
 
         var youbikeIndex = 0
         for youbike in youbikes {
@@ -240,7 +241,7 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
     
     private func setupCamera(cameraCenter: CLLocationCoordinate2D) {
         if didSetCamera == false {
-            mapView.camera = GMSCameraPosition(target: cameraCenter, zoom: 16, bearing: 0, viewingAngle: 0)
+            mapView.camera = GMSCameraPosition(target: cameraCenter, zoom: 18, bearing: 0, viewingAngle: 0)
         }
         didSetCamera = true
     }
@@ -257,12 +258,20 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
         
         if currentLocation == nil { return false }
         let distanceInMeters = publicToiletCoordinateLocation.distanceFromLocation(currentLocation!)
-        
-//        if let distanceInMeters = publicToiletCoordinateLocation.distanceFromLocation(currentLocation?) {
-//            return distanceInMeters < 500
-//        }
+
         return distanceInMeters < 500
     }
+    
+    private func isNearCurrentLocation(youbike: YoubikeModel) -> Bool {
+        
+        let youbikeCoordinateLocation = CLLocation(latitude: youbike.coordinate.latitude, longitude: youbike.coordinate.longitude)
+        
+        if currentLocation == nil { return false }
+        let distanceInMeters = youbikeCoordinateLocation.distanceFromLocation(currentLocation!)
+        
+        return distanceInMeters < 1500
+    }
+
 
 }
 
@@ -370,7 +379,6 @@ extension MapViewController {
 extension MapViewController {
     private func setup() {
         infoView.hidden = true
-        lookForButton.titleLabel?.adjustsFontSizeToFitWidth = true
         setupPickerView()
     }
 }
@@ -386,7 +394,8 @@ extension MapViewController {
         setupMap()
         getData()
         setup()
-        //print("MapViewController viewDidLoad at \(self)")
+        lookForButton.setTitle("Youbike", forState: .Normal)
+        print(lookForButton.titleLabel?.text)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -429,7 +438,8 @@ extension MapViewController {
     
     @IBAction func pickerViewWindowDoneButton(sender: UIButton) {
         pickerViewWindow.hidden = true
-        lookForButton.titleLabel?.text = templookForButtonText
+        //lookForButton.titleLabel?.text = templookForButtonText
+        lookForButton.setTitle(templookForButtonText, forState: .Normal)
     }
     
     @IBAction func pickerViewWindowCancelButton(sender: UIButton) {
