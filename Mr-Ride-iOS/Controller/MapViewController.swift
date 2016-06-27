@@ -59,7 +59,7 @@ class MapViewController: UIViewController {
     
     
     deinit {
-        //print("MapViewController deinit at \(self)")
+        print("MapViewController deinit at \(self)")
     }
 
 }
