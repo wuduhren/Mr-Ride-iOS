@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Amplitude_iOS
 
 class TrackingPageViewController: UIViewController {
     
@@ -106,8 +107,13 @@ extension TrackingPageViewController {
         if buttonStatus == .notCounting {
             buttonStatus = .counting
             
+            Amplitude.instance().logEvent("select_start_in_trackingPage")
+            
         } else {
             buttonStatus = .notCounting
+            
+            Amplitude.instance().logEvent("select_pause_in_trackingPage")
+
         }
         
     }
@@ -119,11 +125,15 @@ extension TrackingPageViewController {
         stopwatch.stop()
         saveData()
         performSegueWithIdentifier("ResultPageViewControllerSegue", sender: self)
+        
+        Amplitude.instance().logEvent("select_finish_in_trackingPage")
     }
     
     @IBAction func cancelButtonToHomePage(sender: UIBarButtonItem) {
         delegate?.showLabels()
         self.dismissViewControllerAnimated(true, completion: {})
+        Amplitude.instance().logEvent("select_cancel_in_trackingPage")
+        
     }
     
     func updateElapsedTimeLabel(timer: NSTimer) {
@@ -246,7 +256,8 @@ extension TrackingPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        //print("TrackingPageViewController viewDidLoad at \(self)")
+        Amplitude.instance().logEvent("view_in_trackingPage")
+
     }
     
     override func viewWillAppear(animated: Bool) {

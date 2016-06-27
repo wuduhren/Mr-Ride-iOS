@@ -8,6 +8,7 @@
 
 import UIKit
 import Charts
+import Amplitude_iOS
 
 
 class HomeViewController: UIViewController {
@@ -46,6 +47,8 @@ extension HomeViewController {
         TrackingPageNavigationBar.modalPresentationStyle = .OverCurrentContext
         self.presentViewController(TrackingPageNavigationBar, animated: true, completion: nil)
         hideLabels()
+        
+        Amplitude.instance().logEvent("select_ride_in_homePage")
     }
     
     func hideLabels() {
@@ -208,6 +211,13 @@ extension HomeViewController {
         super.viewDidLoad()
         setup()
         //print("HomeViewController viewDidLoad at \(self)")
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        
+        // Amplitude Log
+        Amplitude.instance().logEvent("view_in_home")
     }
     
 }

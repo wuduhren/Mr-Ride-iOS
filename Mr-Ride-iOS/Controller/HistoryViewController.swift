@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import Charts
 import Crashlytics
+import Amplitude_iOS
 
 
 class HistoryViewController: UIViewController {
@@ -46,8 +47,8 @@ extension HistoryViewController {
         super.viewDidLoad()
         setupBackground()
         setupTableView()
-        //print("HistoryViewController viewDidLoad at \(self)")
-        //Crashlytics.sharedInstance().crash()
+
+        Amplitude.instance().logEvent("view_in_historyPage")
 
     }
     
@@ -136,8 +137,12 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
         for header in headers {
             resultPageViewController.runDataStruct = runDataSortedByTime[header]![indexPath.row - 1]
             resultPageViewController.previousPage = .HistoryViewController
+            
+            Amplitude.instance().logEvent("view_in_historyPage", withEventProperties: ["record_id": "\(runDataSortedByTime[header]![indexPath.row - 1].objectID)"] )
         }
         navigationController?.pushViewController(resultPageViewController, animated: true)
+        
+        
     }
 }
 

@@ -56,10 +56,13 @@ extension RootViewController: SideMenuDelegate {
             
         case "Home":
             setupHomeViewController()
+            Amplitude.instance().logEvent("select_home_in_menu")
         case "History":
             setupHistoryViewController()
+            Amplitude.instance().logEvent("select_history_in_menu")
         case "Map":
             setupMapViewController()
+            Amplitude.instance().logEvent("select_map_in_menu")
         default: break
             
         }
@@ -143,8 +146,6 @@ extension RootViewController {
         
         let builder = GAIDictionaryBuilder.createScreenView()
         tracker.send(builder.build() as [NSObject : AnyObject])
-        
-        Amplitude.instance().logEvent("rootViewController viewWillAppear")
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
