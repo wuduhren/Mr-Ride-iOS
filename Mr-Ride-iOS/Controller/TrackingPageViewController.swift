@@ -173,7 +173,7 @@ extension TrackingPageViewController: CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let currentLocation = locations.first {
             
-            mapView.camera = GMSCameraPosition(target: currentLocation.coordinate, zoom: 16, bearing: 0, viewingAngle: 0)
+            mapView.camera = GMSCameraPosition(target: currentLocation.coordinate, zoom: 17, bearing: 0, viewingAngle: 0)
             
             if locationArray.count > 0 && buttonStatus == .counting {
                 distance += currentLocation.distanceFromLocation(locationArray.last!)
@@ -244,6 +244,9 @@ extension TrackingPageViewController {
     private func setupMap() {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
+        //locationManager.distanceFilter = 10
+        locationManager.activityType = .Fitness
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
 }
 
