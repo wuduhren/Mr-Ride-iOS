@@ -159,7 +159,7 @@ extension HomeViewController {
         averageSpeedLabelText = averageSpeedLabelText / Double(runDataStructArray.count)
         totalCountLabelText = runDataStructArray.count
         
-        totalDistance.text = "\(Int(totalDistanceLabelText)) km"
+        totalDistance.text = NSString(format:"%.1f km", totalDistanceLabelText / 1000) as String
         totalCount.text = "\(totalCountLabelText) times"
         averageSpeed.text = "\(round(averageSpeedLabelText)) km/h"
         totalDistance.adjustsFontSizeToFitWidth = true
@@ -216,8 +216,7 @@ extension HomeViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         
-        // Amplitude Log
-        Amplitude.instance().logEvent("view_in_home")
+        Amplitude.instance().logEvent("view_in_homePage")
     }
     
 }

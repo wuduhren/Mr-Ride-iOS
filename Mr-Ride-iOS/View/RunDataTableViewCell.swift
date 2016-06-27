@@ -39,7 +39,7 @@ extension RunDataTableViewCell {
         dateFormatter.dateFormat = "dd"
         
         date.text = "\(dateFormatter.stringFromDate(runDataStruct.date!))"
-        distance.text = "\(round(runDataStruct.distance!)) km"
+        distance.text = NSString(format:"%.2f km", runDataStruct.distance! / 1000) as String
         time.text = "\(runDataStruct.time!)"
     }
 }

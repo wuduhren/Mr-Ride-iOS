@@ -75,7 +75,7 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
         
         //close picker window
         pickerViewWindow.hidden = true
-        lookForButton.titleLabel?.text = templookForButtonText
+        lookForButton.setTitle(templookForButtonText, forState: .Normal)
         
         tempMarker?.iconView.backgroundColor = .whiteColor()
         
@@ -370,7 +370,7 @@ extension MapViewController {
 extension MapViewController {
     private func setup() {
         infoView.hidden = true
-        lookForButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        //lookForButton.titleLabel?.adjustsFontSizeToFitWidth = true
         setupPickerView()
     }
 }
@@ -386,7 +386,8 @@ extension MapViewController {
         setupMap()
         getData()
         setup()
-        //print("MapViewController viewDidLoad at \(self)")
+        lookForButton.setTitle("Youbike", forState: .Normal)
+        print(lookForButton.titleLabel?.text)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -429,7 +430,8 @@ extension MapViewController {
     
     @IBAction func pickerViewWindowDoneButton(sender: UIButton) {
         pickerViewWindow.hidden = true
-        lookForButton.titleLabel?.text = templookForButtonText
+        //lookForButton.titleLabel?.text = templookForButtonText
+        lookForButton.setTitle(templookForButtonText, forState: .Normal)
     }
     
     @IBAction func pickerViewWindowCancelButton(sender: UIButton) {

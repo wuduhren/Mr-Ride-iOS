@@ -86,6 +86,8 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
                 cellStatus = .gap
                 
                 let cell = tableView.dequeueReusableCellWithIdentifier("RunDataTableViewGapCell", forIndexPath: indexPath) as! RunDataTableViewGapCell
+                cell.selectionStyle = .None
+                cell.userInteractionEnabled = false
                 return cell
                 
             } else {
@@ -94,6 +96,7 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
                 let cell = tableView.dequeueReusableCellWithIdentifier("RunDataTableViewCell", forIndexPath: indexPath) as! RunDataTableViewCell
                 cell.runDataStruct = runDataSortedByTime[header]![indexPath.row - 1]
                 cell.setup()
+                cell.selectionStyle = .None
                 return cell
             }
         }
