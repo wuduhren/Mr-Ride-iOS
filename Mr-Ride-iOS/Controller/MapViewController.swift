@@ -370,7 +370,6 @@ extension MapViewController {
 extension MapViewController {
     private func setup() {
         infoView.hidden = true
-        //lookForButton.titleLabel?.adjustsFontSizeToFitWidth = true
         setupPickerView()
     }
 }
