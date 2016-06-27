@@ -163,9 +163,9 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
     
     private func setupPublicToiletMarkers() {
         mapView.clear()
-        
+        publicToilets = publicToilets.filter(isNearCurrentLocation)
         var publicToiletIndex = 0
-        for publicToilet in publicToilets.filter(isNearCurrentLocation) {
+        for publicToilet in publicToilets {
             let  position = publicToilet.coordinate
             let marker = GMSMarker(position: position)
             marker.iconView = getMarkerIconImage("icon-toilet")
@@ -257,10 +257,7 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
         
         if currentLocation == nil { return false }
         let distanceInMeters = publicToiletCoordinateLocation.distanceFromLocation(currentLocation!)
-        
-//        if let distanceInMeters = publicToiletCoordinateLocation.distanceFromLocation(currentLocation?) {
-//            return distanceInMeters < 500
-//        }
+
         return distanceInMeters < 500
     }
 
