@@ -196,12 +196,7 @@ extension TrackingPageViewController: CLLocationManagerDelegate {
             } else {
                 speedAverageLabel.text = "\(round(currentLocation.speed * 3.6)) km / h"
             }
-            
-            if getCaloriesBurned() < 0 {
-                caloriesLabel.text = "0 kcal"
-            } else {
-               caloriesLabel.text = NSString(format:"%.2f kcal",getCaloriesBurned()) as String
-            }
+            caloriesLabel.text = NSString(format:"%.2f kcal",getCaloriesBurned()) as String
             
             
             
@@ -322,7 +317,9 @@ extension TrackingPageViewController {
         }
         
         for location in arrayForSpeed {
-            averageSpeed += Double(location.speed)
+            if Double(location.speed) > 0 {
+                averageSpeed += Double(location.speed)
+            }
         }
         averageSpeed = averageSpeed / Double(arrayForSpeed.count)
         return averageSpeed
@@ -332,23 +329,28 @@ extension TrackingPageViewController {
         let calorieCalculator = CalorieCalculator()
         let defaultName = NSUserDefaults.standardUserDefaults()
         guard let weight = defaultName.valueForKey("weight") as? Double else { return 0 }
-        let kCalBurned = calorieCalculator.kiloCalorieBurned(.Bike, speed: getAverageSpeed(), weight: weight, time: totalInterval/3600)
+        var kCalBurned = calorieCalculator.kiloCalorieBurned(.Bike, speed: getAverageSpeed(), weight: weight, time: totalInterval/3600)
+        if kCalBurned < 0 { kCalBurned = 0}
         return kCalBurned
     }
     
     private func saveData() {
         let context = DataController().managedObjectContext
-        let entity = NSEntityDescription.insertNewObjectForEntityForName("Entity", inManagedObjectContext: context)
-        entity.setValue(NSDate(), forKey: "date")
-        entity.setValue(distance, forKey: "distance")
-        entity.setValue(getAverageSpeed(), forKey: "speed")
-        entity.setValue(getCaloriesBurned(), forKey: "calories")
-        entity.setValue(timeLabel.text, forKey: "time")
-        entity.setValue(getPolylineData(), forKey: "polyline")
-        do {
-            try context.save()
-        } catch {
-            fatalError("Failure to save context.")
+        if let entity = NSEntityDescription.insertNewObjectForEntityForName("Entity", inManagedObjectContext: context) as? Entity {
+            
+            entity.date = NSDate()
+            entity.distance = distance
+            entity.speed = getAverageSpeed()
+            entity.calories = getCaloriesBurned()
+            entity.time = timeLabel.text
+            entity.polyline = getPolylineData()
+        }
+        context.performBlock {
+            do {
+                try context.save()
+            } catch {
+                fatalError("Failure to save context.")
+            }
         }
     }
     

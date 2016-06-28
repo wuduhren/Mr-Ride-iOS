@@ -395,7 +395,6 @@ extension MapViewController {
         getData()
         setup()
         lookForButton.setTitle("Youbike", forState: .Normal)
-        print(lookForButton.titleLabel?.text)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -434,11 +433,11 @@ extension MapViewController {
     
     @IBAction func lookForButton(sender: UIButton) {
         pickerViewWindow.hidden = false
+        infoView.hidden = true
     }
     
     @IBAction func pickerViewWindowDoneButton(sender: UIButton) {
         pickerViewWindow.hidden = true
-        //lookForButton.titleLabel?.text = templookForButtonText
         lookForButton.setTitle(templookForButtonText, forState: .Normal)
     }
     
