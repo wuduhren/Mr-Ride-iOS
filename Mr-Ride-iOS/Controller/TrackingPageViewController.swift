@@ -189,14 +189,14 @@ extension TrackingPageViewController: CLLocationManagerDelegate {
             }
             
             //update labels
-            distanceLabel.text = "\(round(distance)) m"
+            distanceLabel.text = NSString(format:"%.1f m", distance) as String
             
             if currentLocation.speed < 0 {
                 speedAverageLabel.text = "0 km / h"
             } else {
-                speedAverageLabel.text = "\(round(currentLocation.speed * 3.6)) km / h"
+                speedAverageLabel.text = NSString(format:"%.1f km / h", currentLocation.speed * 3.6) as String
             }
-            caloriesLabel.text = NSString(format:"%.2f kcal",getCaloriesBurned()) as String
+            caloriesLabel.text = NSString(format:"%.2f kcal", getCaloriesBurned()) as String
             
             
             
