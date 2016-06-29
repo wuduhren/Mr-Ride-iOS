@@ -19,6 +19,8 @@ PODS:
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.11.0):
     - FBSDKCoreKit
+  - FBSDKShareKit (4.11.0):
+    - FBSDKCoreKit
   - Google/Analytics (2.0.4):
     - Google/Core
     - GoogleAnalytics (~> 3.12)
@@ -53,6 +55,7 @@ DEPENDENCIES:
   - Charts/Realm (~> 2.2)
   - Crashlytics (= 3.7)
   - FBSDKLoginKit (= 4.11)
+  - FBSDKShareKit (= 4.11)
   - Google/Analytics
   - GoogleMaps (= 1.13)
   - JSONWebToken (= 1.4.3)
@@ -70,6 +73,7 @@ SPEC CHECKSUMS:
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   FBSDKCoreKit: 686ac982723a14ec9ddb85e2f81235d7706c891b
   FBSDKLoginKit: bade9fc78277764149ccc5bfaadbf13c83175c6a
+  FBSDKShareKit: 2d1746144cfc8a9dbbd24997c34ee0471be51b6a
   Google: d0932824c5b97c96be489aa6f4e8cd6c294d637d
   GoogleAnalytics: 9be1afdb8deeac4bb5f13ca7f7d3b9db2a1f43dc
   GoogleInterchangeUtilities: 427382e42d8a340038bec37c6fdfd316e14b5fa2
@@ -84,6 +88,6 @@ SPEC CHECKSUMS:
   SideMenu: e100593c13de401c4dafb3ecb675b8a88533077d
   SwiftyJSON: 8d6b61a70277ef2a5d710d372e06e7e2d87fb9e4
 
-PODFILE CHECKSUM: 4b55f0aeda21e7b723911ca82ac839331491a51b
+PODFILE CHECKSUM: 88c80ca5519e625bb6ed551466ffbb3fab175a3f
 
 COCOAPODS: 1.0.0.rc.1

@@ -163,7 +163,13 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
     
     private func setupPublicToiletMarkers() {
         mapView.clear()
+        
         publicToilets = publicToilets.filter(isNearCurrentLocation)
+        
+        if publicToilets.count == 0 {
+            ErrorAlert("Give Me a Minute", errorMessage: "Internet Connection is a Little Weak")
+        }
+        
         var publicToiletIndex = 0
         for publicToilet in publicToilets {
             let  position = publicToilet.coordinate
@@ -178,6 +184,10 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
     
     private func setupRiversideToiletMarkers() {
         mapView.clear()
+        
+        if riversideToilets.count == 0 {
+            ErrorAlert("Give Me a Minute", errorMessage: "Internet Connection is a Little Weak")
+        }
         
         var riversideToiletIndex = 0
         for riversideToilet in riversideToilets {
@@ -197,6 +207,10 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
         //youbikes = youbikes.filter(isNearCurrentLocation)
 
         var youbikeIndex = 0
+        if youbikes.count == 0 {
+            ErrorAlert("Give Me a Minute", errorMessage: "Internet Connection is a Little Weak")
+        }
+        
         for youbike in youbikes {
             let  position = youbike.coordinate
             let marker = GMSMarker(position: position)
@@ -380,6 +394,24 @@ extension MapViewController {
     private func setup() {
         infoView.hidden = true
         setupPickerView()
+    }
+    
+    private func ErrorAlert(errorTitle: String, errorMessage: String) {
+        
+        let alert = UIAlertController(
+            title: NSLocalizedString(errorTitle, comment: ""),
+            message: errorMessage,
+            preferredStyle: .Alert
+        )
+        
+        let ok = UIAlertAction(
+            title: NSLocalizedString("OK", comment: ""),
+            style: .Cancel,
+            handler: nil
+        )
+        
+        alert.addAction(ok)
+        presentViewController(alert, animated: true, completion: nil)
     }
 }
 

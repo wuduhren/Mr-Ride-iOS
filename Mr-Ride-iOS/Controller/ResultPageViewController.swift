@@ -9,10 +9,14 @@
 import UIKit
 import CoreData
 import Amplitude_iOS
+import Social
 
 class ResultPageViewController: UIViewController {
     
     weak var delegate: TrackingPageViewController?
+    
+    @IBOutlet weak var ShareToFacebookButton: UIBarButtonItem!
+    
     
     @IBOutlet weak var distanceLabel: UILabel!
     
@@ -73,6 +77,13 @@ extension ResultPageViewController {
         navigationController?.navigationBar.titleTextAttributes =
             ([NSFontAttributeName: UIFont.mrTextStyle13Font(),
                 NSForegroundColorAttributeName: UIColor.whiteColor()])
+        
+        //Share button
+        ShareToFacebookButton.setTitleTextAttributes([
+            NSFontAttributeName: UIFont.mrTextStyle13Font(),
+            NSForegroundColorAttributeName: UIColor.whiteColor()
+            ],forState: UIControlState.Normal
+        )
     }
     
     private func setupBackground() {
@@ -165,6 +176,28 @@ extension ResultPageViewController {
 }
 
 
+// MARK: - Share
+
+extension ResultPageViewController {
+    
+    @IBAction func fbShareAction(sender: AnyObject) {
+        //create screenShot
+        let layer = UIApplication.sharedApplication().keyWindow!.layer
+        let scale = UIScreen.mainScreen().scale
+        UIGraphicsBeginImageContextWithOptions(layer.frame.size, false, scale)
+
+        layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        let screenShot = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        //Share
+        let facebookSharingController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+        facebookSharingController.addImage(screenShot)
+        self.presentViewController(facebookSharingController, animated: true, completion: nil)
+    }
+}
+
+
+
 
 // MARK: - Data
 
@@ -177,8 +210,8 @@ extension ResultPageViewController {
             runDataStruct = runDataStructArray.last!
         }
         date = runDataStruct.date!
-        distanceLabel.text = "\(round(runDataStruct.distance!)) m"
-        speedAverageLabel.text = "\(round(runDataStruct.speed!)) km / h"
+        distanceLabel.text = NSString(format:"%.1f m", runDataStruct.distance!) as String
+        speedAverageLabel.text = NSString(format:"%.1f km / h", runDataStruct.speed! * 3.6) as String
         caloriesLabel.text = NSString(format:"%.2f kcal", runDataStruct.calories!) as String
         timeLabel.text = runDataStruct.time
         polylineDataNSData = runDataStruct.polyline
