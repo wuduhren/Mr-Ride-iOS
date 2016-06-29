@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import Amplitude_iOS
+import FBSDKCoreKit
 
 class ResultPageViewController: UIViewController {
     
@@ -165,6 +166,36 @@ extension ResultPageViewController {
 }
 
 
+// MARK: - Share
+
+extension ResultPageViewController {
+    
+    //  Created by howard hsien on 2016/5/25.
+    //  Copyright © 2016年 AppWorks School Hsien. All rights reserved.
+    
+    @IBAction func fbShareAction(sender: AnyObject) {
+        guard let navHeight = self.navigationController?.navigationBar.frame.height else{ return }
+        let screenshotSize = CGSize(width: view.bounds.width , height: view.frame.origin.y + view.frame.height + 5)
+        UIGraphicsBeginImageContext(screenshotSize)
+        self.view.drawViewHierarchyInRect(CGRectMake(0,-navHeight,view.frame.size.width,view.frame.size.height), afterScreenUpdates: true)
+        self.view.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        let screenShot = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        let photo : FBSDKSharePhoto = FBSDKSharePhoto()
+         photo.image = screenShot
+        photo.userGenerated = true
+        let content : FBSDKSharePhotoContent = FBSDKSharePhotoContent()
+        content.photos = [photo]
+        
+//        let facebookSharingController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+//        facebookSharingController.addImage(screenShot)
+//        self.presentViewController(facebookSharingController, animated: true, completion: nil)
+    }
+}
+
+
+
 
 // MARK: - Data
 
@@ -177,8 +208,8 @@ extension ResultPageViewController {
             runDataStruct = runDataStructArray.last!
         }
         date = runDataStruct.date!
-        distanceLabel.text = "\(round(runDataStruct.distance!)) m"
-        speedAverageLabel.text = "\(round(runDataStruct.speed!)) km / h"
+        distanceLabel.text = NSString(format:"%.1f m", runDataStruct.distance!) as String
+        speedAverageLabel.text = NSString(format:"%.1f km / h", runDataStruct.speed! * 3.6) as String
         caloriesLabel.text = NSString(format:"%.2f kcal", runDataStruct.calories!) as String
         timeLabel.text = runDataStruct.time
         polylineDataNSData = runDataStruct.polyline

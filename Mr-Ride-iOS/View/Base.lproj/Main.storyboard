@@ -600,7 +600,14 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="bky-ke-SPP"/>
+                    <navigationItem key="navigationItem" id="bky-ke-SPP">
+                        <barButtonItem key="rightBarButtonItem" image="logo-facebook" id="dTW-iR-cST">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="fbShareAction:" destination="n4l-s5-KLg" id="xLb-dh-RkO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
@@ -907,5 +914,6 @@
         <image name="icon-menu" width="30" height="30"/>
         <image name="image-history-background" width="1536" height="1021"/>
         <image name="image-medal" width="55" height="85"/>
+        <image name="logo-facebook" width="20" height="20"/>
     </resources>
 </document>
