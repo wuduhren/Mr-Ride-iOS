@@ -9,11 +9,14 @@
 import UIKit
 import CoreData
 import Amplitude_iOS
-import FBSDKCoreKit
+import Social
 
 class ResultPageViewController: UIViewController {
     
     weak var delegate: TrackingPageViewController?
+    
+    @IBOutlet weak var ShareToFacebookButton: UIBarButtonItem!
+    
     
     @IBOutlet weak var distanceLabel: UILabel!
     
@@ -74,6 +77,13 @@ extension ResultPageViewController {
         navigationController?.navigationBar.titleTextAttributes =
             ([NSFontAttributeName: UIFont.mrTextStyle13Font(),
                 NSForegroundColorAttributeName: UIColor.whiteColor()])
+        
+        //Share button
+        ShareToFacebookButton.setTitleTextAttributes([
+            NSFontAttributeName: UIFont.mrTextStyle13Font(),
+            NSForegroundColorAttributeName: UIColor.whiteColor()
+            ],forState: UIControlState.Normal
+        )
     }
     
     private func setupBackground() {
@@ -170,27 +180,19 @@ extension ResultPageViewController {
 
 extension ResultPageViewController {
     
-    //  Created by howard hsien on 2016/5/25.
-    //  Copyright © 2016年 AppWorks School Hsien. All rights reserved.
-    
     @IBAction func fbShareAction(sender: AnyObject) {
-        guard let navHeight = self.navigationController?.navigationBar.frame.height else{ return }
-        let screenshotSize = CGSize(width: view.bounds.width , height: view.frame.origin.y + view.frame.height + 5)
-        UIGraphicsBeginImageContext(screenshotSize)
-        self.view.drawViewHierarchyInRect(CGRectMake(0,-navHeight,view.frame.size.width,view.frame.size.height), afterScreenUpdates: true)
-        self.view.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        //create screenShot
+        let layer = UIApplication.sharedApplication().keyWindow!.layer
+        let scale = UIScreen.mainScreen().scale
+        UIGraphicsBeginImageContextWithOptions(layer.frame.size, false, scale)
+
+        layer.renderInContext(UIGraphicsGetCurrentContext()!)
         let screenShot = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        
-        let photo : FBSDKSharePhoto = FBSDKSharePhoto()
-         photo.image = screenShot
-        photo.userGenerated = true
-        let content : FBSDKSharePhotoContent = FBSDKSharePhotoContent()
-        content.photos = [photo]
-        
-//        let facebookSharingController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
-//        facebookSharingController.addImage(screenShot)
-//        self.presentViewController(facebookSharingController, animated: true, completion: nil)
+        //Share
+        let facebookSharingController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+        facebookSharingController.addImage(screenShot)
+        self.presentViewController(facebookSharingController, animated: true, completion: nil)
     }
 }
 
