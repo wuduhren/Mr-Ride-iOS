@@ -23,7 +23,7 @@
   * History
     * Riding Result History List
     * History Activities Chart
-   * Map
+  * Map
     * Find Youbikes
     * Find Riverside Toilets
     * Find Toilets
