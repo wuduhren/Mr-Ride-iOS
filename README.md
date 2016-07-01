@@ -1,13 +1,6 @@
 ## Mr.Ride iOS
 > We wanted to improve the experience of biker tracking their exercise activities. Mr.Ride allows us to track routes, health information, distance improvement, and share our lifestyle on social media.
 
-# Example
-![](https://i.imgur.com/KAEZOkD.png)
-![](https://i.imgur.com/GmwmT0U.png)
-![](https://i.imgur.com/MwyYZEb.png)
-![](https://i.imgur.com/OUE8yBJ.png)
-
-
 # Feature
   * Home
     * Total Distance
@@ -31,6 +24,28 @@
     * Custom calories cumsumption caculation
     * Facebook Login
 
+# Libraries
+  * SideMenu
+  * Charts
+  * PureLayout
+  * Alamofire
+  * FBSDK
+  * Tracking Tool
+    * Amplitude
+    * GA
+    * Crashlytics
+
+
+# ScreenShot
+![](https://i.imgur.com/KAEZOkD.png)
+![](https://i.imgur.com/GmwmT0U.png)
+![](https://i.imgur.com/MwyYZEb.png)
+![](https://i.imgur.com/OUE8yBJ.png)
+
+# Requirement
+  * iOS 9.0+
+  * Xcode 7.3+
+  * pod install
 
 # Contacts
 WuDuhRen
