@@ -9,11 +9,27 @@
 
 
 # Feature
-  * Facebook Login
-  * Custom calories cumsumption caculation.
-  * Markers of YouBikes and riverside toilets in Taipei City.
-  * History of your monthly bike riding.
-    * Charts that display your daily/weekly use.
+  * Social Media
+    * Share your Trophies and Result!
+    * Custom calories cumsumption caculation
+    * Facebook Login
+  * Home
+    * Total Distance
+    * Average Speed
+    * Riding Count
+    * Activity Chart
+    * Tracking Feature: Distance, Time, Speed, Calories, Route, Current Location
+    * Result Page: Riding Final Result, Trophies
+  * History
+    * Riding Result History List
+    * History Activities Chart
+   * Map
+    * Find Youbikes
+    * Find Riverside Toilets
+    * Find Toilets
+    * Find Bicycle Routes
+    * All Location's Estimate Arrival Time
+    * All Location's Detail
 
 # Requirement
      * iOS 9.0+
