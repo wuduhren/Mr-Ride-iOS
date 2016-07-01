@@ -41,6 +41,11 @@
 ![](http://i.imgur.com/wCttSdY.png)
 ![](http://i.imgur.com/KSn9P4f.png)
 ![](http://i.imgur.com/UXAgLZ8.png)
+![](http://i.imgur.com/5teKeoQ.png)
+![](http://i.imgur.com/riXpajo.png)
+![](http://i.imgur.com/LIa01nc.png)
+![](http://i.imgur.com/SctTixK.png)
+
 
 # Requirement
   * iOS 9.0+
