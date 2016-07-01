@@ -33,6 +33,6 @@
 
 
 # Contacts
-> WuDuhRen
-tw.linkedin.com/in/wuduhren
-wuduhren@outlook.com
+WuDuhRen
+  tw.linkedin.com/in/wuduhren
+  wuduhren@outlook.com
