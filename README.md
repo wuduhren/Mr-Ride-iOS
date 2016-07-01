@@ -34,5 +34,5 @@
 
 # Contacts
 WuDuhRen
-  tw.linkedin.com/in/wuduhren
-  wuduhren@outlook.com
+<br>tw.linkedin.com/in/wuduhren
+<br>wuduhren@outlook.com
