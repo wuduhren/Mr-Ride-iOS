@@ -9,10 +9,6 @@
 
 
 # Feature
-  * Social Media
-    * Share your Trophies and Result!
-    * Custom calories cumsumption caculation
-    * Facebook Login
   * Home
     * Total Distance
     * Average Speed
@@ -30,13 +26,13 @@
     * Find Bicycle Routes
     * All Location's Estimate Arrival Time
     * All Location's Detail
+  * Social Media
+    * Share your Trophies and Result!
+    * Custom calories cumsumption caculation
+    * Facebook Login
 
-# Requirement
-     * iOS 9.0+
-     * Xcode 7.3+
-  
 
 # Contacts
-WuDuhRen
-tw.linkedin.com/in/wuduhren
-wuduhren@outlook.com
+> WuDuhRen
+> tw.linkedin.com/in/wuduhren
+> wuduhren@outlook.com
