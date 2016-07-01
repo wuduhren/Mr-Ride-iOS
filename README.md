@@ -1,5 +1,5 @@
 ## Mr.Ride iOS
-> We wanted to improve the experience of biker tracking their activities. Mr.Ride is an tracking app which allows us to track your routes, health information, distance improvement, and share our lifestyle on social media.
+> We wanted to improve the experience of biker tracking their exercise activities. Mr.Ride allows us to track routes, health information, distance improvement, and share our lifestyle on social media.
 
 # Example
 ![](https://i.imgur.com/KAEZOkD.png)
