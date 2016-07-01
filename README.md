@@ -1,5 +1,5 @@
 ## Mr.Ride iOS
-> Mr.Ride is an tracking app which allows you to track your routes, health information, and distance while you are riding bike.
+> We wanted to improve the experience of biker tracking their activities. Mr.Ride is an tracking app which allows us to track your routes, health information, distance improvement, and share our lifestyle on social media.
 
 # Example
 ![](https://i.imgur.com/KAEZOkD.png)
@@ -16,12 +16,11 @@
     * Charts that display your daily/weekly use.
 
 # Requirement
-     * iOS 8.0+
-  * Xcode 7.3+
+     * iOS 9.0+
+     * Xcode 7.3+
   
-# License
-    Feel free to use this app wherever you want. :)
-    
+
 # Contacts
-Wei-Kang Zhang
-zhangkon@gmail.com
+WuDuhRen
+tw.linkedin.com/in/wuduhren
+wuduhren@outlook.com
