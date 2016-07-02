@@ -14,6 +14,7 @@ class MapViewController: UIViewController {
     
     //map
     @IBOutlet weak var mapView: GMSMapView!
+
     private let locationManager = CLLocationManager()
     private var didSetCamera = false
     private var currentLocation: CLLocation?
@@ -69,7 +70,7 @@ class MapViewController: UIViewController {
 // MARK: - Map
 
 extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
-    
+
     func mapView(mapView: GMSMapView, didTapMarker marker: GMSMarker) -> Bool {
         infoView.hidden = false
         
@@ -178,6 +179,8 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
             marker.title = "\(publicToilet.name)"
             marker.userData = publicToiletIndex
             marker.map = mapView
+            
+//            marker.tracksViewChanges = false
             publicToiletIndex += 1
         }
     }
@@ -197,7 +200,8 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
             marker.title = "\(riversideToilet.location)"
             marker.userData = riversideToiletIndex
             marker.map = mapView
-            
+            marker.tracksViewChanges = false
+
             riversideToiletIndex += 1
         }
     }
@@ -218,6 +222,7 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
             marker.title = "\(youbike.bikeRemain) bikes left"
             marker.userData = youbikeIndex
             marker.map = mapView
+            marker.tracksViewChanges = false
             
             youbikeIndex += 1
         }

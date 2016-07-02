@@ -146,7 +146,6 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
             Amplitude.instance().logEvent("view_in_historyPage", withEventProperties: ["record_id": "\(runDataSortedByTime[headers[indexPath.section]]![indexPath.row - 1].objectID)"] )
         navigationController?.pushViewController(resultPageViewController, animated: true)
         
-        
     }
 }
 
