@@ -137,12 +137,13 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let resultPageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ResultPageViewController") as! ResultPageViewController
         
-        for header in headers {
-            resultPageViewController.runDataStruct = runDataSortedByTime[header]![indexPath.row - 1]
-            resultPageViewController.previousPage = .HistoryViewController
+
+        print("indexPath: \(indexPath.row)")
+        print("arrayCount: \(runDataSortedByTime[headers[indexPath.section]]!.count)")
+        resultPageViewController.runDataStruct = runDataSortedByTime[headers[indexPath.section]]![indexPath.row - 1]
+        resultPageViewController.previousPage = .HistoryViewController
             
-            Amplitude.instance().logEvent("view_in_historyPage", withEventProperties: ["record_id": "\(runDataSortedByTime[header]![indexPath.row - 1].objectID)"] )
-        }
+            Amplitude.instance().logEvent("view_in_historyPage", withEventProperties: ["record_id": "\(runDataSortedByTime[headers[indexPath.section]]![indexPath.row - 1].objectID)"] )
         navigationController?.pushViewController(resultPageViewController, animated: true)
         
         
