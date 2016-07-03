@@ -179,8 +179,8 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
             marker.title = "\(publicToilet.name)"
             marker.userData = publicToiletIndex
             marker.map = mapView
-            
-//            marker.tracksViewChanges = false
+            marker.tracksViewChanges = false            
+
             publicToiletIndex += 1
         }
     }
