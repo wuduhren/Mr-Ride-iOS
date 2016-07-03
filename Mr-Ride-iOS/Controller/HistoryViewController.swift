@@ -79,10 +79,8 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        for header in headers {
-            
             // first and last return gap cell
-            if indexPath.row == 0 || indexPath.row == runDataSortedByTime[header]!.count + 1 {
+            if indexPath.row == 0 || indexPath.row == runDataSortedByTime[headers[indexPath.section]]!.count + 1 {
                 cellStatus = .gap
                 
                 let cell = tableView.dequeueReusableCellWithIdentifier("RunDataTableViewGapCell", forIndexPath: indexPath) as! RunDataTableViewGapCell
@@ -94,13 +92,13 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
                 cellStatus = .recordCell
                 
                 let cell = tableView.dequeueReusableCellWithIdentifier("RunDataTableViewCell", forIndexPath: indexPath) as! RunDataTableViewCell
-                cell.runDataStruct = runDataSortedByTime[header]![indexPath.row - 1]
+                cell.runDataStruct = runDataSortedByTime[headers[indexPath.section]]![indexPath.row - 1]
                 cell.setup()
                 cell.selectionStyle = .None
+                print("\(headers[indexPath.section]) cell created \(runDataSortedByTime[headers[indexPath.section]]![indexPath.row - 1].objectID)")
                 return cell
             }
-        }
-        return UITableViewCell()
+
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -166,9 +164,11 @@ extension HistoryViewController {
             
             if runDataSortedByTime.keys.contains(header) {
                 runDataSortedByTime[header]?.append(runDataStruct)
+                print("\(header) added \(runDataStruct.objectID)")
             } else {
                 runDataSortedByTime[header] = []
                 runDataSortedByTime[header]?.append(runDataStruct)
+                print("\(header) added \(runDataStruct.objectID)")
             }
             
             if !headers.contains(header) {
