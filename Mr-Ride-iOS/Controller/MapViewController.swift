@@ -138,7 +138,7 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
     
     
     func mapView(mapView: GMSMapView, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
-        
+        lookForButton.setTitle(templookForButtonText, forState: .Normal)
         infoView.hidden = true
         pickerViewWindow.hidden = true
     }
