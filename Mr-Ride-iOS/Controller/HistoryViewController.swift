@@ -95,7 +95,6 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.runDataStruct = runDataSortedByTime[headers[indexPath.section]]![indexPath.row - 1]
                 cell.setup()
                 cell.selectionStyle = .None
-                print("\(headers[indexPath.section]) cell created \(runDataSortedByTime[headers[indexPath.section]]![indexPath.row - 1].objectID)")
                 return cell
             }
 
@@ -135,9 +134,6 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let resultPageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ResultPageViewController") as! ResultPageViewController
         
-
-        print("indexPath: \(indexPath.row)")
-        print("arrayCount: \(runDataSortedByTime[headers[indexPath.section]]!.count)")
         resultPageViewController.runDataStruct = runDataSortedByTime[headers[indexPath.section]]![indexPath.row - 1]
         resultPageViewController.previousPage = .HistoryViewController
             
@@ -164,11 +160,9 @@ extension HistoryViewController {
             
             if runDataSortedByTime.keys.contains(header) {
                 runDataSortedByTime[header]?.append(runDataStruct)
-                print("\(header) added \(runDataStruct.objectID)")
             } else {
                 runDataSortedByTime[header] = []
                 runDataSortedByTime[header]?.append(runDataStruct)
-                print("\(header) added \(runDataStruct.objectID)")
             }
             
             if !headers.contains(header) {
