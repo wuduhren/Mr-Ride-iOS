@@ -130,8 +130,6 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
 
         }
         
-        
-        
         return false
         
     }
@@ -179,7 +177,7 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
             marker.title = "\(publicToilet.name)"
             marker.userData = publicToiletIndex
             marker.map = mapView
-            marker.tracksViewChanges = false            
+            //marker.tracksViewChanges = false
 
             publicToiletIndex += 1
         }
@@ -200,7 +198,7 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
             marker.title = "\(riversideToilet.location)"
             marker.userData = riversideToiletIndex
             marker.map = mapView
-            marker.tracksViewChanges = false
+            //marker.tracksViewChanges = false
 
             riversideToiletIndex += 1
         }
@@ -208,7 +206,7 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
     
     private func setupYoubikeMarkers() {
         mapView.clear()
-        //youbikes = youbikes.filter(isNearCurrentLocation)
+        youbikes = youbikes.filter(isNearCurrentLocation)
 
         var youbikeIndex = 0
         if youbikes.count == 0 {
@@ -222,7 +220,7 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
             marker.title = "\(youbike.bikeRemain) bikes left"
             marker.userData = youbikeIndex
             marker.map = mapView
-            marker.tracksViewChanges = false
+            //marker.tracksViewChanges = false
             
             youbikeIndex += 1
         }
@@ -278,7 +276,7 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
         if currentLocation == nil { return false }
         let distanceInMeters = publicToiletCoordinateLocation.distanceFromLocation(currentLocation!)
 
-        return distanceInMeters < 500
+        return distanceInMeters < 1000
     }
     
     private func isNearCurrentLocation(youbike: YoubikeModel) -> Bool {
@@ -288,7 +286,7 @@ extension MapViewController: GMSMapViewDelegate, MKMapViewDelegate {
         if currentLocation == nil { return false }
         let distanceInMeters = youbikeCoordinateLocation.distanceFromLocation(currentLocation!)
         
-        return distanceInMeters < 1500
+        return distanceInMeters < 3000
     }
 
 
